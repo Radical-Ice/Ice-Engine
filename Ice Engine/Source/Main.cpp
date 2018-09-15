@@ -22,9 +22,7 @@ bool IsOnlyInstance(LPCSTR gameTitle);
 bool CheckStorage(const DWORDLONG diskSpaceNeeded);
 DWORD ReadCPUSpeed();														//TODO this does not work for me
 const DWORDLONG diskSpaceNeed= 300;
-void main() {
-	std::cout << "hi";
-}
+
 int CALLBACK WinMain(                              //XXXXXXXXXXXXXXXXXXXXXXXXXXXX             Switch main back to WinMain for actual tests but you wont get a console output XXXXXXXXXXXXXXXXXXXXXXXXXXX
 	_In_ HINSTANCE hInstance,
 	_In_ HINSTANCE hPrevInstance,
@@ -35,7 +33,7 @@ int CALLBACK WinMain(                              //XXXXXXXXXXXXXXXXXXXXXXXXXXX
 {
 	AllocConsole();
 	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
-	
+	printf("hi");
 	WNDCLASSEX wcex;
 
 	wcex.cbSize = sizeof(WNDCLASSEX);
@@ -52,11 +50,14 @@ int CALLBACK WinMain(                              //XXXXXXXXXXXXXXXXXXXXXXXXXXX
 	wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 	if (!IsOnlyInstance(szWindowClass)) {											// is only instance or close
 		std::cout << "Not the only instance"<<std::endl;
+
 		return 1;
 	}
 	std::cout << "the only instance"<<std::endl;
 	if (!CheckStorage(diskSpaceNeed)) {
 		std::cout << "not enough disk space"<<std::endl;
+
+		return 1;
 	}
 	std::cout << "enough disk space"<<std::endl;
 	std::cout<<ReadCPUSpeed();
