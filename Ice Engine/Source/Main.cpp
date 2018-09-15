@@ -1,16 +1,11 @@
-// Authors: James Bews; Jatin Kumar; Dennis Nguyen;
-
 #include <windows.h>  
 #include <stdlib.h>  
 #include <string.h>  
-#include <tchar.h> 
+#include <tchar.h>  
+#include <direct.h>
 #include<iostream>
-#include<filesystem>
-using namespace std;
-
-
 // Global variables  
-
+using namespace std;
 // The main window class name.  
 static TCHAR szWindowClass[] = _T("win32app");
 
@@ -18,42 +13,27 @@ static TCHAR szWindowClass[] = _T("win32app");
 static TCHAR szTitle[] = _T("Win32 Guided Tour Application");
 
 HINSTANCE hInst;
-int DisplayResourceNAMessageBox()
-{
-	int msgboxID = MessageBox(
-		NULL,
-		"Already Open",
-		"Error",
-		MB_ICONWARNING | MB_CANCELTRYCONTINUE | MB_DEFBUTTON2
-	);
-
-	switch (msgboxID)
-	{
-	case IDCANCEL:
-		// TODO: add code
-		break;
-	case IDTRYAGAIN:
-		// TODO: add code
-		break;
-	case IDCONTINUE:
-		// TODO: add code
-		break;
-	}
-
-	return msgboxID;
-}
 
 // Forward declarations of functions included in this code module:  
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+
 bool IsOnlyInstance(LPCSTR gameTitle);
-int CALLBACK WinMain(
+bool CheckStorage(const DWORDLONG diskSpaceNeeded);
+bool CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG virtualRAMNeeded);
+DWORD ReadCPUSpeed();														//TODO this does not work for me
+const DWORDLONG diskSpaceNeed = 300;
+const DWORDLONG physicalRAMNeed = 5;
+const DWORDLONG virtualRAMNeed = 5;
+int CALLBACK WinMain(                              //XXXXXXXXXXXXXXXXXXXXXXXXXXXX             Switch main back to WinMain for actual tests but you wont get a console output XXXXXXXXXXXXXXXXXXXXXXXXXXX
 	_In_ HINSTANCE hInstance,
 	_In_ HINSTANCE hPrevInstance,
 	_In_ LPSTR     lpCmdLine,
 	_In_ int       nCmdShow
+
 )
 {
-
+	AllocConsole();
+	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
 	WNDCLASSEX wcex;
 
 	wcex.cbSize = sizeof(WNDCLASSEX);
@@ -69,9 +49,27 @@ int CALLBACK WinMain(
 	wcex.lpszClassName = szWindowClass;
 	wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 	if (!IsOnlyInstance(szWindowClass)) {											// is only instance or close
-		DisplayResourceNAMessageBox();
+		cout << "Not the only instance" << endl;
+		system("pause");
 		return 1;
 	}
+	cout << "the only instance" << endl;
+	if (!CheckStorage(diskSpaceNeed)) {
+		cout << "not enough disk space" << endl;
+		system("pause");
+		return 1;
+	}
+	cout << "enough disk space" << endl;
+	CheckMemory(physicalRAMNeed, virtualRAMNeed);
+
+	SYSTEM_INFO siSysInfo;
+
+	// Copy the hardware information to the SYSTEM_INFO structure. 
+
+	GetSystemInfo(&siSysInfo);
+	cout << "Processor Architecture : " << siSysInfo.wProcessorArchitecture << endl;
+	// Display the contents of the SYSTEM_INFO structure. 
+	cout << "Processor Speed : " << ReadCPUSpeed();
 	if (!RegisterClassEx(&wcex))
 	{
 		MessageBox(NULL,
@@ -189,10 +187,72 @@ bool IsOnlyInstance(LPCSTR gameTitle) {
 	}
 	return true;
 }
+bool CheckStorage(const DWORDLONG diskSpaceNeeded) {
+	// Check for enough free disk space on the current disk.
+	int const drive = _getdrive();
+	struct _diskfree_t diskfree;
+	_getdiskfree(drive, &diskfree);
+	unsigned __int64 const neededClusters
+		= diskSpaceNeeded /
+		(diskfree.sectors_per_cluster *
+			diskfree.bytes_per_sector);
+	if (diskfree.avail_clusters < neededClusters) {
+		// if you get here you don’t have enough disk space!
+		cout << "CheckStorage Failure: Not enough physical storage.";
+		return false;
+	}
+	return true;
+}
+bool CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG virtualRAMNeeded) {
+	MEMORYSTATUSEX status;
+	GlobalMemoryStatusEx(&status);
+	if (status.ullTotalPhys < physicalRAMNeeded) {
+		/* you don’€™t have enough physical memory. Tell the player to go get a real
+		computer and give this one to his mother. */
+		cout << ("CheckMemory Failure: Not enough physical memory.");
+		return false;
+	}
+	cout << "Total Ram = ";
+	cout << status.ullTotalPhys << endl;
+	// Check for enough free memory.
+	if (status.ullAvailVirtual < virtualRAMNeeded) {
+		// you don’t have enough virtual memory available.
+		// Tell the player to shut down the copy of Visual Studio running in the
+		cout << ("CheckMemory Failure: Not enough virtual memory.");
+		return false;
+	}
+	cout << "Total VRam = ";
+	cout << status.ullAvailVirtual << endl;
+	char *buff = new char[virtualRAMNeeded];
+	if (buff)
+		delete[] buff;
+	else {
+		// even though there is enough memory, it isn’t available in one block, which
 
-
-//void main()
-//{
-//	cout << "this" << endl;
-//	system("pause");
-//}
+		cout << ("CheckMemory Failure: Not enough contiguous memory.");
+		return false;
+	}
+	cout << "enough memory" << endl;
+}
+DWORD ReadCPUSpeed() {
+	DWORD BufSize = sizeof(DWORD);
+	DWORD dwMHz = 0;
+	DWORD type = REG_DWORD;
+	HKEY hKey;
+	// open the key where the proc speed is hidden:
+	long lError = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
+		"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0",
+		0,
+		KEY_READ,
+		&hKey);
+	if (lError == ERROR_SUCCESS) {
+		// query the key:
+		RegQueryValueEx(hKey,
+			"~MHz",
+			NULL,
+			&type,
+			(LPBYTE)&dwMHz,
+			&BufSize);
+	}
+	return dwMHz;
+}
