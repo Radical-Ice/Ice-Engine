@@ -2,10 +2,9 @@
 #include <windows.h>  
 #include <stdlib.h>  
 #include <string.h>  
-#include <tchar.h> 
+#include <tchar.h>  
+#include <direct.h>
 #include<iostream>
-using namespace std;
-
 // Global variables  
 
 // The main window class name.  
@@ -15,35 +14,16 @@ static TCHAR szWindowClass[] = _T("win32app");
 static TCHAR szTitle[] = _T("Win32 Guided Tour Application");
 
 HINSTANCE hInst;
-int DisplayResourceNAMessageBox()
-{
-	int msgboxID = MessageBox(
-		NULL,
-		"Already Open",
-		"Error",
-		MB_ICONWARNING | MB_CANCELTRYCONTINUE | MB_DEFBUTTON2
-	);
-
-	switch (msgboxID)
-	{
-	case IDCANCEL:
-		// TODO: add code
-		break;
-	case IDTRYAGAIN:
-		// TODO: add code
-		break;
-	case IDCONTINUE:
-		// TODO: add code
-		break;
-	}
-
-	return msgboxID;
-}
 
 // Forward declarations of functions included in this code module:  
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+
 bool IsOnlyInstance(LPCSTR gameTitle);
-int CALLBACK WinMain(
+bool CheckStorage(const DWORDLONG diskSpaceNeeded);
+DWORD ReadCPUSpeed();														//TODO this does not work for me
+const DWORDLONG diskSpaceNeed= 300;
+
+int CALLBACK main(                              //XXXXXXXXXXXXXXXXXXXXXXXXXXXX             Switch main back to WinMain for actual tests but you wont get a console output XXXXXXXXXXXXXXXXXXXXXXXXXXX
 	_In_ HINSTANCE hInstance,
 	_In_ HINSTANCE hPrevInstance,
 	_In_ LPSTR     lpCmdLine,
@@ -66,9 +46,15 @@ int CALLBACK WinMain(
 	wcex.lpszClassName = szWindowClass;
 	wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 	if (!IsOnlyInstance(szWindowClass)) {											// is only instance or close
-		DisplayResourceNAMessageBox();
+		std::cout << "Not the only instance"<<std::endl;
 		return 1;
 	}
+	std::cout << "the only instance"<<std::endl;
+	if (!CheckStorage(diskSpaceNeed)) {
+		std::cout << "not enough disk space"<<std::endl;
+	}
+	std::cout << "enough disk space"<<std::endl;
+	std::cout<<ReadCPUSpeed();
 	if (!RegisterClassEx(&wcex))
 	{
 		MessageBox(NULL,
@@ -186,10 +172,67 @@ bool IsOnlyInstance(LPCSTR gameTitle) {
 	}
 	return true;
 }
-
-
-//void main()
-//{
-//	cout << "this" << endl;
-//	system("pause");
-//}
+bool CheckStorage(const DWORDLONG diskSpaceNeeded) {
+	// Check for enough free disk space on the current disk.
+	int const drive = _getdrive();
+	struct _diskfree_t diskfree;
+	_getdiskfree(drive, &diskfree);
+	unsigned __int64 const neededClusters
+	 = diskSpaceNeeded /
+		(diskfree.sectors_per_cluster *
+			diskfree.bytes_per_sector);
+	if (diskfree.avail_clusters < neededClusters) {
+		// if you get here you don’t have enough disk space!
+		std::cout<<"CheckStorage Failure: Not enough physical storage.";
+		return false;
+	}
+	return true;
+}
+bool CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG virtualRAMNeeded) {
+	MEMORYSTATUSEX status;
+	GlobalMemoryStatusEx(&status);
+	if (status.ullTotalPhys < physicalRAMNeeded) {
+		/* you don’€™t have enough physical memory. Tell the player to go get a real
+		computer and give this one to his mother. */
+		std::cout<<("CheckMemory Failure: Not enough physical memory.");
+		return false;
+	}
+	// Check for enough free memory.
+	if (status.ullAvailVirtual < virtualRAMNeeded) {
+		// you don’t have enough virtual memory available.
+		// Tell the player to shut down the copy of Visual Studio running in the
+		std::cout<<("CheckMemory Failure: Not enough virtual memory.");
+		return false;
+	}
+	char *buff = new char[virtualRAMNeeded];
+	if (buff)
+		delete[] buff;
+	else {
+		// even though there is enough memory, it isn’t available in one block, which
+		
+			std::cout<<("CheckMemory Failure: Not enough contiguous memory.");
+		return false;
+	}
+}
+DWORD ReadCPUSpeed() {
+	DWORD BufSize = sizeof(DWORD);
+	DWORD dwMHz = 0;
+	DWORD type = REG_DWORD;
+	HKEY hKey;
+	// open the key where the proc speed is hidden:
+	long lError = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
+		"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0",
+		0,
+		KEY_READ,
+		&hKey);
+	if (lError == ERROR_SUCCESS) {
+		// query the key:
+		RegQueryValueEx(hKey,
+			"MHz",
+			NULL,
+			&type,
+			(LPBYTE)&dwMHz,
+			&BufSize);
+	}
+	return dwMHz;
+}
