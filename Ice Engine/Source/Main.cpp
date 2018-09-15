@@ -20,9 +20,11 @@ LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 bool IsOnlyInstance(LPCSTR gameTitle);
 bool CheckStorage(const DWORDLONG diskSpaceNeeded);
+bool CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG virtualRAMNeeded);
 DWORD ReadCPUSpeed();														//TODO this does not work for me
 const DWORDLONG diskSpaceNeed= 300;
-
+const DWORDLONG physicalRAMNeed = 5;
+const DWORDLONG virtualRAMNeed = 5;
 int CALLBACK WinMain(                              //XXXXXXXXXXXXXXXXXXXXXXXXXXXX             Switch main back to WinMain for actual tests but you wont get a console output XXXXXXXXXXXXXXXXXXXXXXXXXXX
 	_In_ HINSTANCE hInstance,
 	_In_ HINSTANCE hPrevInstance,
@@ -33,7 +35,6 @@ int CALLBACK WinMain(                              //XXXXXXXXXXXXXXXXXXXXXXXXXXX
 {
 	AllocConsole();
 	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
-	printf("hi");
 	WNDCLASSEX wcex;
 
 	wcex.cbSize = sizeof(WNDCLASSEX);
@@ -50,16 +51,19 @@ int CALLBACK WinMain(                              //XXXXXXXXXXXXXXXXXXXXXXXXXXX
 	wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 	if (!IsOnlyInstance(szWindowClass)) {											// is only instance or close
 		std::cout << "Not the only instance"<<std::endl;
-
+		system("pause");
 		return 1;
 	}
 	std::cout << "the only instance"<<std::endl;
 	if (!CheckStorage(diskSpaceNeed)) {
 		std::cout << "not enough disk space"<<std::endl;
-
+		system("pause");
 		return 1;
 	}
-	std::cout << "enough disk space"<<std::endl;
+	std::cout << "enough disk space" << std::endl;
+	CheckMemory(physicalRAMNeed, virtualRAMNeed);
+	
+	
 	std::cout<<ReadCPUSpeed();
 	if (!RegisterClassEx(&wcex))
 	{
@@ -203,6 +207,8 @@ bool CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG virtualRAMNe
 		std::cout<<("CheckMemory Failure: Not enough physical memory.");
 		return false;
 	}
+	std::cout << "Total Ram = ";
+	std::cout << status.ullTotalPhys << std::endl;
 	// Check for enough free memory.
 	if (status.ullAvailVirtual < virtualRAMNeeded) {
 		// you don’t have enough virtual memory available.
@@ -210,6 +216,8 @@ bool CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG virtualRAMNe
 		std::cout<<("CheckMemory Failure: Not enough virtual memory.");
 		return false;
 	}
+	std::cout << "Total VRam = ";
+	std::cout << status.ullAvailVirtual<<std::endl;
 	char *buff = new char[virtualRAMNeeded];
 	if (buff)
 		delete[] buff;
@@ -219,6 +227,7 @@ bool CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG virtualRAMNe
 			std::cout<<("CheckMemory Failure: Not enough contiguous memory.");
 		return false;
 	}
+	std::cout << "enough memory" << std::endl;
 }
 DWORD ReadCPUSpeed() {
 	DWORD BufSize = sizeof(DWORD);
