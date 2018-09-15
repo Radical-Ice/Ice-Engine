@@ -22,15 +22,20 @@ bool IsOnlyInstance(LPCSTR gameTitle);
 bool CheckStorage(const DWORDLONG diskSpaceNeeded);
 DWORD ReadCPUSpeed();														//TODO this does not work for me
 const DWORDLONG diskSpaceNeed= 300;
-
-int CALLBACK main(                              //XXXXXXXXXXXXXXXXXXXXXXXXXXXX             Switch main back to WinMain for actual tests but you wont get a console output XXXXXXXXXXXXXXXXXXXXXXXXXXX
+void main() {
+	std::cout << "hi";
+}
+int CALLBACK WinMain(                              //XXXXXXXXXXXXXXXXXXXXXXXXXXXX             Switch main back to WinMain for actual tests but you wont get a console output XXXXXXXXXXXXXXXXXXXXXXXXXXX
 	_In_ HINSTANCE hInstance,
 	_In_ HINSTANCE hPrevInstance,
 	_In_ LPSTR     lpCmdLine,
 	_In_ int       nCmdShow
+	
 )
 {
-
+	AllocConsole();
+	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
+	
 	WNDCLASSEX wcex;
 
 	wcex.cbSize = sizeof(WNDCLASSEX);
