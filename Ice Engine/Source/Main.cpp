@@ -1,11 +1,7 @@
-#include <windows.h>  
-#include <stdlib.h>  
-#include <string.h>  
-#include <tchar.h>  
-#include <direct.h>
-#include<iostream>
+#include "../Lib/Checks.h"
+#include "../Lib/Game Window.h"
+
 // Global variables  
-using namespace std;
 // The main window class name.  
 static TCHAR szWindowClass[] = _T("win32app");
 
@@ -15,16 +11,15 @@ static TCHAR szTitle[] = _T("Win32 Guided Tour Application");
 HINSTANCE hInst;
 
 // Forward declarations of functions included in this code module:  
-LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
-bool IsOnlyInstance(LPCSTR gameTitle);
-bool CheckStorage(const DWORDLONG diskSpaceNeeded);
-bool CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG virtualRAMNeeded);
-DWORD ReadCPUSpeed();														//TODO this does not work for me
+//~~~Requirements~~~
 const DWORDLONG diskSpaceNeed = 300;
 const DWORDLONG physicalRAMNeed = 5;
 const DWORDLONG virtualRAMNeed = 5;
-int CALLBACK WinMain(                              //XXXXXXXXXXXXXXXXXXXXXXXXXXXX             Switch main back to WinMain for actual tests but you wont get a console output XXXXXXXXXXXXXXXXXXXXXXXXXXX
+//~~~~~~~~~~~~~~~~~
+
+//~~~~Main Window With Console Enabled~~~~~
+int CALLBACK WinMain(                             
 	_In_ HINSTANCE hInstance,
 	_In_ HINSTANCE hPrevInstance,
 	_In_ LPSTR     lpCmdLine,
@@ -48,33 +43,44 @@ int CALLBACK WinMain(                              //XXXXXXXXXXXXXXXXXXXXXXXXXXX
 	wcex.lpszMenuName = NULL;
 	wcex.lpszClassName = szWindowClass;
 	wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
-	if (!IsOnlyInstance(szWindowClass)) {											// is only instance or close
+	
+	//~~~Check For Multipl Instance~~~~
+	if (!IsOnlyInstance(szWindowClass)) {
 		cout << "Not the only instance" << endl;
 		system("pause");
 		return 1;
 	}
 	cout << "the only instance" << endl;
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	//~~~Check For Storage~~~~~~~~~~~~~~~ 
+	CheckMemory(physicalRAMNeed, virtualRAMNeed);
 	if (!CheckStorage(diskSpaceNeed)) {
 		cout << "not enough disk space" << endl;
 		system("pause");
 		return 1;
 	}
 	cout << "enough disk space" << endl;
-	CheckMemory(physicalRAMNeed, virtualRAMNeed);
+	//~~~Check For Storage~~~~~~~~~~~~~~ 
 
+	//~~For CPU Info~~~~~~~~~~~~~~~~~~~~
 	SYSTEM_INFO siSysInfo;
-
-	// Copy the hardware information to the SYSTEM_INFO structure. 
-
 	GetSystemInfo(&siSysInfo);
 	cout << "Processor Architecture : " << siSysInfo.wProcessorArchitecture << endl;
-	// Display the contents of the SYSTEM_INFO structure. 
 	cout << "Processor Speed : " << ReadCPUSpeed();
+	
+	//~~~For Memory Info~~~~~~~~~~~~~~~~
+	MEMORYSTATUSEX statex;
+	statex.dwLength = sizeof(statex);
+	GlobalMemoryStatusEx(&statex);
+	cout << "\nTotal System Memory: " << (statex.ullTotalPhys / 1024) / 1024 << "MB" << endl;
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
 	if (!RegisterClassEx(&wcex))
 	{
 		MessageBox(NULL,
 			_T("Call to RegisterClassEx failed!"),
-			_T("Win32 Guided Tour"),
+			_T("Ice Engine"),
 			NULL);
 
 		return 1;
@@ -139,120 +145,3 @@ int CALLBACK WinMain(                              //XXXXXXXXXXXXXXXXXXXXXXXXXXX
 //  
 //  WM_PAINT    - Paint the main window  
 //  WM_DESTROY  - post a quit message and return  
-//  
-//  
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	PAINTSTRUCT ps;
-	HDC hdc;
-	TCHAR greeting[] = _T("Hello, World!");
-
-	switch (message)
-	{
-	case WM_PAINT:
-		hdc = BeginPaint(hWnd, &ps);
-
-		// Here your application is laid out.  
-		// For this introduction, we just print out "Hello, World!"  
-		// in the top left corner.  
-		TextOut(hdc,
-			5, 5,
-			greeting, _tcslen(greeting));
-		// End application-specific layout section.  
-
-		EndPaint(hWnd, &ps);
-		break;
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		break;
-	default:
-		return DefWindowProc(hWnd, message, wParam, lParam);
-		break;
-	}
-
-	return 0;
-}
-bool IsOnlyInstance(LPCSTR gameTitle) {
-	HANDLE handle = CreateMutex(NULL, TRUE, gameTitle);
-	if (GetLastError() != ERROR_SUCCESS) {
-		HWND hWnd = FindWindow(gameTitle, NULL);
-		if (hWnd) {
-			// An instance of your game is already running.
-			ShowWindow(hWnd, SW_SHOWNORMAL);
-			SetFocus(hWnd);
-			SetForegroundWindow(hWnd);
-			SetActiveWindow(hWnd);
-			return false;
-		}
-	}
-	return true;
-}
-bool CheckStorage(const DWORDLONG diskSpaceNeeded) {
-	// Check for enough free disk space on the current disk.
-	int const drive = _getdrive();
-	struct _diskfree_t diskfree;
-	_getdiskfree(drive, &diskfree);
-	unsigned __int64 const neededClusters
-		= diskSpaceNeeded /
-		(diskfree.sectors_per_cluster *
-			diskfree.bytes_per_sector);
-	if (diskfree.avail_clusters < neededClusters) {
-		// if you get here you don’t have enough disk space!
-		cout << "CheckStorage Failure: Not enough physical storage.";
-		return false;
-	}
-	return true;
-}
-bool CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG virtualRAMNeeded) {
-	MEMORYSTATUSEX status;
-	GlobalMemoryStatusEx(&status);
-	if (status.ullTotalPhys < physicalRAMNeeded) {
-		/* you don’€™t have enough physical memory. Tell the player to go get a real
-		computer and give this one to his mother. */
-		cout << ("CheckMemory Failure: Not enough physical memory.");
-		return false;
-	}
-	cout << "Total Ram = ";
-	cout << status.ullTotalPhys << endl;
-	// Check for enough free memory.
-	if (status.ullAvailVirtual < virtualRAMNeeded) {
-		// you don’t have enough virtual memory available.
-		// Tell the player to shut down the copy of Visual Studio running in the
-		cout << ("CheckMemory Failure: Not enough virtual memory.");
-		return false;
-	}
-	cout << "Total VRam = ";
-	cout << status.ullAvailVirtual << endl;
-	char *buff = new char[virtualRAMNeeded];
-	if (buff)
-		delete[] buff;
-	else {
-		// even though there is enough memory, it isn’t available in one block, which
-
-		cout << ("CheckMemory Failure: Not enough contiguous memory.");
-		return false;
-	}
-	cout << "enough memory" << endl;
-}
-DWORD ReadCPUSpeed() {
-	DWORD BufSize = sizeof(DWORD);
-	DWORD dwMHz = 0;
-	DWORD type = REG_DWORD;
-	HKEY hKey;
-	// open the key where the proc speed is hidden:
-	long lError = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
-		"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0",
-		0,
-		KEY_READ,
-		&hKey);
-	if (lError == ERROR_SUCCESS) {
-		// query the key:
-		RegQueryValueEx(hKey,
-			"~MHz",
-			NULL,
-			&type,
-			(LPBYTE)&dwMHz,
-			&BufSize);
-	}
-	return dwMHz;
-}
