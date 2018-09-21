@@ -1,4 +1,4 @@
-#include "../Lib/Checks.h"
+#include "../Lib/Checking.h"
 #include "../Lib/Game Window.h"
 
 #define DIV 1024
@@ -10,7 +10,7 @@ static TCHAR szWindowClass[] = _T("win32app");
 static TCHAR szTitle[] = _T("Win32 Guided Tour Application");
 
 HINSTANCE hInst;
-
+Checking *checker;
 // Forward declarations of functions included in this code module:  
 
 //~~~Requirements~~~
@@ -45,66 +45,10 @@ int CALLBACK WinMain(
 	wcex.lpszClassName = szWindowClass;
 	wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 	
-	//~~~Check For Multipl Instance~~~~
-	if (!IsOnlyInstance(szWindowClass)) {
-		cout << "Not the only instance" << endl;
-		system("pause");
-		return 1;
-	}
-	cout << "the only instance" << endl;
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-	//~~~Check For Storage~~~~~~~~~~~~~~~ 
-	CheckMemory(physicalRAMNeed, virtualRAMNeed);
-	if (!CheckStorage(diskSpaceNeed)) {
-		cout << "not enough disk space" << endl;
-		system("pause");
-		return 1;
-	}
-	cout << "enough disk space" << endl;
-	//~~~Check For Storage~~~~~~~~~~~~~~ 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	checker->initChecks(szWindowClass, physicalRAMNeed, virtualRAMNeed, diskSpaceNeed);
 
-	//~~For CPU Info~~~~~~~~~~~~~~~~~~~~
-	SYSTEM_INFO siSysInfo;
-	GetSystemInfo(&siSysInfo);
-	//For CPU Name
-	ReadCPUName();
-
-	if (siSysInfo.wProcessorArchitecture ==0)
-	{
-		cout << "Processor Architecture : x86"  << endl;
-	}
-	else if (siSysInfo.wProcessorArchitecture == 5)
-	{
-		cout << "Processor Architecture : ARM" << endl;
-	}
-	else if (siSysInfo.wProcessorArchitecture == 12)
-	{
-		cout << "Processor Architecture : ARM64" << endl;
-	}
-	else if (siSysInfo.wProcessorArchitecture == 6)
-	{
-		cout << "Processor Architecture : Intel Itanium-based" << endl;
-	}
-	else if (siSysInfo.wProcessorArchitecture == 9)
-	{
-		cout << "Processor Architecture : x64 (AMD or Intel)" << endl;
-	}
-	else
-	{
-		cout << "Processor Architecture : Unknown architecture" << endl;
-	}
-	//cout << "Processor Architecture : " << siSysInfo.wProcessorArchitecture << endl;
-	cout << "Processor Speed : " << ReadCPUSpeed();
-	
-	//~~~For Memory Info~~~~~~~~~~~~~~~~
-	MEMORYSTATUSEX statex;
-	statex.dwLength = sizeof(statex);
-	GlobalMemoryStatusEx(&statex);
-	cout << "\nTotal System Memory: " << (statex.ullTotalPhys / DIV) << " MB" << endl;
-	//cout << "\nTotal System Memory: " << (statex.ullTotalVirtual ) << "MB" << endl;
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
 	if (!RegisterClassEx(&wcex))
 	{
 		MessageBox(NULL,
