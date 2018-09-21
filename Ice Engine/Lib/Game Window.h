@@ -1,5 +1,5 @@
 #pragma once
-#include "../Lib/Checks.h"
+//#include "../Lib/Checks.h"
 
 //Global variables
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
