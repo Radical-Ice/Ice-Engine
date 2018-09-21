@@ -66,6 +66,9 @@ int CALLBACK WinMain(
 	//~~For CPU Info~~~~~~~~~~~~~~~~~~~~
 	SYSTEM_INFO siSysInfo;
 	GetSystemInfo(&siSysInfo);
+	//For CPU Name
+	ReadCPUName();
+
 	cout << "Processor Architecture : " << siSysInfo.wProcessorArchitecture << endl;
 	cout << "Processor Speed : " << ReadCPUSpeed();
 	
