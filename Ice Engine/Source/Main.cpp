@@ -1,3 +1,4 @@
+//Authors: James Bews, Jatin Kumar, Dennis Nguyen
 #include "../Lib/Checking.h"
 #include "../Lib/Game Window.h"
 
