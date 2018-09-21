@@ -1,6 +1,7 @@
 #include "../Lib/Checks.h"
 #include "../Lib/Game Window.h"
 
+#define DIV 1024
 // Global variables  
 // The main window class name.  
 static TCHAR szWindowClass[] = _T("win32app");
@@ -69,14 +70,35 @@ int CALLBACK WinMain(
 	//For CPU Name
 	ReadCPUName();
 
-	cout << "Processor Architecture : " << siSysInfo.wProcessorArchitecture << endl;
+	if (siSysInfo.wProcessorArchitecture ==0)
+	{
+		cout << "Processor Architecture : x86"  << endl;
+	}
+	else if (siSysInfo.wProcessorArchitecture == 5)
+	{
+		cout << "Processor Architecture : ARM" << endl;
+	}
+	else if (siSysInfo.wProcessorArchitecture == 12)
+	{
+		cout << "Processor Architecture : ARM64" << endl;
+	}
+	else if (siSysInfo.wProcessorArchitecture == 6)
+	{
+		cout << "Processor Architecture : Intel Itanium-based" << endl;
+	}
+	else if (siSysInfo.wProcessorArchitecture == 0xffff)
+	{
+		cout << "Processor Architecture : Unknown architecture" << endl;
+	}
+	//cout << "Processor Architecture : " << siSysInfo.wProcessorArchitecture << endl;
 	cout << "Processor Speed : " << ReadCPUSpeed();
 	
 	//~~~For Memory Info~~~~~~~~~~~~~~~~
 	MEMORYSTATUSEX statex;
 	statex.dwLength = sizeof(statex);
 	GlobalMemoryStatusEx(&statex);
-	cout << "\nTotal System Memory: " << (statex.ullTotalPhys / 1024) / 1024 << "MB" << endl;
+	cout << "\nTotal System Memory: " << (statex.ullTotalPhys / DIV) << " MB" << endl;
+	//cout << "\nTotal System Memory: " << (statex.ullTotalVirtual ) << "MB" << endl;
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
 	if (!RegisterClassEx(&wcex))
