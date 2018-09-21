@@ -65,7 +65,7 @@ bool CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG virtualRAMNe
 
 	//****Pass*******
 	cout << "Total Ram = ";
-	cout << (((status.ullTotalPhys) / 1024) / 1024) << " MB" << endl;
+	cout << ((status.ullTotalPhys) / 1024) << " MB" << endl;
 
 
 	//VRAM Check
@@ -77,7 +77,7 @@ bool CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG virtualRAMNe
 
 	//****Pass*******
 	cout << "Total VRam = ";
-	cout << (status.ullTotalVirtual / 1024) / 1024 << " MB" << endl;
+	cout << (status.ullTotalVirtual / 1024) << " MB" << endl;
 
 	char *buff = new char[virtualRAMNeeded];
 	if (buff)

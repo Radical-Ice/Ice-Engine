@@ -86,7 +86,11 @@ int CALLBACK WinMain(
 	{
 		cout << "Processor Architecture : Intel Itanium-based" << endl;
 	}
-	else if (siSysInfo.wProcessorArchitecture == 0xffff)
+	else if (siSysInfo.wProcessorArchitecture == 9)
+	{
+		cout << "Processor Architecture : x64 (AMD or Intel)" << endl;
+	}
+	else
 	{
 		cout << "Processor Architecture : Unknown architecture" << endl;
 	}
