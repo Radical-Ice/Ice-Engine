@@ -130,9 +130,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Checking.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Lib\Checking.h" />
     <ClInclude Include="Lib\Checks.h" />
     <ClInclude Include="Lib\Game Window.h" />
   </ItemGroup>
