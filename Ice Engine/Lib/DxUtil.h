@@ -1,7 +1,5 @@
 //***************************************************************************************
-// d3dUtil.h by Frank Luna (C) 2015 All Rights Reserved.
-//
-// General helper code.
+//Authors: James Bews, Jatin Kumar, Dennis Nguyen
 //***************************************************************************************
 
 #pragma once

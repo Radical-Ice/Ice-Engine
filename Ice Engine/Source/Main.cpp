@@ -1,9 +1,5 @@
 //***************************************************************************************
-// Init Direct3D.cpp by Frank Luna (C) 2015 All Rights Reserved.
-//
-// Demonstrates the sample framework by initializing Direct3D, clearing 
-// the screen, and displaying frame stats.
-//
+//Authors: James Bews, Jatin Kumar, Dennis Nguyen
 //***************************************************************************************
 
 #include "../Lib/DxMain.h"
