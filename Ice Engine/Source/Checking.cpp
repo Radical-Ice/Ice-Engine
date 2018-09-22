@@ -1,10 +1,10 @@
-#include "..\Lib\Checking.h"
+#include"../Lib/Checking.h"
 
 #pragma once
 
 using namespace std;
 //For Instance Check
-bool Checking::IsOnlyInstance(LPCSTR gameTitle) {
+bool Checking::IsOnlyInstance(LPCTSTR gameTitle) {
 	HANDLE handle = CreateMutex(NULL, TRUE, gameTitle);
 	if (GetLastError() != ERROR_SUCCESS) {
 		HWND hWnd = FindWindow(gameTitle, NULL);
@@ -88,14 +88,14 @@ DWORD Checking::ReadCPUSpeed() {
 	HKEY hKey;
 	// open the key where the proc speed is hidden:
 	long lError = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
-		"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0",
+		L"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0",
 		0,
 		KEY_READ,
 		&hKey);
 	if (lError == ERROR_SUCCESS) {
 		// query the key:
 		RegQueryValueEx(hKey,
-			"~MHz",
+			L"~MHz",
 			NULL,
 			&type,
 			(LPBYTE)&dwMHz,
@@ -132,12 +132,12 @@ DWORD Checking::ReadCPUName()
 
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-void Checking::initChecks(LPCSTR szWindowClass,int physicalRAMNeed, int virtualRAMNeed,int diskSpaceNeed) {
+void Checking::initChecks(LPCTSTR szWindowClass, int physicalRAMNeed, int virtualRAMNeed, int diskSpaceNeed) {
 	//~~~Check For Multipl Instance~~~~
 	if (!IsOnlyInstance(szWindowClass)) {
 		cout << "Not the only instance" << endl;
 		system("pause");
-		return ;
+		return;
 	}
 	cout << "the only instance" << endl;
 
@@ -147,7 +147,7 @@ void Checking::initChecks(LPCSTR szWindowClass,int physicalRAMNeed, int virtualR
 	if (!CheckStorage(diskSpaceNeed)) {
 		cout << "not enough disk space" << endl;
 		system("pause");
-		return ;
+		return;
 	}
 	cout << "enough disk space" << endl;
 	//~~For CPU Info~~~~~~~~~~~~~~~~~~~~
@@ -187,7 +187,7 @@ void Checking::initChecks(LPCSTR szWindowClass,int physicalRAMNeed, int virtualR
 	statex.dwLength = sizeof(statex);
 	GlobalMemoryStatusEx(&statex);
 	cout << "\nTotal System Memory: " << (statex.ullTotalPhys / 1024) << " MB" << endl;
-	
+
 
 }
 
