@@ -1,35 +1,3 @@
-<<<<<<< HEAD
-//Authors: James Bews, Jatin Kumar, Dennis Nguyen
-#include "../Lib/Checking.h"
-#include "../Lib/Game Window.h"
-
-#define DIV 1024
-// Global variables  
-// The main window class name.  
-static TCHAR szWindowClass[] = _T("win32app");
-
-// The string that appears in the application's title bar.  
-static TCHAR szTitle[] = _T("Win32 Guided Tour Application");
-
-HINSTANCE hInst;
-Checking *checker;
-// Forward declarations of functions included in this code module:  
-
-//~~~Requirements~~~
-const DWORDLONG diskSpaceNeed = 300;
-const DWORDLONG physicalRAMNeed = 5;
-const DWORDLONG virtualRAMNeed = 5;
-//~~~~~~~~~~~~~~~~~
-
-//~~~~Main Window With Console Enabled~~~~~
-int CALLBACK WinMain(                             
-	_In_ HINSTANCE hInstance,
-	_In_ HINSTANCE hPrevInstance,
-	_In_ LPSTR     lpCmdLine,
-	_In_ int       nCmdShow
-
-)
-=======
 //***************************************************************************************
 //Authors: James Bews, Jatin Kumar, Dennis Nguyen
 //***************************************************************************************
@@ -40,7 +8,6 @@ int CALLBACK WinMain(
 using namespace DirectX;
 
 class InitDirect3DApp : public D3DApp
->>>>>>> Jatin_Working_Branch
 {
 public:
 	InitDirect3DApp(HINSTANCE hInstance);
