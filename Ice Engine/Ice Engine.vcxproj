@@ -145,15 +145,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Lib\Actor.h" />
+    <ClInclude Include="Lib\ActorCompnents.h" />
+    <ClInclude Include="Lib\Animation.h" />
+    <ClInclude Include="Lib\Audio.h" />
+    <ClInclude Include="Lib\Camera.h" />
     <ClInclude Include="Lib\Checking.h" />
     <ClInclude Include="Lib\DxMain.h" />
     <ClInclude Include="Lib\DxUtil.h" />
+    <ClInclude Include="Lib\Inputs.h" />
+    <ClInclude Include="Lib\Physics.h" />
+    <ClInclude Include="Lib\Scene.h" />
+    <ClInclude Include="Lib\Sprites.h" />
     <ClInclude Include="Lib\Stats.h" />
+    <ClInclude Include="Lib\Transform.h" />
+    <ClInclude Include="Lib\UIComponents.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Actor.cpp" />
+    <ClCompile Include="Source\ActorCompnents.cpp" />
     <ClCompile Include="Source\Checking.cpp" />
     <ClCompile Include="Source\DxMain.cpp" />
     <ClCompile Include="Source\DxUtil.cpp" />
+    <ClCompile Include="Source\Scene.cpp" />
     <ClCompile Include="Source\Stats.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
