@@ -15,8 +15,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	PAINTSTRUCT ps;
 	HDC hdc;
 	TCHAR greeting[] = _T("Hello, World!");
-
-	LPRECT rect = new RECT{ 0,0,100,100 };
+	TCHAR Action[] = _T("Pressed ");
+	TCHAR Button[] = _T("Press Here");
+	POINT pt;
+	static POINTS ptsBegin;
+	LPRECT rect = new RECT{ 25,20,100,100 };
+	LPRECT rect2 = new RECT{ 50,50,150,100 };
 	switch (message)
 	{
 
@@ -31,6 +35,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 	case WM_KEYDOWN:
+		break;
 	case WM_PAINT :
 		hdc = BeginPaint(hWnd, &ps);
 		MoveToEx(hdc, 100, 100, 0); 
@@ -40,13 +45,29 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		//Printing Greetings
 		TextOut(hdc,5, 5,greeting, _tcslen(greeting));
+		DrawText(hdc, Button, _tcslen(Button), rect2, DT_TOP);
+		//TextOut(hdc, 35, 35, greeting, _tcslen(greeting));
 		if (myBool) {			
-			DrawText(hdc, "string", 6, rect, DT_LEFT);
-	
+			DrawText(hdc, Action, _tcslen(Action), rect, DT_LEFT);
 		}
+		//bool PtInRect(rect, VK_MBUTTON);
 		//~~~~~~~~~~~~~~~~~~~
 
 		EndPaint(hWnd, &ps);
+		break;
+	case WM_MOUSEMOVE:
+		ptsBegin = MAKEPOINTS(lParam);
+		break;
+
+	case WM_LBUTTONDOWN:
+		pt.x = ptsBegin.x;
+		pt.y = ptsBegin.y;
+		if (PtInRect(rect2, pt))
+		{
+			cout << "Pressed" << endl;
+			myBool = true;
+			InvalidateRect(hWnd, rect, 1);
+		}
 		break;
 
 	case WM_DESTROY:
