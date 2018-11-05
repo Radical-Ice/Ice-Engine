@@ -77,7 +77,7 @@ int CALLBACK WinMain(
 		szTitle,
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, CW_USEDEFAULT,
-		500, 100,
+		500, 300,
 		NULL,
 		NULL,
 		hInstance,
@@ -107,10 +107,12 @@ int CALLBACK WinMain(
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
+
 	}
 
 	return (int)msg.wParam;
 }
+
 
 //  
 //  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)  
