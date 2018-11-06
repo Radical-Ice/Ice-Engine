@@ -7,6 +7,9 @@ LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 LPCSTR toPrint = "unchanged";
 bool myBool = 0;
+LPCSTR value = "test";
+LPRECT rect = new RECT{ 50,50,100,100 };
+string storedKey = "a";
 //	::SetWindowPos(hWnd, 0, 0, 0, 600, 300, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 //Window Layout
 
@@ -16,19 +19,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	HDC hdc;
 	TCHAR greeting[] = _T("Hello, World!");
 
-	LPRECT rect = new RECT{ 0,0,100,100 };
+	
+	
 	switch (message)
 	{
 
 	case WM_CHAR:
-		if (wParam == 97) {	
+		//if (wParam == 97) {	
 			myBool = true;
+			value = (LPCSTR)&wParam;
+			storedKey = (string)value;
+			toPrint = &storedKey[0];
 			InvalidateRect(hWnd, rect, 1);
 		//	PostMessage(hWnd, WM_PAINT, 0, 0);
 			//MessageBox(hWnd, (LPCTSTR)"You just pushed me!", (LPCTSTR) "My Program!", MB_OK | MB_ICONEXCLAMATION);
 			
 
-		}
+		//}
 		break;
 	case WM_KEYDOWN:
 	case WM_PAINT :
@@ -40,8 +47,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		//Printing Greetings
 		TextOut(hdc,5, 5,greeting, _tcslen(greeting));
-		if (myBool) {			
-			DrawText(hdc, "string", 6, rect, DT_LEFT);
+		if (myBool) {	
+			SetTextColor(hdc,RGB(255,0,0));
+			DrawText(hdc, toPrint, 1, rect, DT_LEFT);
 	
 		}
 		//~~~~~~~~~~~~~~~~~~~
