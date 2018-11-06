@@ -18,24 +18,38 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	PAINTSTRUCT ps;
 	HDC hdc;
 	TCHAR greeting[] = _T("Hello, World!");
-	TCHAR Action[] = _T("Pressed ");
+	TCHAR Action[] = _T("Pressed : ");
 	TCHAR Button[] = _T("Press Here");
 	POINT pt;
 	static POINTS ptsBegin;
+<<<<<<< HEAD
 	LPRECT rect = new RECT{ 25,20,400,400 };
+=======
+	LPRECT rect = new RECT{ 70,30,100,100 };
+>>>>>>> 31d4e32026b3eb1fd8179e3993204ca44412272c
 	LPRECT rect2 = new RECT{ 50,50,150,100 };
 
 	switch (message)
 	{
+<<<<<<< HEAD
 	case WM_KEYDOWN:
 	case WM_CHAR:
+=======
+	case WM_LBUTTONDOWN:
+	case WM_RBUTTONDOWN:
+	case WM_KEYDOWN:
+>>>>>>> 31d4e32026b3eb1fd8179e3993204ca44412272c
 		//if (wParam == 97) {	
 			myBool = true;
 			value = (LPCSTR)&wParam;
 			storedKey = (string)value;
 			toPrint = storedKey.c_str();
 			InvalidateRect(hWnd, rect, 1);
+<<<<<<< HEAD
 
+=======
+			cout << toPrint << endl;
+>>>>>>> 31d4e32026b3eb1fd8179e3993204ca44412272c
 		break;
 
 	case WM_PAINT :
@@ -47,6 +61,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		//Printing Greetings
 		TextOut(hdc,5, 5,greeting, _tcslen(greeting));
+		TextOut(hdc, 0, 30, Action, _tcslen(Action));
 
 		if (myBool) {
 			SetTextColor(hdc, RGB(255, 0, 0));
@@ -58,6 +73,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		ptsBegin = MAKEPOINTS(lParam);
 		break;
 
+<<<<<<< HEAD
 	case WM_LBUTTONDOWN:
 		pt.x = ptsBegin.x;
 		pt.y = ptsBegin.y;
@@ -80,6 +96,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		toPrint = storedKey.c_str();
 		myBool = true;
 		InvalidateRect(hWnd, rect, 1);
+=======
+	//case WM_LBUTTONDOWN:
+	//	/*pt.x = ptsBegin.x;
+	//	pt.y = ptsBegin.y;
+	//	if (PtInRect(rect2, pt))
+	//	{
+	//		cout << "Pressed" << endl;
+	//		myBool = true;
+	//		InvalidateRect(hWnd, rect, 1);
+	//	}*/
+	//	myBool = true;
+	//	value = (LPCSTR)&wParam;
+	//	storedKey = (string)value;
+	//	toPrint = &storedKey[0];
+	//	InvalidateRect(hWnd, rect, 1);
+	//	break;
+>>>>>>> 31d4e32026b3eb1fd8179e3993204ca44412272c
 
 		break;
 	case WM_DESTROY:
