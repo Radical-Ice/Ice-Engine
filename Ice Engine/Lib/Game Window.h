@@ -1,6 +1,6 @@
 #pragma once
 #include "../Lib/Checks.h"
-
+#include <string> 
 //Global variables
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
@@ -22,27 +22,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	TCHAR Button[] = _T("Press Here");
 	POINT pt;
 	static POINTS ptsBegin;
-	LPRECT rect = new RECT{ 25,20,100,100 };
+	LPRECT rect = new RECT{ 25,20,400,400 };
 	LPRECT rect2 = new RECT{ 50,50,150,100 };
 
 	switch (message)
 	{
-
+	case WM_KEYDOWN:
 	case WM_CHAR:
 		//if (wParam == 97) {	
 			myBool = true;
 			value = (LPCSTR)&wParam;
 			storedKey = (string)value;
-			toPrint = &storedKey[0];
+			toPrint = storedKey.c_str();
 			InvalidateRect(hWnd, rect, 1);
-		//	PostMessage(hWnd, WM_PAINT, 0, 0);
-			//MessageBox(hWnd, (LPCTSTR)"You just pushed me!", (LPCTSTR) "My Program!", MB_OK | MB_ICONEXCLAMATION);
-			
 
-		//}
 		break;
-	case WM_KEYDOWN:
-		break;
+
 	case WM_PAINT :
 		hdc = BeginPaint(hWnd, &ps);
 		MoveToEx(hdc, 100, 100, 0); 
@@ -55,7 +50,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		if (myBool) {
 			SetTextColor(hdc, RGB(255, 0, 0));
-			DrawText(hdc, toPrint, 1, rect, DT_LEFT);
+			DrawText(hdc, toPrint, _tcslen(toPrint), rect, DT_LEFT);
 		}
 		EndPaint(hWnd, &ps);
 		break;
@@ -66,14 +61,27 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_LBUTTONDOWN:
 		pt.x = ptsBegin.x;
 		pt.y = ptsBegin.y;
-		if (PtInRect(rect2, pt))
-		{
-			cout << "Pressed" << endl;
-			myBool = true;
-			InvalidateRect(hWnd, rect, 1);
-		}
+		storedKey = "Left click ";
+		storedKey += std::to_string(pt.x);
+		storedKey +=" ";
+		storedKey+= std::to_string(pt.y);
+		toPrint = storedKey.c_str();
+		myBool = true;
+		InvalidateRect(hWnd, rect, 1);
+		
 		break;
+	case WM_RBUTTONDOWN:
+		pt.x = ptsBegin.x;
+		pt.y = ptsBegin.y;
+		storedKey = "Right click ";
+		storedKey += std::to_string(pt.x);
+		storedKey += " ";
+		storedKey += std::to_string(pt.y);
+		toPrint = storedKey.c_str();
+		myBool = true;
+		InvalidateRect(hWnd, rect, 1);
 
+		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
