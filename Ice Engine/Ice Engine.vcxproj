@@ -135,7 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib\Checking.h" />
-    <ClInclude Include="Lib\Checks.h" />
     <ClInclude Include="Lib\Game Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
