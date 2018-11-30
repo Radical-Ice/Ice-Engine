@@ -131,11 +131,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Checking.cpp" />
+    <ClCompile Include="Source\InputProcesser.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib\Checking.h" />
     <ClInclude Include="Lib\Game Window.h" />
+    <ClInclude Include="Lib\InputProcesser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
