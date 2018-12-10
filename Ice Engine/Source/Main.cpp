@@ -2,6 +2,9 @@
 #include "../Lib/Checking.h"
 #include "../Lib/Game Window.h"
 
+
+
+
 #define DIV 1024
 // Global variables  
 // The main window class name.  
@@ -30,6 +33,9 @@ int CALLBACK WinMain(
 )
 {
 	AllocConsole();
+	
+
+
 	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
 	WNDCLASSEX wcex;
 
