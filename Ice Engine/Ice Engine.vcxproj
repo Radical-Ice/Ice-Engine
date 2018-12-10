@@ -141,12 +141,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Checking.cpp" />
+    <ClCompile Include="Source\IceEngine.cpp" />
     <ClCompile Include="Source\InputProcesser.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\ScriptComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib\Checking.h" />
     <ClInclude Include="Lib\Game Window.h" />
+    <ClInclude Include="Lib\ScriptComponent.h" />
+    <ClInclude Include="Lib\IceEngine.h" />
     <ClInclude Include="Lib\InputProcesser.h" />
     <ClInclude Include="Lib\LuaAdapter.hpp" />
     <ClInclude Include="Lib\LuaFunction.hpp" />

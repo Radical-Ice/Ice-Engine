@@ -2,32 +2,29 @@
 #include <string>
 #include <vector>
 #include "..\Lib\InputProcesser.h"
+
+using namespace std;
 //Global variables
-LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 //LPCSTR toPrint = "Press Some Buttons :-) ";
 //bool myBool = 0;
 //LPCSTR value = "test";
 
-LPRECT rect = new RECT{ 110,0,1000,1000 };
+ static LPRECT rect = new RECT{ 110,0,1000,1000 };
 //string storedKey = "a";
 
-const int arraySize = 100;
+static TCHAR greeting[] = _T("Hello, World!");
+static TCHAR T_Press[] = _T("Pressed : ");
+static TCHAR Button[] = _T("Press Here");
+static TCHAR ClearLast[] = _T("clear last line");
+static TCHAR ColorB[] = _T("Make Lines Blue");
+static TCHAR ColorBL[] = _T("Make Lines Black");
 
-
-
-
-HGDIOBJ original = NULL;
-TCHAR greeting[] = _T("Hello, World!");
-TCHAR T_Press[] = _T("Pressed : ");
-TCHAR Button[] = _T("Press Here");
-TCHAR ClearLast[] = _T("clear last line");
-TCHAR ColorB[] = _T("Make Lines Blue");
-TCHAR ColorBL[] = _T("Make Lines Black");
-
-PAINTSTRUCT ps;
-HDC hdc;
-InputProcesser input;
-
+	const int arraySize = 100;
+	static HGDIOBJ original = NULL;
+	static PAINTSTRUCT ps;
+	static HDC hdc;
+static InputProcesser input;
 
 
 //~~~~~~~~~~~~~~~~~~~~~
@@ -125,7 +122,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		for (int i = 0; i < input.pointsBeginX.size(); i++)
 		{
-			cout << input.pointsBeginX[i] << endl;
 			input.pointsBeginX[i];
 			input.pointsBeginY[i];
 			input.pointsEndX[i];

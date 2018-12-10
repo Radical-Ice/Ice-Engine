@@ -1,16 +1,7 @@
 #include "..\Lib\Checking.h"
-#ifndef LUA_ADAPTER_H
-#include "../Lib/LuaAdapter.hpp"
-#endif
-#include "../Lib/LuaTable.hpp"
-#ifndef LUA_FUNCTION_H
-#include "../Lib/LuaFunction.hpp"
-#endif
-
-static int test_function(lua_State *L);
 #pragma once
 
-using namespace std;
+
 //For Instance Check
 bool Checking::IsOnlyInstance(LPCSTR gameTitle) {
 	HANDLE handle = CreateMutex(NULL, TRUE, gameTitle);
@@ -66,12 +57,6 @@ bool Checking::CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG vi
 	cout << "Total Ram = ";
 	cout << (status.ullTotalPhys / 1024) / 1024 << " MB" << endl;
 
-	LuaAdapter lua{ "Lib/test.lua" };
-	LuaFunction luaFunction{lua};
-	lua.Load("Lib/test.lua");
-	int Return_int{ 0 };
-	luaFunction.Call("Random", 0, Return_int);
-	std::cout << "Random: " << Return_int << "\n";
 
 	//VRAM Check
 	if (status.ullAvailVirtual < virtualRAMNeeded) {

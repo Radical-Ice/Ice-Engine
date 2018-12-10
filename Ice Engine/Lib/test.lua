@@ -5,5 +5,5 @@ width = 600
 fullscreen = true
 
 function Random()
-    return 45
+    return 55
 end
