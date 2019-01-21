@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Checking.cpp" />
+    <ClCompile Include="Source\GameWindow.cpp" />
     <ClCompile Include="Source\IceEngine.cpp" />
     <ClCompile Include="Source\InputProcesser.cpp" />
     <ClCompile Include="Source\Main.cpp" />

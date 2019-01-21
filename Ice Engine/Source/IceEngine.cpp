@@ -7,7 +7,9 @@ void IceEngine::InitEngine() {
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 		scriptComponent.runScript();
+		render_frame();
 	}
+	cleanD3D();
 }
 
 void IceEngine::DoChecks(LPCSTR szWindowClass) {
@@ -35,7 +37,7 @@ int IceEngine::RegisterWindow(HINSTANCE hInstance,LPCSTR szWindowClass, int nCmd
 			NULL);
 		return 1;
 	}
-
+	
 	HWND hWnd = CreateWindow(
 		szWindowClass,
 		szTitle,
@@ -47,7 +49,7 @@ int IceEngine::RegisterWindow(HINSTANCE hInstance,LPCSTR szWindowClass, int nCmd
 		hInstance,
 		NULL
 	);
-
+	initD3D(hWnd);
 	if (!hWnd)
 	{
 		MessageBox(NULL,

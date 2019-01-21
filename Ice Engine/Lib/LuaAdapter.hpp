@@ -25,7 +25,7 @@
 
 #include <iostream>
 #include <string>
-#include "lua.hpp"
+#include "../Lib/include/lua.hpp"
 
 #define LUA_PREFIX "Lua > "
 class LuaTable;
