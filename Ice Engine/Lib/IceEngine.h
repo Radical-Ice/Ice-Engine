@@ -2,7 +2,7 @@
 #include "../Lib/Checking.h"
 #include "../Lib/Game Window.h"
 #include "../Lib/ScriptComponent.h"
-#include "SFML/Graphics.hpp"
+
 class IceEngine {
 private:
 	
