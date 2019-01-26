@@ -1,15 +1,46 @@
 #include "../Lib/IceEngine.h"
 
 void IceEngine::InitEngine() {
+	sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
+	sf::CircleShape shape(100.f);
+	shape.setFillColor(sf::Color::Green);
+	if (!texture.loadFromFile("cat.png")) {
+		MessageBox(NULL,
+			_T("Call to RegisterClassEx failed!"),
+			_T("Ice Engine"),
+			NULL);
+	}
 
+	// Create a sprite
+	sf::Sprite sprite;
+	sprite.setTexture(texture);
+	sprite.setTextureRect(sf::IntRect(0, 0, 800, 800));
+	//sprite.setColor(sf::Color(255, 255, 255, 200));
+	sprite.setPosition(100, 25);
+	// Draw it
+	
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		window.clear();
+		window.draw(shape);
+		window.draw(sprite);
+		window.display();
+	}
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 		scriptComponent.runScript();
-		render_frame();
+		//render_frame();
 	}
-	cleanD3D();
+	//cleanD3D();
 }
 
 void IceEngine::DoChecks(LPCSTR szWindowClass) {
@@ -49,7 +80,7 @@ int IceEngine::RegisterWindow(HINSTANCE hInstance,LPCSTR szWindowClass, int nCmd
 		hInstance,
 		NULL
 	);
-	initD3D(hWnd);
+	//initD3D(hWnd);
 	if (!hWnd)
 	{
 		MessageBox(NULL,

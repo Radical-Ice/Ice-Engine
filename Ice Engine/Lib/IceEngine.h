@@ -1,4 +1,5 @@
 #pragma once
+#include "SFML-2.5.1/include/SFML/Graphics.hpp"
 #include "../Lib/Checking.h"
 #include "../Lib/Game Window.h"
 #include "../Lib/ScriptComponent.h"
@@ -18,4 +19,6 @@ public:
 	void InitEngine();
 	void DoChecks(LPCSTR szWindowClass);
 	int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);
+	sf::Texture texture;
+
 };
