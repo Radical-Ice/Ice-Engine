@@ -160,6 +160,7 @@
     <ClCompile Include="Source\InputProcesser.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\ScriptComponent.cpp" />
+    <ClCompile Include="Source\SplashScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib\Checking.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Lib\LuaAdapter.hpp" />
     <ClInclude Include="Lib\LuaFunction.hpp" />
     <ClInclude Include="Lib\LuaTable.hpp" />
+    <ClInclude Include="Lib\SplashScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Lib\test.lua" />

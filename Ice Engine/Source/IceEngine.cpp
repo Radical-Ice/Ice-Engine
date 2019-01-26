@@ -1,9 +1,9 @@
 #include "../Lib/IceEngine.h"
 
 void IceEngine::InitEngine() {
-	sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	mainWindow.create(sf::VideoMode(1024, 768, 32), "Meow");
+
+
 	if (!texture.loadFromFile("cat.png")) {
 		MessageBox(NULL,
 			_T("Call to RegisterClassEx failed!"),
@@ -14,24 +14,23 @@ void IceEngine::InitEngine() {
 	// Create a sprite
 	sf::Sprite sprite;
 	sprite.setTexture(texture);
-	sprite.setTextureRect(sf::IntRect(0, 0, 800, 800));
+	//sprite.setTextureRect(sf::IntRect(0, 0, 500, 500));
 	//sprite.setColor(sf::Color(255, 255, 255, 200));
 	sprite.setPosition(100, 25);
 	// Draw it
 	
-	while (window.isOpen())
+	while (mainWindow.isOpen())
 	{
 		sf::Event event;
-		while (window.pollEvent(event))
+		while (mainWindow.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
-				window.close();
+				mainWindow.close();
 		}
 
-		window.clear();
-		window.draw(shape);
-		window.draw(sprite);
-		window.display();
+		mainWindow.clear();
+		mainWindow.draw(sprite);
+		mainWindow.display();
 	}
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
@@ -44,7 +43,10 @@ void IceEngine::InitEngine() {
 }
 
 void IceEngine::DoChecks(LPCSTR szWindowClass) {
+
+	splashScreen.Show(mainWindow);
 	checker->initChecks(szWindowClass, physicalRAMNeed, virtualRAMNeed, diskSpaceNeed);
+
 }
 int IceEngine::RegisterWindow(HINSTANCE hInstance,LPCSTR szWindowClass, int nCmdShow, LPCSTR szTitle) {
 	wcex.cbSize = sizeof(WNDCLASSEX);
