@@ -72,6 +72,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>.\Game\$(Configuration)\$(Platform)</OutDir>
     <IntDir>.\Temp\$(Configuration)\$(Platform)</IntDir>
+    <IncludePath>C:\Users\user\source\repos\Ice Engine\Ice Engine\Lib\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\user\source\repos\Ice Engine\Ice Engine\Lib\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>.\Game\$(Configuration)\$(Platform)</OutDir>
@@ -84,6 +86,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>.\Game\$(Configuration)\$(Platform)</OutDir>
     <IntDir>.\Temp\$(Configuration)\$(Platform)</IntDir>
+    <IncludePath>C:\Users\user\source\repos\Ice Engine\Ice Engine\Lib\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\user\source\repos\Ice Engine\Ice Engine\Lib\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -99,7 +103,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -123,14 +131,34 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Checking.cpp" />
+    <ClCompile Include="Source\GameWindow.cpp" />
+    <ClCompile Include="Source\IceEngine.cpp" />
+    <ClCompile Include="Source\InputProcesser.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\ScriptComponent.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Lib\Checking.h" />
+    <ClInclude Include="Lib\Game Window.h" />
+    <ClInclude Include="Lib\ScriptComponent.h" />
+    <ClInclude Include="Lib\IceEngine.h" />
+    <ClInclude Include="Lib\InputProcesser.h" />
+    <ClInclude Include="Lib\LuaAdapter.hpp" />
+    <ClInclude Include="Lib\LuaFunction.hpp" />
+    <ClInclude Include="Lib\LuaTable.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Lib\test.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
