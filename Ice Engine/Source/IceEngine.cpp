@@ -1,8 +1,9 @@
 #include "IceEngine.h"
-
+SplashScreen sp;
 void IceEngine::InitEngine() {
-	mainWindow.create(sf::VideoMode(1024, 768, 32), "Meow");
-
+	SplashScreen.create(sf::VideoMode(1024, 768, 32), "SplashScreen");
+	
+	sp.Show(SplashScreen);
 	//"Assets/ " for pics
 	if (!texture.loadFromFile("Assets/cat.png")) {
 		MessageBox(NULL,
@@ -10,28 +11,61 @@ void IceEngine::InitEngine() {
 			_T("-> Ice Engine.cpp"),
 			NULL);
 	}
-
-	// Create a sprite
-	sf::Sprite sprite;
-	sprite.setTexture(texture);
+	/*if (!sp.SSTexture.loadFromFile("Assets/SplashScreen.jpg")) {
+		MessageBox(NULL,
+			_T("Failed to load SplashScreen texture"),
+			_T("-> Ice Engine.cpp"),
+			NULL);
+	}*/
+	sprite.setTexture(sp.SSTexture);
 	//sprite.setTextureRect(sf::IntRect(0, 0, 500, 500));
 	//sprite.setColor(sf::Color(255, 255, 255, 200));
 	sprite.setPosition(100, 25);
+
+
+	sprite2.setTexture(texture);
+	sprite2.setPosition(100, 25);
 	// Draw it
 	
+	while (SplashScreen.isOpen())
+	{
+		
+		while (SplashScreen.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				SplashScreen.close();
+				mainWindow.create(sf::VideoMode(1024, 768, 32), "Main Game Window");
+			}
+		
+		}
+		
+		SplashScreen.clear();
+		SplashScreen.draw(sprite);
+		//this_thread::sleep_for(chrono::seconds(2));
+		//mainWindow.draw(sprite2);
+		SplashScreen.display();
+	}
+
 	while (mainWindow.isOpen())
 	{
-		sf::Event event;
 		while (mainWindow.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
+			{
 				mainWindow.close();
+			}
+
 		}
 
 		mainWindow.clear();
-		mainWindow.draw(sprite);
+		mainWindow.draw(sprite2);
+		//this_thread::sleep_for(chrono::seconds(2));
+		//mainWindow.draw(sprite2);
 		mainWindow.display();
+
 	}
+
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
 		TranslateMessage(&msg);

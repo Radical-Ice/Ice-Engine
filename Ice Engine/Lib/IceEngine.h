@@ -4,6 +4,10 @@
 #include "Game Window.h"
 #include "ScriptComponent.h"
 #include "SplashScreen.h"
+#include <thread>
+#include <chrono>
+using namespace std;
+
 class IceEngine {
 private:
 	SplashScreen splashScreen;
@@ -20,5 +24,11 @@ public:
 	void DoChecks(LPCSTR szWindowClass);
 	int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);
 	sf::Texture texture;
+	//sf::Texture SStexture;
 	sf::RenderWindow mainWindow;
+	sf::RenderWindow SplashScreen;
+	sf::Sprite sprite;
+	sf::Sprite sprite2;
+
+	sf::Event event;
 };
