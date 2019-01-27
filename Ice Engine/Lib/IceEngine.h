@@ -1,9 +1,9 @@
 #pragma once
-#include "SFML-2.5.1/include/SFML/Graphics.hpp"
-#include "../Lib/Checking.h"
-#include "../Lib/Game Window.h"
-#include "../Lib/ScriptComponent.h"
-#include "../Lib/SplashScreen.h"
+#include "SFML/Graphics.hpp"
+#include "Checking.h"
+#include "Game Window.h"
+#include "ScriptComponent.h"
+#include "SplashScreen.h"
 class IceEngine {
 private:
 	SplashScreen splashScreen;

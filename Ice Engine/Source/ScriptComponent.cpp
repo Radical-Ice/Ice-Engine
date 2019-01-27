@@ -1,5 +1,5 @@
 //we know.... it's not a component 
-#include "../Lib/ScriptComponent.h"
+#include "ScriptComponent.h"
 
 void ScriptComponent::runScript() {
 	LuaAdapter lua{ "Lib/test.lua" };

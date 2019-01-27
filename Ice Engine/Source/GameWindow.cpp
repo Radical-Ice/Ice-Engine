@@ -1,4 +1,4 @@
-#include "../Lib/Game Window.h"
+#include "Game Window.h"
 
  void initD3D(HWND hWnd)
 {

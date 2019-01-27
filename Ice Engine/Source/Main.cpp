@@ -1,6 +1,6 @@
 
 //Authors: James Bews, Jatin Kumar, Dennis Nguyen
-#include "../Lib/IceEngine.h"
+#include "IceEngine.h"
 
 #define DIV 1024
 // Global variables  

@@ -1,5 +1,6 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include <Windows.h>
 class SplashScreen
 {
 public:

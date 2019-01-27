@@ -1,10 +1,13 @@
-#include "../Lib/SplashScreen.h"
+#include "SplashScreen.h"
 
 void SplashScreen::Show(sf::RenderWindow & renderWindow) {
 
-
-	if (!texture.loadFromFile("cat.png")) {
-
+	//"Assets/" for Pic
+	if (!texture.loadFromFile("Assets/SplashScreen.jpg")) {
+		MessageBox(NULL,
+			("failed to load SplashScreen texture"),
+			(" -> SplashScreen.cpp"),
+			NULL);
 		return;
 	}
 	sf::Sprite sprite(texture);

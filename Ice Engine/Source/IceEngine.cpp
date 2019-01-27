@@ -1,13 +1,13 @@
-#include "../Lib/IceEngine.h"
+#include "IceEngine.h"
 
 void IceEngine::InitEngine() {
 	mainWindow.create(sf::VideoMode(1024, 768, 32), "Meow");
 
-
-	if (!texture.loadFromFile("cat.png")) {
+	//"Assets/ " for pics
+	if (!texture.loadFromFile("Assets/cat.png")) {
 		MessageBox(NULL,
-			_T("Call to RegisterClassEx failed!"),
-			_T("Ice Engine"),
+			_T("Failed to load CAT texture"),
+			_T("-> Ice Engine.cpp"),
 			NULL);
 	}
 

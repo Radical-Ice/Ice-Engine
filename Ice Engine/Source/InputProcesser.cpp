@@ -1,4 +1,4 @@
-#include "..\Lib\InputProcesser.h"
+#include "InputProcesser.h"
 
 
 void InputProcesser::MouseMove(LPARAM lParam) {
