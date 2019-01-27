@@ -1,11 +1,11 @@
 #pragma once
 
 #ifndef LUA_ADAPTER_H
-#include "../Lib/LuaAdapter.hpp"
+#include "LuaAdapter.hpp"
 #endif
-#include "../Lib/LuaTable.hpp"
+#include "LuaTable.hpp"
 #ifndef LUA_FUNCTION_H
-#include "../Lib/LuaFunction.hpp"
+#include "LuaFunction.hpp"
 #endif
 
 class ScriptComponent {

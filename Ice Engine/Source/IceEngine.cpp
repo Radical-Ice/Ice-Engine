@@ -1,19 +1,52 @@
-#include "../Lib/IceEngine.h"
+#include "IceEngine.h"
 
 void IceEngine::InitEngine() {
+	mainWindow.create(sf::VideoMode(1024, 768, 32), "Meow");
 
+	//"Assets/ " for pics
+	if (!texture.loadFromFile("Assets/cat.png")) {
+		MessageBox(NULL,
+			_T("Failed to load CAT texture"),
+			_T("-> Ice Engine.cpp"),
+			NULL);
+	}
+
+	// Create a sprite
+	sf::Sprite sprite;
+	sprite.setTexture(texture);
+	//sprite.setTextureRect(sf::IntRect(0, 0, 500, 500));
+	//sprite.setColor(sf::Color(255, 255, 255, 200));
+	sprite.setPosition(100, 25);
+	// Draw it
+	
+	while (mainWindow.isOpen())
+	{
+		sf::Event event;
+		while (mainWindow.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				mainWindow.close();
+		}
+
+		mainWindow.clear();
+		mainWindow.draw(sprite);
+		mainWindow.display();
+	}
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 		scriptComponent.runScript();
-		render_frame();
+		//render_frame();
 	}
-	cleanD3D();
+	//cleanD3D();
 }
 
 void IceEngine::DoChecks(LPCSTR szWindowClass) {
+
+	splashScreen.Show(mainWindow);
 	checker->initChecks(szWindowClass, physicalRAMNeed, virtualRAMNeed, diskSpaceNeed);
+
 }
 int IceEngine::RegisterWindow(HINSTANCE hInstance,LPCSTR szWindowClass, int nCmdShow, LPCSTR szTitle) {
 	wcex.cbSize = sizeof(WNDCLASSEX);
@@ -49,7 +82,7 @@ int IceEngine::RegisterWindow(HINSTANCE hInstance,LPCSTR szWindowClass, int nCmd
 		hInstance,
 		NULL
 	);
-	initD3D(hWnd);
+	//initD3D(hWnd);
 	if (!hWnd)
 	{
 		MessageBox(NULL,

@@ -1,5 +1,6 @@
+
 //Authors: James Bews, Jatin Kumar, Dennis Nguyen
-#include "../Lib/IceEngine.h"
+#include "IceEngine.h"
 
 #define DIV 1024
 // Global variables  
@@ -32,3 +33,4 @@ int CALLBACK WinMain(
 	//hInst = hInstance; // Store instance handle in our global variable  
 	return (int)iceEngine.msg.wParam;
 }
+

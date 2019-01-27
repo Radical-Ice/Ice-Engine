@@ -1,11 +1,12 @@
 #pragma once
-#include "../Lib/Checking.h"
-#include "../Lib/Game Window.h"
-#include "../Lib/ScriptComponent.h"
 #include "SFML/Graphics.hpp"
+#include "Checking.h"
+#include "Game Window.h"
+#include "ScriptComponent.h"
+#include "SplashScreen.h"
 class IceEngine {
 private:
-	
+	SplashScreen splashScreen;
 	WNDCLASSEX wcex;
 	Checking *checker;
 	ScriptComponent scriptComponent;//temp to show lua code
@@ -18,4 +19,6 @@ public:
 	void InitEngine();
 	void DoChecks(LPCSTR szWindowClass);
 	int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);
+	sf::Texture texture;
+	sf::RenderWindow mainWindow;
 };

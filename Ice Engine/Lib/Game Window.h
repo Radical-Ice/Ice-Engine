@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "..\Lib\InputProcesser.h"
+#include "InputProcesser.h"
 #include <tchar.h>
 #include <d3d9.h>
 
