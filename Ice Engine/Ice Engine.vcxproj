@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="Source\Checking.cpp" />
     <ClCompile Include="Source\GameWindow.cpp" />
     <ClCompile Include="Source\IceEngine.cpp" />
@@ -162,8 +163,10 @@
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\ScriptComponent.cpp" />
     <ClCompile Include="Source\SplashScreen.cpp" />
+    <ClCompile Include="TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="Lib\Checking.h" />
     <ClInclude Include="Lib\Game Window.h" />
     <ClInclude Include="Lib\ScriptComponent.h" />
@@ -173,6 +176,7 @@
     <ClInclude Include="Lib\LuaFunction.hpp" />
     <ClInclude Include="Lib\LuaTable.hpp" />
     <ClInclude Include="Lib\SplashScreen.h" />
+    <ClInclude Include="TransformComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Lib\test.lua" />
