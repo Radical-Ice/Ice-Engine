@@ -7,7 +7,6 @@
 #include <thread>
 #include <chrono>
 using namespace std;
-
 class IceEngine {
 private:
 	SplashScreen splashScreen;
@@ -17,11 +16,15 @@ private:
 	const DWORDLONG diskSpaceNeed = 300;
 	const DWORDLONG physicalRAMNeed = 5;
 	const DWORDLONG virtualRAMNeed = 5;
+	SplashScreen sp;
 
 public:
 	MSG msg;
 	void InitEngine();
 	void DoChecks(LPCSTR szWindowClass);
+	void LoadTexture(sf::RenderWindow& );
+	void CreateSplashWindow();
+	void CreateMainWindow();
 	int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);
 	sf::Texture texture;
 	//sf::Texture SStexture;
@@ -29,6 +32,5 @@ public:
 	sf::RenderWindow SplashScreen;
 	sf::Sprite sprite;
 	sf::Sprite sprite2;
-
 	sf::Event event;
 };

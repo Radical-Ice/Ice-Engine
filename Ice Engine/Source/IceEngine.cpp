@@ -1,35 +1,26 @@
 #include "IceEngine.h"
-SplashScreen sp;
-void IceEngine::InitEngine() {
-	SplashScreen.create(sf::VideoMode(1024, 768, 32), "SplashScreen");
-	
-	sp.Show(SplashScreen);
-	//"Assets/ " for pics
+
+
+//Load Texture for Main Game Window
+void IceEngine::LoadTexture(sf::RenderWindow& Window)
+{
 	if (!texture.loadFromFile("Assets/cat.png")) {
 		MessageBox(NULL,
 			_T("Failed to load CAT texture"),
 			_T("-> Ice Engine.cpp"),
 			NULL);
 	}
-	/*if (!sp.SSTexture.loadFromFile("Assets/SplashScreen.jpg")) {
-		MessageBox(NULL,
-			_T("Failed to load SplashScreen texture"),
-			_T("-> Ice Engine.cpp"),
-			NULL);
-	}*/
-	sprite.setTexture(sp.SSTexture);
-	//sprite.setTextureRect(sf::IntRect(0, 0, 500, 500));
-	//sprite.setColor(sf::Color(255, 255, 255, 200));
-	sprite.setPosition(100, 25);
-
-
 	sprite2.setTexture(texture);
 	sprite2.setPosition(100, 25);
-	// Draw it
-	
+
+}
+//Splash Screen First screen
+void IceEngine::CreateSplashWindow()
+{
+	SplashScreen.create(sf::VideoMode(1024, 768, 32), "SplashScreen");
 	while (SplashScreen.isOpen())
 	{
-		
+
 		while (SplashScreen.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
@@ -37,16 +28,15 @@ void IceEngine::InitEngine() {
 				SplashScreen.close();
 				mainWindow.create(sf::VideoMode(1024, 768, 32), "Main Game Window");
 			}
-		
+
 		}
-		
 		SplashScreen.clear();
 		SplashScreen.draw(sprite);
-		//this_thread::sleep_for(chrono::seconds(2));
-		//mainWindow.draw(sprite2);
 		SplashScreen.display();
 	}
-
+}
+void IceEngine::CreateMainWindow()
+{
 	while (mainWindow.isOpen())
 	{
 		while (mainWindow.pollEvent(event))
@@ -54,17 +44,26 @@ void IceEngine::InitEngine() {
 			if (event.type == sf::Event::Closed)
 			{
 				mainWindow.close();
+				exit(0);
 			}
 
 		}
 
 		mainWindow.clear();
 		mainWindow.draw(sprite2);
-		//this_thread::sleep_for(chrono::seconds(2));
-		//mainWindow.draw(sprite2);
 		mainWindow.display();
 
 	}
+}
+void IceEngine::InitEngine() {
+	
+	sp.Show(SplashScreen);
+	LoadTexture(mainWindow);
+	sprite.setTexture(sp.SSTexture);
+	sprite.setPosition(100, 25);
+	
+	CreateSplashWindow();
+	CreateMainWindow();
 
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
@@ -130,3 +129,4 @@ int IceEngine::RegisterWindow(HINSTANCE hInstance,LPCSTR szWindowClass, int nCmd
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 }
+

@@ -14,10 +14,7 @@ public:
 	SplashScreen();
 	sf::Texture SSTexture;
 	void Show(sf::RenderWindow& window);
-
-
-
-
+	sf::Sprite sprite;
 	~SplashScreen();
 };
 

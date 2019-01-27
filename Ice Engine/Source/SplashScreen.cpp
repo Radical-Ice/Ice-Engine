@@ -10,13 +10,9 @@ void SplashScreen::Show(sf::RenderWindow & renderWindow) {
 			NULL);
 		return;
 	}
-	sf::Sprite sprite(SSTexture);
+	sprite.setTexture(SSTexture);
 	sprite.setTextureRect(sf::IntRect(0, 0, 500, 500));
-	//sprite.setColor(sf::Color(255, 255, 255, 200));
 	sprite.setPosition(100, 25);
-	renderWindow.draw(sprite);
-	renderWindow.display();
-	sf::Event event;
 }
 
 SplashScreen::SplashScreen()
