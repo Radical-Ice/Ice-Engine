@@ -1,7 +1,14 @@
 #include "IceEngine.h"
 
-void IceEngine::InitEngine() {
+
+void IceEngine::InitGraphics() {
 	mainWindow.create(sf::VideoMode(1024, 768, 32), "Meow");
+	if (state == SplashScreen)
+		splashScreen.Show(mainWindow);
+	mainWindow.display();
+}
+void IceEngine::InitEngine() {
+	
 
 	//"Assets/ " for pics
 	if (!texture.loadFromFile("Assets/cat.png")) {
@@ -30,6 +37,8 @@ void IceEngine::InitEngine() {
 
 		mainWindow.clear();
 		mainWindow.draw(sprite);
+		if(state==SplashScreen)
+			splashScreen.Show(mainWindow);
 		mainWindow.display();
 	}
 	while (GetMessage(&msg, NULL, 0, 0))
@@ -43,10 +52,12 @@ void IceEngine::InitEngine() {
 }
 
 void IceEngine::DoChecks(LPCSTR szWindowClass) {
-
-	splashScreen.Show(mainWindow);
+	MessageBox(NULL,
+		_T("doing checks"),
+		_T("-> Ice Engine.cpp"),
+		NULL);
 	checker->initChecks(szWindowClass, physicalRAMNeed, virtualRAMNeed, diskSpaceNeed);
-
+	state = nextScreen;
 }
 int IceEngine::RegisterWindow(HINSTANCE hInstance,LPCSTR szWindowClass, int nCmdShow, LPCSTR szTitle) {
 	wcex.cbSize = sizeof(WNDCLASSEX);

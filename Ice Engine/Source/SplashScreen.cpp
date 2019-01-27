@@ -3,6 +3,18 @@
 void SplashScreen::Show(sf::RenderWindow & renderWindow) {
 
 	//"Assets/" for Pic
+
+	sf::Sprite sprite(texture);
+	sprite.setTextureRect(sf::IntRect(800, 0, 1024, 768));
+	//sprite.setColor(sf::Color(255, 255, 255, 200));
+	sprite.setPosition(0, 0);
+	renderWindow.draw(sprite);
+	//renderWindow.display();
+	sf::Event event;
+}
+
+SplashScreen::SplashScreen()
+{
 	if (!texture.loadFromFile("Assets/SplashScreen.jpg")) {
 		MessageBox(NULL,
 			("failed to load SplashScreen texture"),
@@ -10,18 +22,6 @@ void SplashScreen::Show(sf::RenderWindow & renderWindow) {
 			NULL);
 		return;
 	}
-	sf::Sprite sprite(texture);
-	sprite.setTextureRect(sf::IntRect(0, 0, 500, 500));
-	//sprite.setColor(sf::Color(255, 255, 255, 200));
-	sprite.setPosition(100, 25);
-	renderWindow.draw(sprite);
-	renderWindow.display();
-	sf::Event event;
-}
-
-SplashScreen::SplashScreen()
-{
-
 }
 
 

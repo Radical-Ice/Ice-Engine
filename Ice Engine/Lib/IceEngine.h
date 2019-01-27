@@ -13,10 +13,15 @@ private:
 	const DWORDLONG diskSpaceNeed = 300;
 	const DWORDLONG physicalRAMNeed = 5;
 	const DWORDLONG virtualRAMNeed = 5;
-
+	enum engineState {
+		SplashScreen, 
+		nextScreen
+	};
+	engineState state = SplashScreen;
 public:
 	MSG msg;
 	void InitEngine();
+	void InitGraphics();
 	void DoChecks(LPCSTR szWindowClass);
 	int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);
 	sf::Texture texture;
