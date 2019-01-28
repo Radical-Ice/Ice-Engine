@@ -33,4 +33,6 @@ public:
 	sf::Sprite sprite;
 	sf::Sprite sprite2;
 	sf::Event event;
+	sf::Clock clock;
+	sf::Time time;
 };

@@ -17,22 +17,33 @@ void IceEngine::LoadTexture(sf::RenderWindow& Window)
 //Splash Screen First screen
 void IceEngine::CreateSplashWindow()
 {
+	LoadTexture(SplashScreen);
 	SplashScreen.create(sf::VideoMode(1024, 768, 32), "SplashScreen");
 	while (SplashScreen.isOpen())
 	{
-
+		//time = clock.restart();
+		time = clock.getElapsedTime();
 		while (SplashScreen.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 			{
-				SplashScreen.close();
-				mainWindow.create(sf::VideoMode(1024, 768, 32), "Main Game Window");
+					SplashScreen.close();
+					//mainWindow.create(sf::VideoMode(1024, 768, 32), "Main Game Window");
 			}
 
 		}
-		SplashScreen.clear();
-		SplashScreen.draw(sprite);
-		SplashScreen.display();
+		if(time.asSeconds() <= 5.00)
+		{
+			SplashScreen.clear();
+			SplashScreen.draw(sprite);
+			SplashScreen.display();
+		}
+		else
+		{
+			SplashScreen.clear();
+			SplashScreen.draw(sprite2);
+			SplashScreen.display();
+		}
 	}
 }
 void IceEngine::CreateMainWindow()
@@ -58,12 +69,12 @@ void IceEngine::CreateMainWindow()
 void IceEngine::InitEngine() {
 	
 	sp.Show(SplashScreen);
-	LoadTexture(mainWindow);
+	//LoadTexture(mainWindow);
 	sprite.setTexture(sp.SSTexture);
 	sprite.setPosition(100, 25);
 	
 	CreateSplashWindow();
-	CreateMainWindow();
+	//CreateMainWindow();
 
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
@@ -77,7 +88,7 @@ void IceEngine::InitEngine() {
 
 void IceEngine::DoChecks(LPCSTR szWindowClass) {
 
-	splashScreen.Show(mainWindow);
+	//splashScreen.Show(mainWindow);
 	checker->initChecks(szWindowClass, physicalRAMNeed, virtualRAMNeed, diskSpaceNeed);
 
 }
