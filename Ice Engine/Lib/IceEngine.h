@@ -4,7 +4,7 @@
 #include "Game Window.h"
 #include "ScriptComponent.h"
 #include "SplashScreen.h"
-#include "../SceneGraph.h"
+#include "SceneGraph.h"
 class IceEngine {
 private:
 	SplashScreen splashScreen;
