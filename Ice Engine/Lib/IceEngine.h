@@ -4,9 +4,11 @@
 #include "Game Window.h"
 #include "ScriptComponent.h"
 #include "SplashScreen.h"
+#include "../SceneGraph.h"
 class IceEngine {
 private:
 	SplashScreen splashScreen;
+	SceneGraph sceneNode;
 	WNDCLASSEX wcex;
 	Checking *checker;
 	ScriptComponent scriptComponent;//temp to show lua code
@@ -18,6 +20,7 @@ private:
 		nextScreen
 	};
 	engineState state = SplashScreen;
+	sf::Clock clock;
 public:
 	MSG msg;
 	void InitEngine();

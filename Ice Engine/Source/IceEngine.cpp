@@ -17,10 +17,10 @@ void IceEngine::InitEngine() {
 			_T("-> Ice Engine.cpp"),
 			NULL);
 	}
-
 	// Create a sprite
 	sf::Sprite sprite;
 	sprite.setTexture(texture);
+	
 	//sprite.setTextureRect(sf::IntRect(0, 0, 500, 500));
 	//sprite.setColor(sf::Color(255, 255, 255, 200));
 	sprite.setPosition(100, 25);
@@ -29,11 +29,14 @@ void IceEngine::InitEngine() {
 	while (mainWindow.isOpen())
 	{
 		sf::Event event;
+		sf::Time elapsed = clock.restart();
 		while (mainWindow.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				mainWindow.close();
 		}
+		sceneNode.Update();
+
 
 		mainWindow.clear();
 		mainWindow.draw(sprite);
@@ -104,6 +107,6 @@ int IceEngine::RegisterWindow(HINSTANCE hInstance,LPCSTR szWindowClass, int nCmd
 		return 1;
 	}
 
-	ShowWindow(hWnd, nCmdShow);
-	UpdateWindow(hWnd);
+	//ShowWindow(hWnd, nCmdShow);
+	//UpdateWindow(hWnd);
 }

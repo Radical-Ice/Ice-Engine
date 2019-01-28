@@ -8,9 +8,6 @@ public:
 	sf::Texture texture;
 	void Show(sf::RenderWindow& window);
 
-
-
-
 	~SplashScreen();
 };
 
