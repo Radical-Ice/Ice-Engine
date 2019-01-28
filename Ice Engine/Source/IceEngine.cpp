@@ -28,6 +28,7 @@ void IceEngine::CreateSplashWindow()
 			if (event.type == sf::Event::Closed)
 			{
 					SplashScreen.close();
+					exit(0);
 					//mainWindow.create(sf::VideoMode(1024, 768, 32), "Main Game Window");
 			}
 
