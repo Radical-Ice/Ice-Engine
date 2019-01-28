@@ -5,6 +5,7 @@
 #include "ScriptComponent.h"
 #include "SplashScreen.h"
 #include "SceneGraph.h"
+
 class IceEngine {
 private:
 	SplashScreen splashScreen;
@@ -20,7 +21,7 @@ private:
 		nextScreen
 	};
 	engineState state = SplashScreen;
-	sf::Clock clock;
+	sf::Clock clock;	
 public:
 	MSG msg;
 	void InitEngine();
@@ -29,4 +30,7 @@ public:
 	int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);
 	sf::Texture texture;
 	sf::RenderWindow mainWindow;
+	sf::Sprite sprite;
+	sf::Event event;
+	sf::Time elapsed;
 };

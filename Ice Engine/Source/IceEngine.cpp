@@ -9,7 +9,6 @@ void IceEngine::InitGraphics() {
 }
 void IceEngine::InitEngine() {
 	
-
 	//"Assets/ " for pics
 	if (!texture.loadFromFile("Assets/cat.png")) {
 		MessageBox(NULL,
@@ -18,26 +17,21 @@ void IceEngine::InitEngine() {
 			NULL);
 	}
 	// Create a sprite
-	sf::Sprite sprite;
+	
 	sprite.setTexture(texture);
 	
-	//sprite.setTextureRect(sf::IntRect(0, 0, 500, 500));
-	//sprite.setColor(sf::Color(255, 255, 255, 200));
 	sprite.setPosition(100, 25);
 	// Draw it
 	
 	while (mainWindow.isOpen())
 	{
-		sf::Event event;
-		sf::Time elapsed = clock.restart();
+		elapsed = clock.restart();
 		while (mainWindow.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				mainWindow.close();
 		}
 		sceneNode.Update();
-
-
 		mainWindow.clear();
 		mainWindow.draw(sprite);
 		if(state==SplashScreen)
@@ -49,7 +43,6 @@ void IceEngine::InitEngine() {
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 		scriptComponent.runScript();
-		//render_frame();
 	}
 	//cleanD3D();
 }
