@@ -26,8 +26,10 @@ public:
 	MSG msg;
 	void InitEngine();
 	void InitGraphics();
+	void LoadSTexture();
+	void SFML_Window();
 	void DoChecks(LPCSTR szWindowClass);
-	int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);
+	//int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);
 	sf::Texture texture;
 	sf::RenderWindow mainWindow;
 	sf::Sprite sprite;

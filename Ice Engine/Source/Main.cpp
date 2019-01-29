@@ -26,7 +26,7 @@ int CALLBACK WinMain(
 	IceEngine iceEngine;
 	iceEngine.InitGraphics();
 	iceEngine.DoChecks(szWindowClass);	
-	iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
+	//iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
 	iceEngine.InitEngine();
 	
 
