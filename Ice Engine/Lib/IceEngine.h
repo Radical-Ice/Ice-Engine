@@ -5,6 +5,7 @@
 #include "ScriptComponent.h"
 #include "SplashScreen.h"
 #include "SceneGraph.h"
+#include "SFML/Audio.hpp"
 
 class IceEngine {
 private:
@@ -27,6 +28,7 @@ public:
 	void InitEngine();
 	void InitGraphics();
 	void LoadSTexture();
+	void LoadSound();
 	void SFML_Window();
 	void DoChecks(LPCSTR szWindowClass);
 	//int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);
@@ -35,4 +37,7 @@ public:
 	sf::Sprite sprite;
 	sf::Event event;
 	sf::Time elapsed;
+	sf::Texture text2;
+	sf::SoundBuffer mBuffer;
+	sf::Sound mOpeningSD;
 };

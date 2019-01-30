@@ -10,6 +10,18 @@ void IceEngine::InitGraphics() {
 	mainWindow.display();
 }
 
+void IceEngine::LoadSound()
+{
+	if (!mBuffer.loadFromFile("Assets/PewPew.wav"))
+	{
+		MessageBox(NULL,
+			_T("Failed to Wav"),
+			_T("-> Ice Engine.cpp"),
+			NULL);
+	}
+	mOpeningSD.setBuffer(mBuffer);
+}
+
 void IceEngine::LoadSTexture()
 {
 	if (!texture.loadFromFile("Assets/cat.png")) {
@@ -18,6 +30,7 @@ void IceEngine::LoadSTexture()
 			_T("-> Ice Engine.cpp"),
 			NULL);
 	}
+	
 	sprite.setTexture(texture);
 	sprite.setPosition(100, 25);
 }
@@ -43,6 +56,8 @@ void IceEngine::SFML_Window()
 
 void IceEngine::InitEngine() {
 	LoadSTexture();
+	LoadSound();
+	mOpeningSD.play();
 	SFML_Window();
 }
 
