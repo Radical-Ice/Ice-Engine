@@ -24,8 +24,9 @@ int CALLBACK WinMain(
 	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
 
 	IceEngine iceEngine;
+	iceEngine.InitGraphics();
 	iceEngine.DoChecks(szWindowClass);	
-	iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
+	//iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
 	iceEngine.InitEngine();
 	
 

@@ -3,20 +3,26 @@
 void SplashScreen::Show(sf::RenderWindow & renderWindow) {
 
 	//"Assets/" for Pic
-	if (!SSTexture.loadFromFile("Assets/SplashScreen.jpg")) {
+	
+	sprite.setTexture(texture);
+	sprite.setTextureRect(sf::IntRect(0, 0, renderWindow.getSize().x, renderWindow.getSize().y));
+	//sprite.setColor(sf::Color(255, 255, 255, 200));
+	sprite.setPosition(0, 0);
+	//sprite.setScale(0.5,0.5);
+	renderWindow.draw(sprite);
+	//renderWindow.display();
+	
+}
+
+SplashScreen::SplashScreen()
+{
+	if (!texture.loadFromFile("Assets/snowflake.png")) {
 		MessageBox(NULL,
 			("failed to load SplashScreen texture"),
 			(" -> SplashScreen.cpp"),
 			NULL);
 		return;
-	}
-	sprite.setTexture(SSTexture);
-	sprite.setTextureRect(sf::IntRect(0, 0, 500, 500));
-	sprite.setPosition(100, 25);
-}
-
-SplashScreen::SplashScreen()
-{
+	} 
 }
 
 
