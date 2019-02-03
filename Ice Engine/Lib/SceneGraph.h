@@ -11,8 +11,6 @@ public:
 	std::vector<GameObject*> children;
 
 	void Update();
-
-
 	~SceneGraph();
 };
 

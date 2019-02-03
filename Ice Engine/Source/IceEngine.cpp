@@ -1,8 +1,8 @@
 #include "IceEngine.h"
 
-
 void IceEngine::InitGraphics() {
 	mainWindow.create(sf::VideoMode(1024, 768, 32), "Meow");
+
 	if (state == SplashScreen)
 	{
 		splashScreen.Show(mainWindow);
@@ -15,7 +15,7 @@ void IceEngine::LoadSound()
 	if (!mBuffer.loadFromFile("Assets/PewPew.wav"))
 	{
 		MessageBox(NULL,
-			_T("Failed to Wav"),
+			_T("Failed to load Wav file"),
 			_T("-> Ice Engine.cpp"),
 			NULL);
 	}
@@ -50,6 +50,7 @@ void IceEngine::SFML_Window()
 		mainWindow.draw(sprite);
 		if (state == SplashScreen)
 			splashScreen.Show(mainWindow);
+		ai.makeGrid(mainWindow);
 		mainWindow.display();
 	}
 }

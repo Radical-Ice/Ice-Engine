@@ -5,6 +5,7 @@
 #include "ScriptComponent.h"
 #include "SplashScreen.h"
 #include "SceneGraph.h"
+#include "AIComponent.h"
 #include "SFML/Audio.hpp"
 
 class IceEngine {
@@ -13,6 +14,7 @@ private:
 	SceneGraph sceneNode;
 	WNDCLASSEX wcex;
 	Checking *checker;
+	AIComponent ai;
 	ScriptComponent scriptComponent;//temp to show lua code
 	const DWORDLONG diskSpaceNeed = 300;
 	const DWORDLONG physicalRAMNeed = 5;
