@@ -45,12 +45,16 @@ void IceEngine::SFML_Window()
 			if (event.type == sf::Event::Closed)
 				mainWindow.close();
 		}
-		sceneNode.Update();
+
 		mainWindow.clear();
-		mainWindow.draw(sprite);
+		sceneNode.Update(mainWindow);
+
+		//mainWindow.draw(sprite);
+
 		if (state == SplashScreen)
 			splashScreen.Show(mainWindow);
 		ai.makeGrid(mainWindow);
+
 		mainWindow.display();
 	}
 }
@@ -59,6 +63,7 @@ void IceEngine::InitEngine() {
 	LoadSTexture();
 	LoadSound();
 	mOpeningSD.play();
+
 	SFML_Window();
 }
 

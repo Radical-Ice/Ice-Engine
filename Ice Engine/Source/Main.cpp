@@ -27,8 +27,8 @@ int CALLBACK WinMain(
 	iceEngine.InitGraphics();
 	iceEngine.DoChecks(szWindowClass);	
 	//iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
+	GameObject testObj(&iceEngine.sceneNode);
 	iceEngine.InitEngine();
-	
 
 
 	//hInst = hInstance; // Store instance handle in our global variable  

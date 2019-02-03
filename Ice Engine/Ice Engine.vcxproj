@@ -178,6 +178,7 @@
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\ScriptComponent.cpp" />
     <ClCompile Include="Source\SplashScreen.cpp" />
+    <ClCompile Include="Source\SpriteComponent.cpp" />
     <ClCompile Include="Source\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +195,7 @@
     <ClInclude Include="Lib\LuaTable.hpp" />
     <ClInclude Include="Lib\SplashScreen.h" />
     <ClInclude Include="Lib\SceneGraph.h" />
+    <ClInclude Include="Lib\SpriteComponent.h" />
     <ClInclude Include="Lib\TransformComponent.h" />
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,7 @@
 class IceEngine {
 private:
 	SplashScreen splashScreen;
-	SceneGraph sceneNode;
+
 	WNDCLASSEX wcex;
 	Checking *checker;
 	AIComponent ai;
@@ -26,6 +26,7 @@ private:
 	engineState state = SplashScreen;
 	sf::Clock clock;	
 public:
+	SceneGraph sceneNode;
 	MSG msg;
 	void InitEngine();
 	void InitGraphics();
@@ -42,4 +43,5 @@ public:
 	sf::Texture text2;
 	sf::SoundBuffer mBuffer;
 	sf::Sound mOpeningSD;
+
 };

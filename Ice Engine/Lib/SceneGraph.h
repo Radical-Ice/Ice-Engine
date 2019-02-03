@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "GameObject.h"
+#include "SFML/Graphics.hpp"
 class GameObject;
 class SceneGraph
 {
@@ -10,7 +11,7 @@ public:
 
 	std::vector<GameObject*> children;
 
-	void Update();
+	void Update(sf::RenderWindow & renderWindow);
 	~SceneGraph();
 };
 
