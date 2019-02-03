@@ -1,8 +1,8 @@
 #include "IceEngine.h"
 
-
 void IceEngine::InitGraphics() {
 	mainWindow.create(sf::VideoMode(1024, 768, 32), "Meow");
+
 	if (state == SplashScreen)
 	{
 		splashScreen.Show(mainWindow);
@@ -10,7 +10,7 @@ void IceEngine::InitGraphics() {
 	mainWindow.display();
 }
 
-void IceEngine::LoadSound()
+/*void IceEngine::LoadSound()
 {
 	if (!mBuffer.loadFromFile("Assets/PewPew.wav"))
 	{
@@ -20,7 +20,7 @@ void IceEngine::LoadSound()
 			NULL);
 	}
 	mOpeningSD.setBuffer(mBuffer);
-}
+}*/
 
 void IceEngine::LoadSTexture()
 {
@@ -50,14 +50,15 @@ void IceEngine::SFML_Window()
 		mainWindow.draw(sprite);
 		if (state == SplashScreen)
 			splashScreen.Show(mainWindow);
+		ai.makeGrid(mainWindow);
 		mainWindow.display();
 	}
 }
 
 void IceEngine::InitEngine() {
 	LoadSTexture();
-	LoadSound();
-	mOpeningSD.play();
+	//LoadSound();
+	//mOpeningSD.play();
 	SFML_Window();
 }
 

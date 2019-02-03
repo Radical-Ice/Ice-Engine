@@ -5,7 +5,8 @@
 #include "ScriptComponent.h"
 #include "SplashScreen.h"
 #include "SceneGraph.h"
-#include "SFML/Audio.hpp"
+#include "..\AIComponent.h"
+//#include "SFML/Audio.hpp"
 
 class IceEngine {
 private:
@@ -13,6 +14,7 @@ private:
 	SceneGraph sceneNode;
 	WNDCLASSEX wcex;
 	Checking *checker;
+	AIComponent ai;
 	ScriptComponent scriptComponent;//temp to show lua code
 	const DWORDLONG diskSpaceNeed = 300;
 	const DWORDLONG physicalRAMNeed = 5;
@@ -28,7 +30,7 @@ public:
 	void InitEngine();
 	void InitGraphics();
 	void LoadSTexture();
-	void LoadSound();
+	//void LoadSound();
 	void SFML_Window();
 	void DoChecks(LPCSTR szWindowClass);
 	//int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);
@@ -38,6 +40,6 @@ public:
 	sf::Event event;
 	sf::Time elapsed;
 	sf::Texture text2;
-	sf::SoundBuffer mBuffer;
-	sf::Sound mOpeningSD;
+	//sf::SoundBuffer mBuffer;
+	//sf::Sound mOpeningSD;
 };
