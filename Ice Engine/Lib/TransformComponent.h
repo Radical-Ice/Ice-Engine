@@ -9,7 +9,9 @@ public:
 	};
 
 	TransformComponent();
+
 	TransformComponent(float x, float y, float rotation, float xScale, float yScale);
+	void Update(sf::RenderWindow & renderWindow);
 	Vector2 m_Position;
 	Vector2 m_Scale;
 	float	m_Rotation;

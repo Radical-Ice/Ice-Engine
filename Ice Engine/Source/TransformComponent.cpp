@@ -10,6 +10,9 @@ TransformComponent::TransformComponent() :
 
 
 }
+void TransformComponent::Update(sf::RenderWindow & renderWindow) {
+
+}
 TransformComponent::TransformComponent(float xPos, float yPos,float rotation, float xScale, float yScale) {
 	m_Position.x = xPos;
 	m_Position.y = yPos;

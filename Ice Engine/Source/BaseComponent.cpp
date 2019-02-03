@@ -5,8 +5,11 @@
 BaseComponent::BaseComponent()
 {
 }
+void BaseComponent::Update(sf::RenderWindow & renderWindow) {
 
 
+
+}
 BaseComponent::~BaseComponent()
 {
 }

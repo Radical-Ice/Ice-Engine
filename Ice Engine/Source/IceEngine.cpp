@@ -47,6 +47,7 @@ void IceEngine::SFML_Window()
 		}
 
 		mainWindow.clear();
+
 		sceneNode.Update(mainWindow);
 
 		//mainWindow.draw(sprite);

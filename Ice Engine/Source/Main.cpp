@@ -1,7 +1,7 @@
 
 //Authors: James Bews, Jatin Kumar, Dennis Nguyen
 #include "IceEngine.h"
-
+#include "SpriteComponent.h"
 #define DIV 1024
 // Global variables  
 // The main window class name.  
@@ -28,6 +28,8 @@ int CALLBACK WinMain(
 	iceEngine.DoChecks(szWindowClass);	
 	//iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
 	GameObject testObj(&iceEngine.sceneNode);
+	SpriteComponent sc(iceEngine.mainWindow, "Assets/cat.png");
+	testObj.components.push_back(&sc);
 	iceEngine.InitEngine();
 
 
