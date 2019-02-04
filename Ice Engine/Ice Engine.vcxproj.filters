@@ -37,6 +37,9 @@
     <ClCompile Include="Source\AIComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\AudioComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib\Checking.h">
@@ -81,6 +84,9 @@
     <ClInclude Include="Lib\AIComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Lib\AudioComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -104,5 +110,10 @@
     <Image Include="Source\cat.png">
       <Filter>Assets Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\PewPew.wav">
+      <Filter>Assets Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>
