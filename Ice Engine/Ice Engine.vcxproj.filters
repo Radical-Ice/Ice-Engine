@@ -99,6 +99,7 @@
     </Filter>
     <Filter Include="Assets Files">
       <UniqueIdentifier>{131ca220-0d12-49b8-86cf-2bebe6a3343e}</UniqueIdentifier>
+      <Extensions>png;jpg;jpeg;wav;dds;gif;bit</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
