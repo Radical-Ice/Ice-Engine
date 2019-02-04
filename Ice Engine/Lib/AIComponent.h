@@ -1,14 +1,19 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "BaseComponent.h"
+#include "GameObject.h"
 
-class AIComponent
+class AIComponent : public BaseComponent
 {
 public:
+	explicit AIComponent();
 	void makeGrid(sf::RenderWindow& window);
-	//void draw(sf::RectangleShape grid);
+	~AIComponent();
+	
 private:
-	int col = 15;
-	int row = 20;
+	int col;
+	int row;
+	GameObject* m_gameObject;
 	std::vector< std::vector<sf::RectangleShape>> grid;
 
 };

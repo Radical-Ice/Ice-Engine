@@ -1,14 +1,24 @@
 #include "AIComponent.h"
 
+AIComponent::AIComponent() :
+	col (30),
+	row(40),
+	m_gameObject(nullptr)
+{
+
+}
 
 void AIComponent::makeGrid(sf::RenderWindow& window)
 {
+	col = window.getSize().y / 32;
+	row = window.getSize().x / 32;
+
 	grid.resize(row);
 	for (int n = 0; n < row; n++) {
 		grid[n].resize(col);
 	}
 
-	sf::Vector2f cellSize(54.0f, 52.0f);
+	sf::Vector2f cellSize(32.0f, 32.0f);
 
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < col; j++) {
@@ -23,5 +33,10 @@ void AIComponent::makeGrid(sf::RenderWindow& window)
 
 		}
 	}
+
+}
+
+AIComponent::~AIComponent()
+{
 
 }

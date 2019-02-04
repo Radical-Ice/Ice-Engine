@@ -10,17 +10,17 @@ void IceEngine::InitGraphics() {
 	mainWindow.display();
 }
 
-void IceEngine::LoadSound()
-{
-	if (!mBuffer.loadFromFile("Assets/PewPew.wav"))
-	{
-		MessageBox(NULL,
-			_T("Failed to load Wav file"),
-			_T("-> Ice Engine.cpp"),
-			NULL);
-	}
-	mOpeningSD.setBuffer(mBuffer);
-}
+//void IceEngine::LoadSound()
+//{
+//	if (!mBuffer.loadFromFile("Assets/PewPew.wav"))
+//	{
+//		MessageBox(NULL,
+//			_T("Failed to load Wav file"),
+//			_T("-> Ice Engine.cpp"),
+//			NULL);
+//	}
+//	mOpeningSD.setBuffer(mBuffer);
+//}
 
 void IceEngine::LoadSTexture()
 {
@@ -57,8 +57,8 @@ void IceEngine::SFML_Window()
 
 void IceEngine::InitEngine() {
 	LoadSTexture();
-	LoadSound();
-	mOpeningSD.play();
+	//LoadSound();
+	//mOpeningSD.play();
 	SFML_Window();
 }
 
