@@ -43,6 +43,4 @@ public:
 	sf::Event event;
 	sf::Time elapsed;
 	sf::Texture text2;
-	//sf::SoundBuffer mBuffer;
-	//sf::Sound mOpeningSD;
 };
