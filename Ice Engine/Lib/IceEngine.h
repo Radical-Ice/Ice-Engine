@@ -8,6 +8,7 @@
 #include "AIComponent.h"
 #include "SFML/Audio.hpp"
 #include "AudioComponent.h"
+#include <iostream>
 
 class IceEngine {
 private:

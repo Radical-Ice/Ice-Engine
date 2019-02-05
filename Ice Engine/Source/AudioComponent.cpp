@@ -20,3 +20,15 @@ void AudioComp::PlayAudio(int Volume, bool Is_Looping)
 	Sound.setLoop(Is_Looping);
 	Sound.play();
 }
+
+void AudioComp::SoundPause_Unpause(bool Condition)
+{
+	if (Condition)
+	{
+		Sound.pause();
+	}
+	else
+	{
+		Sound.play();
+	}
+}

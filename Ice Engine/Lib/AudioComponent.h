@@ -13,4 +13,5 @@ private:
 public:
 	void LoadSound(std::string Filename);
 	void PlayAudio(int Volume, bool Is_Looping);
+	void SoundPause_Unpause(bool);
 };
