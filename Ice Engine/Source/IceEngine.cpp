@@ -12,7 +12,9 @@ void IceEngine::InitGraphics() {
 
 void IceEngine::LoadSound()
 {
-	audio.LoadSound("Assets/PewPew.wav");
+	//audio.LoadSound("Assets/PewPew.wav");
+	std::vector<std::string> String = {"Assets/PewPew.wav", "Assets/GunShot.wav" };
+	audio.Load_Sounds_From_Files(String);
 }
 
 void IceEngine::LoadSTexture()
@@ -51,7 +53,8 @@ void IceEngine::SFML_Window()
 void IceEngine::InitEngine() {
 	LoadSTexture();
 	LoadSound();
-	audio.PlayAudio(100, false);
+	//audio.PlayAudio(100, false);
+	audio.Play_Sound_From_Loaded_Files(1, 100, false);
 	SFML_Window();
 }
 

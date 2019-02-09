@@ -9,6 +9,7 @@
 #include "SFML/Audio.hpp"
 #include "AudioComponent.h"
 #include <iostream>
+#include <thread>
 
 class IceEngine {
 private:
