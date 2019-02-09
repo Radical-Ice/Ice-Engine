@@ -5,10 +5,7 @@ void AudioComp::LoadSound(std::string Filename)
 	LPCSTR File = Filename.c_str();
 	if (!SoundBuffer.loadFromFile(Filename))
 	{
-		MessageBox(NULL,
-			(File),
-			("Failed to load Wav file ->"),
-			NULL);
+		MessageBox(NULL, (File), ("Failed to load Wav file ->"), NULL);
 	}
 	//Sound->setBuffer(*SoundBuffer);
 }
@@ -36,19 +33,15 @@ void AudioComp::SoundPause_Unpause(bool Condition)
 void AudioComp::Load_Sounds_From_Files(std::vector<std::string> Filenames)
 {
 	LPCSTR File = Filenames[x].c_str();
-	for (auto var : Filenames)
+	for each (auto var in Filenames)
 	{
 		if (SoundBuffer.loadFromFile(Filenames[x]))
 		{
-			std::cout << "Loaded " << Filenames[x] << std::endl;
 			A_Sounds.push_back(SoundBuffer);
 			x++;
 		}
 		else {
-			MessageBox(NULL,
-				(File),
-				("Failed to load Wav file ->"),
-				NULL);
+			MessageBox(NULL, (File), ("Failed to load Wav file ->"), NULL);
 		}
 		
 	}

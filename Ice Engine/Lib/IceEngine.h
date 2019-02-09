@@ -9,7 +9,6 @@
 #include "SFML/Audio.hpp"
 #include "AudioComponent.h"
 #include <iostream>
-#include <thread>
 
 class IceEngine {
 private:
@@ -35,7 +34,8 @@ public:
 	void InitEngine();
 	void InitGraphics();
 	void LoadSTexture();
-	void LoadSound();
+	///<summary>Add all req audio file in your game</summary>
+	void LoadSound(std::vector<std::string>);
 	void SFML_Window();
 	void DoChecks(LPCSTR szWindowClass);
 	//int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);

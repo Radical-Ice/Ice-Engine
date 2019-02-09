@@ -1,6 +1,7 @@
 
 //Authors: James Bews, Jatin Kumar, Dennis Nguyen
 #include "IceEngine.h"
+#include <thread>
 
 #define DIV 1024
 // Global variables  
@@ -8,6 +9,7 @@
 
 static TCHAR szWindowClass[] = _T("IceEngine Console");
 static TCHAR szTitle[] = _T("IceEngnie");
+std::vector<std::string> AudioFiles;
 // The string that appears in the application's title bar.  
 
 
@@ -23,14 +25,17 @@ int main()
 {
 	//AllocConsole();
 	//freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
-
+	AudioFiles = { "Assets/PewPew.wav", "Assets/GunShot.wav" };//Will move to game comp
 	IceEngine iceEngine;
+	iceEngine.LoadSound(AudioFiles);
+	iceEngine.LoadSTexture();
 	iceEngine.InitGraphics();
+	
 	cout << "Init Graphics" << endl;
 	iceEngine.DoChecks(szWindowClass);	
 	//iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
 	iceEngine.InitEngine();
 	//hInst = hInstance; // Store instance handle in our global variable  
-	return (int)iceEngine.msg.wParam;
+	return 0;
 }
 

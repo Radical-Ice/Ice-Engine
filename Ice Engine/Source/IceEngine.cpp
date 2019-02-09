@@ -10,11 +10,10 @@ void IceEngine::InitGraphics() {
 	mainWindow.display();
 }
 
-void IceEngine::LoadSound()
+void IceEngine::LoadSound(std::vector<std::string> Files)
 {
-	//audio.LoadSound("Assets/PewPew.wav");
-	std::vector<std::string> String = {"Assets/PewPew.wav", "Assets/GunShot.wav" };
-	audio.Load_Sounds_From_Files(String);
+	audio.Load_Sounds_From_Files(Files);
+	std::cout << "~~[Sounds Loaded]~~" << std::endl;
 }
 
 void IceEngine::LoadSTexture()
@@ -28,10 +27,12 @@ void IceEngine::LoadSTexture()
 	
 	sprite.setTexture(texture);
 	sprite.setPosition(100, 25);
+	std::cout << "~~[Textures Loaded]~~" << std::endl;
 }
 
 void IceEngine::SFML_Window()
 {
+	std::cout << "~~[Loaded Window]~~" << std::endl;
 	while (mainWindow.isOpen())
 	{
 		elapsed = clock.restart();
@@ -51,10 +52,8 @@ void IceEngine::SFML_Window()
 }
 
 void IceEngine::InitEngine() {
-	LoadSTexture();
-	LoadSound();
-	//audio.PlayAudio(100, false);
-	audio.Play_Sound_From_Loaded_Files(1, 100, false);
+	audio.Play_Sound_From_Loaded_Files(0, 100, false);//WILL MOVE TO GAME COMP
+	std::cout << "~~[Loading Window]~~" << std::endl;
 	SFML_Window();
 }
 
