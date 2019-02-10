@@ -49,7 +49,7 @@ void IceEngine::SFML_Window()
 		}
 
 		mainWindow.clear();
-
+		sceneNode.children.at(0)->m_Transform.m_Rotation += 1;
 		sceneNode.Update(mainWindow);
 
 		//mainWindow.draw(sprite);

@@ -5,27 +5,39 @@
 TransformComponent::TransformComponent() :
 	m_Position{ 0,0 },
 	m_Rotation{ 0 },
-	m_Scale{ 1,1 }
+	m_Scale{ 1,1 },
+	m_WorldPosition{0,0},
+	m_WorldRotation{ 0 },
+	m_WorldScale{ 1,1 }
+
 {
 
 
 }
-TransformComponent::TransformComponent(TransformComponent* parentTransform) {
-
+TransformComponent::TransformComponent(TransformComponent* parentTransform) :
+	m_Position{ 0,0 },
+	m_Rotation{ 0 },
+	m_Scale{ 1,1 }
+{
 	m_ParentTransform = parentTransform;
 
-	m_Position = parentTransform->m_Position;
-	m_Rotation = parentTransform->m_Rotation;
-	m_Scale = parentTransform->m_Scale;
+	m_WorldPosition = parentTransform->m_Position;
+
+	m_WorldRotation = parentTransform->m_Rotation;
+
+	m_WorldScale = parentTransform->m_Scale;
 }
 void TransformComponent::Update() {
 
 	if (m_ParentTransform) {
 
-		m_WorldPosition.x = m_ParentTransform->m_Position.x + m_Position.x;
-		m_WorldPosition.y = m_ParentTransform->m_Position.y + m_Position.y;
-		m_WorldRotation = m_ParentTransform->m_Rotation + m_Rotation;
-		m_WorldScale = m_ParentTransform->m_Scale + m_Scale;
+		m_WorldPosition.x = m_ParentTransform->m_WorldPosition.x + m_Position.x;
+		m_WorldPosition.y = m_ParentTransform->m_WorldPosition.y + m_Position.y;
+		m_WorldRotation = m_ParentTransform->m_WorldRotation + m_Rotation;
+
+		m_WorldScale.x = m_ParentTransform->m_WorldScale.x * m_Scale.x;
+		m_WorldScale.y = m_ParentTransform->m_WorldScale.y * m_Scale.y;
+
 	}
 
 }

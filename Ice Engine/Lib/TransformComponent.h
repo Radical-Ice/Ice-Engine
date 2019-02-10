@@ -11,6 +11,11 @@ public:
 			y = a.y+y;
 			return a;
 		}
+		inline Vector2 operator*(Vector2 a) {
+			x = a.x * x;
+			y = a.y * y;
+			return a;
+		}
 	};
 
 	TransformComponent();
