@@ -28,8 +28,19 @@ int CALLBACK WinMain(
 	iceEngine.DoChecks(szWindowClass);	
 	//iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
 	GameObject testObj(&iceEngine.sceneNode);
-	SpriteComponent sc(iceEngine.mainWindow, "Assets/cat.png");
+
+	SpriteComponent sc(&iceEngine.mainWindow, "Assets/cat.png",testObj.transform);
+	testObj.transform->m_Position = { 550,550 };
+	testObj.transform->m_Scale = { .2f,.2f };
+	testObj.transform->m_Rotation = { 90 };
 	testObj.components.push_back(&sc);
+
+	GameObject testObj2(&testObj);
+
+	SpriteComponent sc2(&iceEngine.mainWindow, "Assets/SplashScreen.jpg", testObj2.transform);
+	testObj2.transform->m_Position = { -50,0 };
+	testObj2.components.push_back(&sc2);
+
 	iceEngine.InitEngine();
 
 

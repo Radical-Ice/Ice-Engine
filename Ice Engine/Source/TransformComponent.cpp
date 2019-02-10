@@ -10,7 +10,23 @@ TransformComponent::TransformComponent() :
 
 
 }
-void TransformComponent::Update(sf::RenderWindow & renderWindow) {
+TransformComponent::TransformComponent(TransformComponent* parentTransform) {
+
+	m_ParentTransform = parentTransform;
+
+	m_Position = parentTransform->m_Position;
+	m_Rotation = parentTransform->m_Rotation;
+	m_Scale = parentTransform->m_Scale;
+}
+void TransformComponent::Update() {
+
+	if (m_ParentTransform) {
+
+		m_WorldPosition.x = m_ParentTransform->m_Position.x + m_Position.x;
+		m_WorldPosition.y = m_ParentTransform->m_Position.y + m_Position.y;
+		m_WorldRotation = m_ParentTransform->m_Rotation + m_Rotation;
+		m_WorldScale = m_ParentTransform->m_Scale + m_Scale;
+	}
 
 }
 TransformComponent::TransformComponent(float xPos, float yPos,float rotation, float xScale, float yScale) {

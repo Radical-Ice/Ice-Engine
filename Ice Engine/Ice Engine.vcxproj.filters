@@ -110,5 +110,8 @@
     <Image Include="Source\cat.png">
       <Filter>Assets Files</Filter>
     </Image>
+    <Image Include="Assets\SplashScreen.jpg">
+      <Filter>Assets Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -39,6 +39,8 @@ void IceEngine::SFML_Window()
 {
 	while (mainWindow.isOpen())
 	{
+
+
 		elapsed = clock.restart();
 		while (mainWindow.pollEvent(event))
 		{

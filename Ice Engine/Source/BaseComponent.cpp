@@ -4,8 +4,9 @@
 
 BaseComponent::BaseComponent()
 {
+
 }
-void BaseComponent::Update(sf::RenderWindow & renderWindow) {
+void BaseComponent::Update() {
 
 
 

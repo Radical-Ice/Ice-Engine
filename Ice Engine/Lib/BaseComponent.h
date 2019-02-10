@@ -5,7 +5,7 @@ class BaseComponent
 public:
 
 	BaseComponent();
-	virtual void Update(sf::RenderWindow & renderWindow);
+	virtual void Update();
 	~BaseComponent();
 };
 
