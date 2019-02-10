@@ -1,5 +1,5 @@
 #include "IceEngine.h"
-
+#include "SpriteComponent.h"
 void IceEngine::InitGraphics() {
 	mainWindow.create(sf::VideoMode(1024, 768, 32), "Meow");
 
@@ -46,14 +46,42 @@ void IceEngine::SFML_Window()
 		{
 			if (event.type == sf::Event::Closed)
 				mainWindow.close();
+			if (event.type == sf::Event::KeyPressed) {
+				SpriteComponent* temp = static_cast<SpriteComponent*>((sceneNode.children.at(0))->components.at(1));
+				switch (event.key.code) {
+				case sf::Keyboard::Left:
+					temp->sprite.move(-5, 0);
+					break;
+				case sf::Keyboard::Right:
+					temp->sprite.move(5, 0);
+					break;
+				case sf::Keyboard::Up:
+					temp->sprite.move(0, -5);
+					break;
+				case sf::Keyboard::Down:
+					temp->sprite.move(0, 5);
+					break;
+				case sf::Keyboard::A:
+					temp->sprite.rotate(2);
+					break;
+				case sf::Keyboard::D:
+					temp->sprite.rotate(-2);
+					break;
+				}
+				//sceneNode.children.at(0)->m_Transform->m_Rotation += 1;
+				
+				//temp->sprite.rotate(5);
+				
+			}
 		}
 
 		mainWindow.clear();
 	
-		//sceneNode.children.at(0)->children.at(0)->m_Transform.m_Rotation += 1;
+	//	sceneNode.children.at(0)->children.at(0)->m_Transform.m_Rotation += 1;
 		sceneNode.Update(mainWindow);
 
-		sceneNode.children.at(0)->m_Transform->m_Position.x += 1;
+		
+		
 		//mainWindow.draw(sprite);
 
 		if (state == SplashScreen)

@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseComponent.h"
+
 class TransformComponent : public BaseComponent
 {
 public:
@@ -8,7 +9,7 @@ public:
 		float y;
 		inline Vector2 operator+(Vector2 a) {
 			x = a.x + x;
-			y = a.y+y;
+			y = a.y + y;
 			return a;
 		}
 		inline Vector2 operator*(Vector2 a) {
@@ -26,11 +27,13 @@ public:
 	TransformComponent* m_ParentTransform;
 	Vector2 m_Position;
 	Vector2 m_Scale;
+
 	float	m_Rotation;
 	Vector2 m_WorldPosition;
 	Vector2 m_WorldScale;
 	float	m_WorldRotation;
 	~TransformComponent();
+
 
 };
 

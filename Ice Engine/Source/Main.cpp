@@ -31,16 +31,16 @@ int CALLBACK WinMain(
 
 	SpriteComponent sc(&iceEngine.mainWindow, "Assets/cat.png",testObj.m_Transform);
 	
-	testObj.m_Transform->m_Position = { 550,250 };
-	testObj.m_Transform->m_Scale = { .2f,.2f };
-	testObj.m_Transform->m_Rotation = { 90 };
+	testObj.m_Transform->m_Position = { 512,384 };
+	testObj.m_Transform->m_Scale = { .3f,.3f };
+	testObj.m_Transform->m_Rotation = { 0 };
 	testObj.components.push_back(&sc);
 
 	GameObject testObj2(&testObj);
 
-	SpriteComponent sc2(&iceEngine.mainWindow, "Assets/SplashScreen.jpg",testObj2.m_Transform);
-	testObj2.m_Transform->m_Position = { -50,0 };
-	testObj2.m_Transform->m_Rotation = { 45 };
+	SpriteComponent sc2(&iceEngine.mainWindow, "Assets/SplashScreen.jpg",testObj2.m_Transform, &sc.sprite);
+	testObj2.m_Transform->m_Position = { 50,100 };
+	testObj2.m_Transform->m_Rotation = { 0 };
 	testObj2.components.push_back(&sc2);
 
 	iceEngine.InitEngine();

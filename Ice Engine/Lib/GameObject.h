@@ -16,7 +16,7 @@ public:
 
 	std::vector<BaseComponent*> components;
 
-
+	
 
 	~GameObject();
 };

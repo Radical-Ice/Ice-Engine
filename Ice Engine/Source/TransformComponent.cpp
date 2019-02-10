@@ -30,7 +30,7 @@ TransformComponent::TransformComponent(TransformComponent* parentTransform) :
 void TransformComponent::Update() {
 
 	if (m_ParentTransform) {
-
+		
 		m_WorldPosition.x = m_ParentTransform->m_WorldPosition.x + m_Position.x;
 
 		m_WorldPosition.y = m_ParentTransform->m_WorldPosition.y + m_Position.y;
