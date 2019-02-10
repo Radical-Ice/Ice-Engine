@@ -49,9 +49,11 @@ void IceEngine::SFML_Window()
 		}
 
 		mainWindow.clear();
-		sceneNode.children.at(0)->m_Transform.m_Rotation += 1;
+	
+		//sceneNode.children.at(0)->children.at(0)->m_Transform.m_Rotation += 1;
 		sceneNode.Update(mainWindow);
 
+		sceneNode.children.at(0)->m_Transform->m_Position.x += 1;
 		//mainWindow.draw(sprite);
 
 		if (state == SplashScreen)

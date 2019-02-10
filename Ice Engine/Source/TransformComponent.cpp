@@ -21,23 +21,33 @@ TransformComponent::TransformComponent(TransformComponent* parentTransform) :
 {
 	m_ParentTransform = parentTransform;
 
-	m_WorldPosition = parentTransform->m_Position;
+	m_WorldPosition = parentTransform->m_WorldPosition;
 
-	m_WorldRotation = parentTransform->m_Rotation;
+	m_WorldRotation = parentTransform->m_WorldRotation;
 
-	m_WorldScale = parentTransform->m_Scale;
+	m_WorldScale = parentTransform->m_WorldScale;
 }
 void TransformComponent::Update() {
 
 	if (m_ParentTransform) {
 
 		m_WorldPosition.x = m_ParentTransform->m_WorldPosition.x + m_Position.x;
+
 		m_WorldPosition.y = m_ParentTransform->m_WorldPosition.y + m_Position.y;
 		m_WorldRotation = m_ParentTransform->m_WorldRotation + m_Rotation;
-
+		
 		m_WorldScale.x = m_ParentTransform->m_WorldScale.x * m_Scale.x;
 		m_WorldScale.y = m_ParentTransform->m_WorldScale.y * m_Scale.y;
 
+
+	}else{
+		m_WorldPosition.x = m_Position.x;
+
+		m_WorldPosition.y =  m_Position.y;
+		m_WorldRotation =  m_Rotation;
+
+		m_WorldScale.x =  m_Scale.x;
+		m_WorldScale.y =  m_Scale.y;
 	}
 
 }

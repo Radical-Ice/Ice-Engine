@@ -9,8 +9,7 @@ public:
 	
 	GameObject(SceneGraph* sceneNode);
 	GameObject(GameObject* parent);
-	TransformComponent* transform;
-	TransformComponent  m_Transform;
+	TransformComponent*  m_Transform;
 	void AddChild(GameObject* gameObject);
 	void Update(sf::RenderWindow & renderWindow);
 	std::vector<GameObject*> children;
