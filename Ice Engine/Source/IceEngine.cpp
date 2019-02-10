@@ -7,6 +7,7 @@ void IceEngine::InitGraphics() {
 	{
 		splashScreen.Show(mainWindow);
 	}
+	std::cout << "~~[Graphic loaded]~~" << std::endl;
 	mainWindow.display();
 }
 
@@ -40,6 +41,16 @@ void IceEngine::SFML_Window()
 		{
 			if (event.type == sf::Event::Closed)
 				mainWindow.close();
+			
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				sf::Vector2 position = sf::Mouse::getPosition(mainWindow);
+				std::cout << (position).x << " : " << position.y<< std::endl;
+			}
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+			{
+				std::cout << "This" << std::endl;
+			}
 		}
 		sceneNode.Update();
 		mainWindow.clear();
@@ -63,5 +74,6 @@ void IceEngine::DoChecks(LPCSTR szWindowClass) {
 		_T("-> Ice Engine.cpp"),
 		NULL);
 	checker->initChecks(szWindowClass, physicalRAMNeed, virtualRAMNeed, diskSpaceNeed);
+	std::cout << "~~[Checking Done]~~" << std::endl;
 	state = nextScreen;
 }

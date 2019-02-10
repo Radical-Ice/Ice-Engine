@@ -27,12 +27,13 @@ int main()
 	//freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
 	AudioFiles = { "Assets/PewPew.wav", "Assets/GunShot.wav" };//Will move to game comp
 	IceEngine iceEngine;
+	
 	iceEngine.LoadSound(AudioFiles);
 	iceEngine.LoadSTexture();
+	cout << "Init Graphics" << endl;
 	iceEngine.InitGraphics();
 	
-	cout << "Init Graphics" << endl;
-	iceEngine.DoChecks(szWindowClass);	
+	iceEngine.DoChecks(szWindowClass);
 	//iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
 	iceEngine.InitEngine();
 	//hInst = hInstance; // Store instance handle in our global variable  
