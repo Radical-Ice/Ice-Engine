@@ -168,6 +168,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EventDispacher.cpp" />
+    <ClCompile Include="KeyEventHandler.cpp" />
     <ClCompile Include="Source\AIComponent.cpp" />
     <ClCompile Include="Source\AudioComponent.cpp" />
     <ClCompile Include="Source\BaseComponent.cpp" />
@@ -184,6 +186,8 @@
     <ClCompile Include="Source\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EventDispacher.h" />
+    <ClInclude Include="KeyEventHandler.h" />
     <ClInclude Include="Lib\AIComponent.h" />
     <ClInclude Include="Lib\AudioComponent.h" />
     <ClInclude Include="Lib\BaseComponent.h" />
