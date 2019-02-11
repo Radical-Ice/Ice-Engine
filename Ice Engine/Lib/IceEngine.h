@@ -8,6 +8,7 @@
 #include "AIComponent.h"
 #include "SFML/Audio.hpp"
 #include "AudioComponent.h"
+#include "KeyEventHandler.h"
 
 class IceEngine {
 private:
@@ -34,6 +35,9 @@ public:
 	void LoadSTexture();
 	void LoadSound(std::vector<std::string> Files);
 	void Play_Sound(int, float, bool);
+
+	void LoadMusic(std::vector<std::string> Files, int, float, bool);
+	void PlayMusic();
 	void SFML_Window();
 	void DoChecks(LPCSTR szWindowClass);
 	//int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);
@@ -43,5 +47,42 @@ public:
 	sf::Event event;
 	sf::Time elapsed;
 	sf::Texture text2;
+};
 
+class MoveEvents : public KeyEventHandler {
+public:
+
+	void HandleEvents(const Event &e) {
+		switch (e.Type) {
+		case MoveUp:
+			cout << "up" << endl;
+			break;
+		case MoveDown:
+			cout << "down" << endl;
+			break;
+		case MoveLeft:
+			cout << "left" << endl;
+			break;
+		case MoveRight:
+			cout << "right" << endl;
+			break;
+		default:
+			break;
+		}
+	}
+};
+
+class RotateEvents : public KeyEventHandler {
+
+public:
+	void HandleEvents(const Event &e) {
+		switch (e.Type) {
+		case RotateRight:
+			cout << "RR" << endl;
+			break;
+		case RotateLeft:
+			cout << "RL" << endl;
+			break;
+		}
+	}
 };

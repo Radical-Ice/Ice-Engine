@@ -43,6 +43,13 @@
     <ClCompile Include="Source\AudioComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EventDispacher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\KeyEventHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib\Checking.h">
@@ -93,6 +100,12 @@
     <ClInclude Include="Lib\AudioComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Lib\EventDispacher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\KeyEventHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -119,5 +132,19 @@
     <Image Include="Assets\SplashScreen.jpg">
       <Filter>Assets Files</Filter>
     </Image>
+    <Image Include="Assets\snowflake.png">
+      <Filter>Assets Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\EngineBG.wav">
+      <Filter>Assets Files</Filter>
+    </Media>
+    <Media Include="Assets\GunShot.wav">
+      <Filter>Assets Files</Filter>
+    </Media>
+    <Media Include="Assets\PewPew.wav">
+      <Filter>Assets Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

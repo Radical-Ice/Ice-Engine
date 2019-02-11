@@ -1,6 +1,7 @@
 #include"SpriteComponent.h"
 #include <Windows.h>
-SpriteComponent::SpriteComponent(sf::RenderWindow* renderWindow, std::string filename, TransformComponent* transform, sf::Sprite* parentSprite) {
+
+SpriteComponent::SpriteComponent(sf::RenderWindow* renderWindow, std::string filename, TransformComponent* transform, SpriteComponent* parentSprite) {
 	m_Window = renderWindow;
 	m_Transform = transform;
 	pSprite = parentSprite;
@@ -36,14 +37,14 @@ void SpriteComponent::Show(sf::RenderWindow* renderWindow) {
 
 	//sprite.setTextureRect(sf::IntRect(0, 0, 500, 500));
 	if (!doOnce) {
-	sprite.setOrigin(0, 0);
-	sprite.setPosition(m_Transform->m_WorldPosition.x, m_Transform->m_WorldPosition.y);
+		sprite.setOrigin(0, 0);
+		sprite.setPosition(m_Transform->m_WorldPosition.x, m_Transform->m_WorldPosition.y);
 
-	sprite.setRotation(m_Transform->m_WorldRotation);
+		sprite.setRotation(m_Transform->m_WorldRotation);
 
-	sprite.setScale(m_Transform->m_WorldScale.x, m_Transform->m_WorldScale.y);
+		sprite.setScale(m_Transform->m_WorldScale.x, m_Transform->m_WorldScale.y);
 
-	doOnce = true;
+		doOnce = true;
 	}
 
 	//sprite.setRotation(0);
@@ -57,15 +58,16 @@ void SpriteComponent::Show(sf::RenderWindow* renderWindow) {
 	//sprite.rotate(m_Transform->m_Rotation);
 	//sprite.move(m_Transform->m_Position.x, m_Transform->m_Position.y);
 //	sprite.scale(m_Transform->m_Scale.x, m_Transform->m_Scale.y);
-	sf::RenderStates state;
+
 	if (pSprite) {
-		state.transform = pSprite->getTransform()*sprite.getTransform();
+		state.transform = pSprite->state.transform*sprite.getTransform();
 		renderWindow->draw(sprite, state.transform);
 
 	}
-	else
+	else {
 		renderWindow->draw(sprite);
-
+		state.transform = sprite.getTransform();
+	}
 }
 void SpriteComponent::Update() {
 
