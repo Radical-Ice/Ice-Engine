@@ -46,6 +46,7 @@ void IceEngine::SFML_Window()
 				mainWindow.close();
 			if (event.type == sf::Event::KeyPressed) {
 				SpriteComponent* temp = static_cast<SpriteComponent*>((sceneNode.children.at(0))->components.at(1));
+				SpriteComponent* temp2 = static_cast<SpriteComponent*>((sceneNode.children.at(0))->children.at(0)->components.at(1));
 				switch (event.key.code) {
 				case sf::Keyboard::Left:
 					temp->sprite.move(-5, 0);
@@ -65,6 +66,15 @@ void IceEngine::SFML_Window()
 				case sf::Keyboard::D:
 					temp->sprite.rotate(-2);
 					break;
+				case sf::Keyboard::G:
+					temp2->sprite.rotate(2);
+					break;
+				case sf::Keyboard::H:
+					temp2->sprite.rotate(-2);
+					break;
+				case sf::Keyboard::M:
+					//Audio.Play_Sound_From_Loaded_Files(2, 100, true);
+					break;
 				}
 				//sceneNode.children.at(0)->m_Transform->m_Rotation += 1;
 				
@@ -82,8 +92,8 @@ void IceEngine::SFML_Window()
 		
 		//mainWindow.draw(sprite);
 
-		if (state == SplashScreen)
-			splashScreen.Show(mainWindow);
+		//if (state == SplashScreen)
+		//	splashScreen.Show(mainWindow);
 		ai.makeGrid(mainWindow);
 
 		mainWindow.display();
