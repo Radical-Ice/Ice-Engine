@@ -1,5 +1,6 @@
 #include "IceEngine.h"
 #include "SpriteComponent.h"
+#include "..\EventDispacher.h"
 void IceEngine::InitGraphics() {
 	std::cout << "~~[ Initializing Graphics Engine ]~~\r~" << std::endl;
 	mainWindow.create(sf::VideoMode(1024, 768, 32), "Meow");
@@ -49,21 +50,27 @@ void IceEngine::SFML_Window()
 				switch (event.key.code) {
 				case sf::Keyboard::Left:
 					temp->sprite.move(-5, 0);
+					EventDispacher::get()->SendEvent(MoveLeft);
 					break;
 				case sf::Keyboard::Right:
 					temp->sprite.move(5, 0);
+					EventDispacher::get()->SendEvent(MoveRight);
 					break;
 				case sf::Keyboard::Up:
 					temp->sprite.move(0, -5);
+					EventDispacher::get()->SendEvent(MoveUp);
 					break;
 				case sf::Keyboard::Down:
 					temp->sprite.move(0, 5);
+					EventDispacher::get()->SendEvent(MoveDown);
 					break;
 				case sf::Keyboard::A:
 					temp->sprite.rotate(2);
+					EventDispacher::get()->SendEvent(RotateLeft);
 					break;
 				case sf::Keyboard::D:
 					temp->sprite.rotate(-2);
+					EventDispacher::get()->SendEvent(RotateRight);
 					break;
 				}
 				//sceneNode.children.at(0)->m_Transform->m_Rotation += 1;
@@ -93,6 +100,8 @@ void IceEngine::SFML_Window()
 void IceEngine::InitEngine() {
 	LoadSTexture();
 	//LoadSound();
+	MoveEvents test;
+	RotateEvents test2;
 	Audio.Play_Sound_From_Loaded_Files(1, 100, false);
 	std::cout << "~~[ Initializing Game Window ]~~" << std::endl;
 	SFML_Window();
