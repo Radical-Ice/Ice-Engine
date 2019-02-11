@@ -169,6 +169,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\AIComponent.cpp" />
+    <ClCompile Include="Source\AudioComponent.cpp" />
     <ClCompile Include="Source\BaseComponent.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\SceneGraph.cpp" />
@@ -184,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib\AIComponent.h" />
+    <ClInclude Include="Lib\AudioComponent.h" />
     <ClInclude Include="Lib\BaseComponent.h" />
     <ClInclude Include="Lib\GameObject.h" />
     <ClInclude Include="Lib\Checking.h" />

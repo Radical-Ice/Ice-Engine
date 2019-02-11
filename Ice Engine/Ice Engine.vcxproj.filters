@@ -40,6 +40,9 @@
     <ClCompile Include="Source\SpriteComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\AudioComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib\Checking.h">
@@ -85,6 +88,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Lib\SpriteComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\AudioComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

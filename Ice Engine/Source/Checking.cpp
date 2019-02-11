@@ -76,7 +76,7 @@ bool Checking::CheckMemory(const DWORDLONG physicalRAMNeeded, const DWORDLONG vi
 		cout << ("CheckMemory Failure: Not enough contiguous memory.");
 		return false;
 	}
-	cout << "enough memory" << endl;
+	cout << "Sufficient Memory" << endl;
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -135,21 +135,22 @@ DWORD Checking::ReadCPUName()
 void Checking::initChecks(LPCSTR szWindowClass,int physicalRAMNeed, int virtualRAMNeed,int diskSpaceNeed) {
 	//~~~Check For Multipl Instance~~~~
 	if (!IsOnlyInstance(szWindowClass)) {
-		cout << "Not the only instance" << endl;
+		cout << "Already Running" << endl;
 		system("pause");
 		return ;
 	}
-	cout << "the only instance" << endl;
+	cout << "~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "The only running instance" << endl;
 
 	//~~~Check For Storage~~~~~~~~~~~~~~~ 
 	CheckMemory(physicalRAMNeed, virtualRAMNeed);
 
 	if (!CheckStorage(diskSpaceNeed)) {
-		cout << "not enough disk space" << endl;
+		cout << "Req more Disk Space" << endl;
 		system("pause");
 		return ;
 	}
-	cout << "enough disk space" << endl;
+	cout << "Sufficient Disk Space" << endl;
 	//~~For CPU Info~~~~~~~~~~~~~~~~~~~~
 	SYSTEM_INFO siSysInfo;
 	GetSystemInfo(&siSysInfo);
@@ -187,7 +188,6 @@ void Checking::initChecks(LPCSTR szWindowClass,int physicalRAMNeed, int virtualR
 	statex.dwLength = sizeof(statex);
 	GlobalMemoryStatusEx(&statex);
 	cout << "\nTotal System Memory: " << (statex.ullTotalPhys / 1024) << " MB" << endl;
-	
-
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 }
 

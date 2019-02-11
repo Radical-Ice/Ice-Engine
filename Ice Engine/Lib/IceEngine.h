@@ -7,11 +7,12 @@
 #include "SceneGraph.h"
 #include "AIComponent.h"
 #include "SFML/Audio.hpp"
+#include "AudioComponent.h"
 
 class IceEngine {
 private:
 	SplashScreen splashScreen;
-
+	AudioComp Audio;
 	WNDCLASSEX wcex;
 	Checking *checker;
 	AIComponent ai;
@@ -31,7 +32,8 @@ public:
 	void InitEngine();
 	void InitGraphics();
 	void LoadSTexture();
-	void LoadSound();
+	void LoadSound(std::vector<std::string> Files);
+	void Play_Sound(int, float, bool);
 	void SFML_Window();
 	void DoChecks(LPCSTR szWindowClass);
 	//int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);
@@ -41,7 +43,5 @@ public:
 	sf::Event event;
 	sf::Time elapsed;
 	sf::Texture text2;
-	sf::SoundBuffer mBuffer;
-	sf::Sound mOpeningSD;
 
 };
