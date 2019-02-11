@@ -8,7 +8,7 @@
 #include "AIComponent.h"
 #include "SFML/Audio.hpp"
 #include "AudioComponent.h"
-#include "..\KeyEventHandler.h"
+#include "KeyEventHandler.h"
 
 class IceEngine {
 private:

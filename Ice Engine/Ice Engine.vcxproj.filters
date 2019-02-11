@@ -43,10 +43,10 @@
     <ClCompile Include="Source\AudioComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="KeyEventHandler.cpp">
+    <ClCompile Include="Source\EventDispacher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EventDispacher.cpp">
+    <ClCompile Include="Source\KeyEventHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -99,10 +99,10 @@
     <ClInclude Include="Lib\AudioComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="KeyEventHandler.h">
+    <ClInclude Include="Lib\EventDispacher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EventDispacher.h">
+    <ClInclude Include="Lib\KeyEventHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
