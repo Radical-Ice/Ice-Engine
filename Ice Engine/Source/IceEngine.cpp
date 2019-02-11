@@ -127,6 +127,7 @@ void IceEngine::Play_Sound(int i, float v, bool L)
 void IceEngine::LoadMusic(std::vector<std::string> Files, int Index, float Volume, bool IsLooping)
 {
 	Audio.LoadMusic(Files, Index, Volume, IsLooping);
+	std::cout << "~~[ Music Loaded ]~~" << std::endl;
 }
 //
 void IceEngine::PlayMusic()
