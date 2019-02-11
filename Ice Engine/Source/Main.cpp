@@ -8,12 +8,14 @@
 static TCHAR szWindowClass[] = _T("IceEngine");
 // The string that appears in the application's title bar.  
 std::vector<std::string> AudioFiles;
+std::vector<std::string> MusicFile;
 
 //HINSTANCE hInst;
 //~~~~Main Window With Console Enabled~~~~~
 int main()
 {
 	AudioFiles = {"Assets/GunShot.wav","Assets/PewPew.wav"};
+	MusicFile = {"Assets/EngineBG.ogg"};
 	AllocConsole();
 	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
 
@@ -23,6 +25,11 @@ int main()
 	
 	iceEngine.DoChecks(szWindowClass);
 	iceEngine.LoadSound(AudioFiles);
+
+
+	iceEngine.LoadMusic(MusicFile, 0, 100, false);
+
+
 	//iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
 	GameObject testObj(&iceEngine.sceneNode);
 	std::cout << "~~[ Initializing SpriteComponents ]~~" << std::endl;
@@ -40,6 +47,7 @@ int main()
 	testObj2.m_Transform->m_Rotation = { 0 };
 	testObj2.components.push_back(&sc2);
 	std::cout << "~~[ SpriteComponents Loading Complete! ]~~" << std::endl;
+	iceEngine.PlayMusic();
 	iceEngine.InitEngine();
 	return 0;
 }

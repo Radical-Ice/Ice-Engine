@@ -119,5 +119,19 @@
     <Image Include="Assets\SplashScreen.jpg">
       <Filter>Assets Files</Filter>
     </Image>
+    <Image Include="Assets\snowflake.png">
+      <Filter>Assets Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\EngineBG.wav">
+      <Filter>Assets Files</Filter>
+    </Media>
+    <Media Include="Assets\GunShot.wav">
+      <Filter>Assets Files</Filter>
+    </Media>
+    <Media Include="Assets\PewPew.wav">
+      <Filter>Assets Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

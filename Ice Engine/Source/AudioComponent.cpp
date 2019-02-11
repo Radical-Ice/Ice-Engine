@@ -30,6 +30,22 @@ void AudioComp::SoundPause_Unpause(bool Condition)
 	}
 }
 
+void AudioComp::LoadMusic(std::vector<std::string> FileName, int Index, float Volume, bool IsLooping)
+{
+	LPCSTR File = FileName[Index].c_str();
+	if(!Music.openFromFile(FileName[Index]))
+	{
+		MessageBox(NULL, (File), ("Failed to load Music file ->"), NULL);
+	}
+	Music.setVolume(Volume);
+	Music.setLoop(IsLooping);
+}
+
+void AudioComp::PlayMusic()
+{
+	Music.play();
+}
+
 void AudioComp::Load_Sounds_From_Files(std::vector<std::string> Filenames)
 {
 	LPCSTR File = Filenames[x].c_str();

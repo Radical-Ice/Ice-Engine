@@ -34,6 +34,8 @@ public:
 	void LoadSTexture();
 	void LoadSound(std::vector<std::string> Files);
 	void Play_Sound(int, float, bool);
+	void LoadMusic(std::vector<std::string> Files, int, float, bool);
+	void PlayMusic();
 	void SFML_Window();
 	void DoChecks(LPCSTR szWindowClass);
 	//int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);

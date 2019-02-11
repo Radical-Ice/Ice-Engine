@@ -114,3 +114,13 @@ void IceEngine::Play_Sound(int i, float v, bool L)
 {
 	Audio.Play_Sound_From_Loaded_Files(i, v, L);
 }
+
+void IceEngine::LoadMusic(std::vector<std::string> Files, int Index, float Volume, bool IsLooping)
+{
+	Audio.LoadMusic(Files, Index, Volume, IsLooping);
+}
+//
+void IceEngine::PlayMusic()
+{
+	Audio.PlayMusic();
+}
