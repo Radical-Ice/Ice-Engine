@@ -10,7 +10,7 @@ public:
 
 	std::vector<GameObject*> children;
 
-	void Update();
+	void Update(sf::RenderWindow & renderWindow);
 	~SceneGraph();
 };
 

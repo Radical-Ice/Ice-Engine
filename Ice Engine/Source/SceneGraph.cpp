@@ -3,9 +3,10 @@
 SceneGraph::SceneGraph()
 {
 }
-void SceneGraph::Update() {
+void SceneGraph::Update(sf::RenderWindow & renderWindow) {
 	for (auto item : children) {
-		item->Update();
+
+		item->Update(renderWindow);
 	}
 }
 

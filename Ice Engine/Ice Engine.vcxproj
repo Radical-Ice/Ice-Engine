@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{4867457D-5DEB-42BC-B6B1-2697B76D9E65}</ProjectGuid>
     <RootNamespace>IceEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -50,7 +50,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -180,6 +180,7 @@
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\ScriptComponent.cpp" />
     <ClCompile Include="Source\SplashScreen.cpp" />
+    <ClCompile Include="Source\SpriteComponent.cpp" />
     <ClCompile Include="Source\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -197,16 +198,15 @@
     <ClInclude Include="Lib\LuaTable.hpp" />
     <ClInclude Include="Lib\SplashScreen.h" />
     <ClInclude Include="Lib\SceneGraph.h" />
+    <ClInclude Include="Lib\SpriteComponent.h" />
     <ClInclude Include="Lib\TransformComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Lib\test.lua" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\SplashScreen.jpg" />
     <Image Include="Source\cat.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="Assets\PewPew.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
