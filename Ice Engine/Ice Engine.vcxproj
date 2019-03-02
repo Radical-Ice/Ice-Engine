@@ -168,6 +168,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\PhysicsComponent.cpp" />
     <ClCompile Include="Source\AIComponent.cpp" />
     <ClCompile Include="Source\AudioComponent.cpp" />
     <ClCompile Include="Source\BaseComponent.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="Lib\SceneGraph.h" />
     <ClInclude Include="Lib\SpriteComponent.h" />
     <ClInclude Include="Lib\TransformComponent.h" />
+    <ClInclude Include="Lib\PhysicsComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Lib\test.lua" />

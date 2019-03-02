@@ -2,6 +2,7 @@
 //Authors: James Bews, Jatin Kumar, Dennis Nguyen
 #include "IceEngine.h"
 #include "SpriteComponent.h"
+#include "PhysicsComponent.h"
 #define DIV 1024
 // Global variables  
 // The main window class name.  
@@ -32,6 +33,9 @@ int main()
 	testObj.m_Transform->m_Scale = { .3f,.3f };
 	testObj.m_Transform->m_Rotation = { 0 };
 	testObj.components.push_back(&sc);
+
+	PhysicsComponent pc(&sc);
+	testObj.components.push_back(&pc);
 
 	GameObject testObj2(&testObj);
 	SpriteComponent sc2(&iceEngine.mainWindow, "Assets/SplashScreen.jpg",testObj2.m_Transform, &sc);
