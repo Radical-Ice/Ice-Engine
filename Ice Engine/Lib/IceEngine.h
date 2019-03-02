@@ -8,7 +8,7 @@
 #include "AIComponent.h"
 #include "SFML/Audio.hpp"
 #include "AudioComponent.h"
-
+#include "PhysicsEngine.h"
 class IceEngine {
 private:
 	SplashScreen splashScreen;
@@ -16,6 +16,7 @@ private:
 	WNDCLASSEX wcex;
 	Checking *checker;
 	AIComponent ai;
+	
 	ScriptComponent scriptComponent;//temp to show lua code
 	const DWORDLONG diskSpaceNeed = 300;
 	const DWORDLONG physicalRAMNeed = 5;
@@ -27,6 +28,7 @@ private:
 	engineState state = SplashScreen;
 	sf::Clock clock;	
 public:
+	PhysicsEngine physEngine;
 	SceneGraph sceneNode;
 	MSG msg;
 	void InitEngine();

@@ -173,6 +173,7 @@
     <ClCompile Include="Source\AudioComponent.cpp" />
     <ClCompile Include="Source\BaseComponent.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />
+    <ClCompile Include="Source\PhysicsEngine.cpp" />
     <ClCompile Include="Source\SceneGraph.cpp" />
     <ClCompile Include="Source\Checking.cpp" />
     <ClCompile Include="Source\GameWindow.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Lib\SpriteComponent.h" />
     <ClInclude Include="Lib\TransformComponent.h" />
     <ClInclude Include="Lib\PhysicsComponent.h" />
+    <ClInclude Include="Lib\PhysicsEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Lib\test.lua" />

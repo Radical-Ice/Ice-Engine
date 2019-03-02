@@ -29,12 +29,12 @@ int main()
 	std::cout << "~~[ Initializing SpriteComponents ]~~" << std::endl;
 	SpriteComponent sc(&iceEngine.mainWindow, "Assets/cat.png",testObj.m_Transform);
 	
-	testObj.m_Transform->m_Position = { 512,384 };
+	testObj.m_Transform->m_Position = { 512,50 };
 	testObj.m_Transform->m_Scale = { .3f,.3f };
 	testObj.m_Transform->m_Rotation = { 0 };
 	testObj.components.push_back(&sc);
 
-	PhysicsComponent pc(&sc);
+	PhysicsComponent pc(&sc, &iceEngine.physEngine);
 	testObj.components.push_back(&pc);
 
 	GameObject testObj2(&testObj);

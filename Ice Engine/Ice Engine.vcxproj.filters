@@ -43,7 +43,10 @@
     <ClCompile Include="Source\AudioComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PhysicsComponent.cpp">
+    <ClCompile Include="Source\PhysicsComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PhysicsEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -96,7 +99,10 @@
     <ClInclude Include="Lib\AudioComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicsComponent.h">
+    <ClInclude Include="Lib\PhysicsComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PhysicsEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
