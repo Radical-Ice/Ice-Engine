@@ -102,7 +102,10 @@
     <ClInclude Include="Lib\PhysicsComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PhysicsEngine.h">
+    <ClInclude Include="Lib\PhysicsEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

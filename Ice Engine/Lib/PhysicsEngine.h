@@ -1,20 +1,39 @@
 #pragma once
 #include <iterator> 
 #include <map> 
+#include <string>
+#include <vector>
 #include "PhysicsComponent.h"
 #include "SpriteComponent.h"
+#include "Vector2.h"
 class PhysicsComponent;
 class PhysicsEngine {
 
 public:
-
+	
 	float groundedTol = 0.1f;
-	struct Vector2 {
+	/*struct Vector2 {
 		float x, y;
-	};
+		Vector2& operator+(const Vector2& a)
+		{
+			x = x + a.x;
+			y = y + a.y;
+			return *this;
+		}
+		Vector2& operator-(const Vector2& a)
+		{
+			x = x - a.x;
+			y = y - a.y;
+			return *this;
+		}
+	};*/
 	struct CollisionPair {
 		PhysicsComponent* rigidBodyA;
 		PhysicsComponent* rigidBodyB;
+		bool operator< (const CollisionPair& o) const {
+			return
+				this->rigidBodyA < o.rigidBodyA;
+		}
 	};
 
 	struct CollisionInfo {
@@ -26,7 +45,11 @@ public:
 	std::vector<PhysicsComponent*> rigidBodies;
 
 	void AddRigidBody(PhysicsComponent* rigidBody);
-	void PhysicsEngine::IntegrateBodies(float dT);
-	bool PhysicsEngine::IsGrounded(PhysicsComponent* rigidBody);
+	void IntegrateBodies(float dT);
+	void CheckCollisions();
+	void ResolveCollisions();
+	bool IsGrounded(PhysicsComponent* rigidBody);
+	void PositionalCorrection(CollisionPair c);
+
 	void Update();
 };

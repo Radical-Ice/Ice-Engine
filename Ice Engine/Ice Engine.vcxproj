@@ -204,6 +204,7 @@
     <ClInclude Include="Lib\TransformComponent.h" />
     <ClInclude Include="Lib\PhysicsComponent.h" />
     <ClInclude Include="Lib\PhysicsEngine.h" />
+    <ClInclude Include="Lib\Vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Lib\test.lua" />

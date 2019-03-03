@@ -58,7 +58,11 @@ bool PhysicsComponent::IsGrounded()
 	totalForces = { 0,0 };
 }
 
-
+ bool IsGrounded();
+ void PhysicsComponent::AddForce(Vector2 force)
+ {
+	 totalForces += force;
+ }
 PhysicsComponent::~PhysicsComponent()
 {
 }

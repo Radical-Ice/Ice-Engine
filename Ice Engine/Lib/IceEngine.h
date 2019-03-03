@@ -9,6 +9,7 @@
 #include "SFML/Audio.hpp"
 #include "AudioComponent.h"
 #include "PhysicsEngine.h"
+
 class IceEngine {
 private:
 	SplashScreen splashScreen;
