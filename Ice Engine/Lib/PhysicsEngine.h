@@ -11,7 +11,7 @@ class PhysicsEngine {
 
 public:
 	
-	float groundedTol = 0.1f;
+	float groundedTol = 5.1f;
 	/*struct Vector2 {
 		float x, y;
 		Vector2& operator+(const Vector2& a)

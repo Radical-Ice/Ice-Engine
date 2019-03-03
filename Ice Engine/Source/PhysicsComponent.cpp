@@ -52,16 +52,17 @@ bool PhysicsComponent::IsGrounded()
 	temp.x = p_sprite->sprite.getPosition().x;
 	temp.y = p_sprite->sprite.getPosition().y;
 	temp += currentVelocity;
-	p_sprite->sprite.setPosition( temp.x,temp.y);
+	if (mass!=0)
+		p_sprite->sprite.setPosition( temp.x,temp.y);
 	//SetAABB();????
 
 	totalForces = { 0,0 };
 }
 
- bool IsGrounded();
  void PhysicsComponent::AddForce(Vector2 force)
  {
-	 totalForces += force;
+	 if (mass!=0)
+		 totalForces += force;
  }
 PhysicsComponent::~PhysicsComponent()
 {

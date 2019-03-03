@@ -13,7 +13,7 @@ public:
 	bool gravityAffected = true;
 	bool grounded;
 	float mass = 1.0;
-	float bounciness = 1.0;
+	float bounciness = -0.9;
 	PhysicsEngine* engine;
 	Vector2 currentVelocity;
 	Vector2 velocity;

@@ -22,15 +22,15 @@ struct Vector2 {
 	}
 	Vector2& operator+(const Vector2& a)
 	{
-		x = x + a.x;
-		y = y + a.y;
-		return *this;
+		//x = x + a.x;
+	//	y = y + a.y;
+		Vector2 temp = { x + a.x , y + a.y };
+		return temp;
 	}
 	Vector2& operator-(const Vector2& a)
 	{
-		x = x - a.x;
-		y = y - a.y;
-		return *this;
+		Vector2 temp = { x - a.x , y - a.y };
+		return temp;
 	}
 	Vector2& operator-=(const Vector2& a)
 	{

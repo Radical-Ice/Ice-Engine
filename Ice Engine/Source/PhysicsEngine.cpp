@@ -18,9 +18,12 @@ bool PhysicsEngine::IsGrounded(PhysicsComponent* rigidBody) {
 			
 			sf::FloatRect rect = rigidBody->p_sprite->sprite.getGlobalBounds();
 			sf::FloatRect rectOther = rb->p_sprite->sprite.getGlobalBounds();
-			if (rect.left < rectOther.left + rectOther.width
-				&&rect.left + rect.width > rectOther.left
-				&& abs(rect.top - rect.height - rectOther.top) <= groundedTol) {
+			float temp = rectOther.left + rectOther.width;
+			float temp2 = abs(rect.top + rect.height - rectOther.top);
+			float temp3 = rect.left + rect.width;
+			if (rect.left < temp
+				&& temp3 > rectOther.left 
+				&& temp2 <= groundedTol) {
 				if (abs(rigidBody->currentVelocity.y) > groundedTol) {
 					return true;
 
@@ -44,14 +47,21 @@ void PhysicsEngine::CheckCollisions() {
 				distance.y = bodyB->p_sprite->sprite.getPosition().y - bodyA->p_sprite->sprite.getPosition().y;
 
 				Vector2 halfSizeA;
-				halfSizeA.x = (bodyA->p_sprite->sprite.getGlobalBounds().width) / 2;// does not account for origin properly
-				halfSizeA.y = (bodyA->p_sprite->sprite.getGlobalBounds().height) / 2;
+				//halfSizeA.x = (bodyA->p_sprite->sprite.getGlobalBounds().width) / 2;// does not account for origin properly
+				halfSizeA.x = (bodyA->p_sprite->sprite.getTexture()->getSize().x) / 4;
+				//halfSizeA.y = (bodyA->p_sprite->sprite.getGlobalBounds().height) / 2;
+				halfSizeA.y = (bodyA->p_sprite->sprite.getTexture()->getSize().y) / 4;
 				Vector2 halfSizeB;
-				halfSizeB.x = (bodyB->p_sprite->sprite.getGlobalBounds().width) / 2;// does not account for origin properly
-				halfSizeB.y = (bodyB->p_sprite->sprite.getGlobalBounds().height) / 2;
+				//halfSizeB.x = (bodyB->p_sprite->sprite.getGlobalBounds().width) / 2;// does not account for origin properly
+				//halfSizeB.y = (bodyB->p_sprite->sprite.getGlobalBounds().height) / 2;
+				halfSizeB.x = (bodyB->p_sprite->sprite.getTexture()->getSize().x) / 2;
+				halfSizeB.y = (bodyB->p_sprite->sprite.getTexture()->getSize().y) / 2;
+				Vector2 temp = { abs(distance.x), abs(distance.y)};
+				Vector2 gap = { 0,0 };
+				Vector2 temp2 = { halfSizeA.x,halfSizeA.y };//halfSizeA; // + halfSizeB;
+				gap ={ temp - temp2  };
 
-				Vector2 temp = { (abs(distance.x), abs(distance.y)) };
-				Vector2 gap = { temp - (halfSizeA + halfSizeB) };
+				
 				//Vector2 gap;
 
 				// Seperating Axis Theorem test
@@ -108,11 +118,12 @@ void PhysicsEngine::ResolveCollisions() {
 
 		float minBounce = pair.rigidBodyA->bounciness;
 		//float velAlongNormal = Vector2.Dot(pair.rigidBodyB.currentVelocity - pair.rigidBodyA.currentVelocity, collisions[pair].collisionNormal);
-		float velAlongNormal = -1;
+		float velAlongNormal = pair.rigidBodyB->currentVelocity.y - pair.rigidBodyA->currentVelocity.y;
 		if (velAlongNormal > 0) continue;
 
 		float j = -(1 + minBounce) * velAlongNormal;
-		float invMassA, invMassB;
+		float invMassA = 0; 
+		float invMassB= 0;
 		if (pair.rigidBodyA->mass == 0)
 			invMassA = 0;
 		else
@@ -174,12 +185,14 @@ void PhysicsEngine::PositionalCorrection(CollisionPair c) {
 	temp.x = c.rigidBodyA->p_sprite->sprite.getPosition().x;
 	temp.y = c.rigidBodyA->p_sprite->sprite.getPosition().y;
 	temp -= correction * invMassA  ;
-	c.rigidBodyA->p_sprite->sprite.setPosition(temp.x,temp.y);
+	if(c.rigidBodyA->mass!=0)
+		c.rigidBodyA->p_sprite->sprite.setPosition(temp.x,temp.y);
 
 	temp.x = c.rigidBodyB->p_sprite->sprite.getPosition().x;
 	temp.y = c.rigidBodyB->p_sprite->sprite.getPosition().y;
 	temp +=  correction *invMassB  ;
-	c.rigidBodyB->p_sprite->sprite.setPosition(temp.x,temp.y);
+	if (c.rigidBodyB->mass != 0)
+		c.rigidBodyB->p_sprite->sprite.setPosition(temp.x,temp.y);
 }
 
 
