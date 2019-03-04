@@ -8,6 +8,7 @@
 #include "AIComponent.h"
 #include "SFML/Audio.hpp"
 #include "AudioComponent.h"
+#include "PhysicsEngine.h"
 #include "KeyEventHandler.h"
 
 class IceEngine {
@@ -17,6 +18,7 @@ private:
 	WNDCLASSEX wcex;
 	Checking *checker;
 	AIComponent ai;
+	
 	ScriptComponent scriptComponent;//temp to show lua code
 	const DWORDLONG diskSpaceNeed = 300;
 	const DWORDLONG physicalRAMNeed = 5;
@@ -28,6 +30,7 @@ private:
 	engineState state = SplashScreen;
 	sf::Clock clock;	
 public:
+	PhysicsEngine physEngine;
 	SceneGraph sceneNode;
 	MSG msg;
 	void InitEngine();
@@ -35,9 +38,9 @@ public:
 	void LoadSTexture();
 	void LoadSound(std::vector<std::string> Files);
 	void Play_Sound(int, float, bool);
-	void LoadMusic(std::vector<std::string> Files, int, float, bool);
-	void PlayMusic();
 	void SFML_Window();
+	void LoadMusic(std::vector<std::string> Files, int Index, float Volume, bool IsLooping);
+	void IceEngine::PlayMusic();
 	void DoChecks(LPCSTR szWindowClass);
 	//int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);
 	sf::Texture texture;
@@ -48,7 +51,6 @@ public:
 	sf::Texture text2;
 
 };
-
 class MoveEvents : public KeyEventHandler {
 public:
 

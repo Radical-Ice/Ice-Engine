@@ -43,6 +43,12 @@
     <ClCompile Include="Source\AudioComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PhysicsComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PhysicsEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Source\EventDispacher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -99,6 +105,15 @@
     <ClInclude Include="Lib\AudioComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Lib\PhysicsComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\PhysicsEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Lib\EventDispacher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -131,19 +146,5 @@
     <Image Include="Assets\SplashScreen.jpg">
       <Filter>Assets Files</Filter>
     </Image>
-    <Image Include="Assets\snowflake.png">
-      <Filter>Assets Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="Assets\EngineBG.wav">
-      <Filter>Assets Files</Filter>
-    </Media>
-    <Media Include="Assets\GunShot.wav">
-      <Filter>Assets Files</Filter>
-    </Media>
-    <Media Include="Assets\PewPew.wav">
-      <Filter>Assets Files</Filter>
-    </Media>
   </ItemGroup>
 </Project>

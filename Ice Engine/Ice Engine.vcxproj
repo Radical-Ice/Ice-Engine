@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{4867457D-5DEB-42BC-B6B1-2697B76D9E65}</ProjectGuid>
     <RootNamespace>IceEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -50,7 +50,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -170,10 +170,12 @@
   <ItemGroup>
     <ClCompile Include="Source\EventDispacher.cpp" />
     <ClCompile Include="Source\KeyEventHandler.cpp" />
+    <ClCompile Include="Source\PhysicsComponent.cpp" />
     <ClCompile Include="Source\AIComponent.cpp" />
     <ClCompile Include="Source\AudioComponent.cpp" />
     <ClCompile Include="Source\BaseComponent.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />
+    <ClCompile Include="Source\PhysicsEngine.cpp" />
     <ClCompile Include="Source\SceneGraph.cpp" />
     <ClCompile Include="Source\Checking.cpp" />
     <ClCompile Include="Source\GameWindow.cpp" />
@@ -186,14 +188,14 @@
     <ClCompile Include="Source\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lib\EventDispacher.h" />
-    <ClInclude Include="Lib\KeyEventHandler.h" />
     <ClInclude Include="Lib\AIComponent.h" />
     <ClInclude Include="Lib\AudioComponent.h" />
     <ClInclude Include="Lib\BaseComponent.h" />
+    <ClInclude Include="Lib\EventDispacher.h" />
     <ClInclude Include="Lib\GameObject.h" />
     <ClInclude Include="Lib\Checking.h" />
     <ClInclude Include="Lib\Game Window.h" />
+    <ClInclude Include="Lib\KeyEventHandler.h" />
     <ClInclude Include="Lib\ScriptComponent.h" />
     <ClInclude Include="Lib\IceEngine.h" />
     <ClInclude Include="Lib\InputProcesser.h" />
@@ -204,19 +206,16 @@
     <ClInclude Include="Lib\SceneGraph.h" />
     <ClInclude Include="Lib\SpriteComponent.h" />
     <ClInclude Include="Lib\TransformComponent.h" />
+    <ClInclude Include="Lib\PhysicsComponent.h" />
+    <ClInclude Include="Lib\PhysicsEngine.h" />
+    <ClInclude Include="Lib\Vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Lib\test.lua" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\snowflake.png" />
     <Image Include="Assets\SplashScreen.jpg" />
     <Image Include="Source\cat.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="Assets\EngineBG.wav" />
-    <Media Include="Assets\GunShot.wav" />
-    <Media Include="Assets\PewPew.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

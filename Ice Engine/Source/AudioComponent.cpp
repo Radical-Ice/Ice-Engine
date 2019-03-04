@@ -29,11 +29,10 @@ void AudioComp::SoundPause_Unpause(bool Condition)
 		Sound.play();
 	}
 }
-
 void AudioComp::LoadMusic(std::vector<std::string> FileName, int Index, float Volume, bool IsLooping)
 {
 	LPCSTR File = FileName[Index].c_str();
-	if(!Music.openFromFile(FileName[Index]))
+	if (!Music.openFromFile(FileName[Index]))
 	{
 		MessageBox(NULL, (File), ("Failed to load Music file ->"), NULL);
 	}
@@ -59,7 +58,7 @@ void AudioComp::Load_Sounds_From_Files(std::vector<std::string> Filenames)
 		else {
 			MessageBox(NULL, (File), ("Failed to load Wav file ->"), NULL);
 		}
-		
+
 	}
 }
 

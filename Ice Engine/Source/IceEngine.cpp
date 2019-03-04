@@ -1,6 +1,5 @@
 #include "IceEngine.h"
 #include "SpriteComponent.h"
-#include "EventDispacher.h"
 void IceEngine::InitGraphics() {
 	std::cout << "~~[ Initializing Graphics Engine ]~~\r~" << std::endl;
 	mainWindow.create(sf::VideoMode(1024, 768, 32), "Meow");
@@ -84,17 +83,16 @@ void IceEngine::SFML_Window()
 					break;
 				}
 				//sceneNode.children.at(0)->m_Transform->m_Rotation += 1;
-				
+
 				//temp->sprite.rotate(5);
-				
+
 			}
 		}
-
 		mainWindow.clear();
 	
 	//	sceneNode.children.at(0)->children.at(0)->m_Transform.m_Rotation += 1;
 		sceneNode.Update(mainWindow);
-
+		physEngine.Update();
 		
 		
 		//mainWindow.draw(sprite);
@@ -109,9 +107,9 @@ void IceEngine::SFML_Window()
 
 void IceEngine::InitEngine() {
 	LoadSTexture();
-	//LoadSound();
 	MoveEvents test;
 	RotateEvents test2;
+	//LoadSound();
 	Audio.Play_Sound_From_Loaded_Files(1, 100, false);
 	std::cout << "~~[ Initializing Game Window ]~~" << std::endl;
 	SFML_Window();
@@ -133,13 +131,11 @@ void IceEngine::Play_Sound(int i, float v, bool L)
 {
 	Audio.Play_Sound_From_Loaded_Files(i, v, L);
 }
-
 void IceEngine::LoadMusic(std::vector<std::string> Files, int Index, float Volume, bool IsLooping)
 {
 	Audio.LoadMusic(Files, Index, Volume, IsLooping);
 	std::cout << "~~[ Music Loaded ]~~" << std::endl;
 }
-//
 void IceEngine::PlayMusic()
 {
 	Audio.PlayMusic();
