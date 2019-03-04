@@ -168,6 +168,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\EventDispacher.cpp" />
+    <ClCompile Include="Source\KeyEventHandler.cpp" />
     <ClCompile Include="Source\PhysicsComponent.cpp" />
     <ClCompile Include="Source\AIComponent.cpp" />
     <ClCompile Include="Source\AudioComponent.cpp" />
@@ -189,9 +191,11 @@
     <ClInclude Include="Lib\AIComponent.h" />
     <ClInclude Include="Lib\AudioComponent.h" />
     <ClInclude Include="Lib\BaseComponent.h" />
+    <ClInclude Include="Lib\EventDispacher.h" />
     <ClInclude Include="Lib\GameObject.h" />
     <ClInclude Include="Lib\Checking.h" />
     <ClInclude Include="Lib\Game Window.h" />
+    <ClInclude Include="Lib\KeyEventHandler.h" />
     <ClInclude Include="Lib\ScriptComponent.h" />
     <ClInclude Include="Lib\IceEngine.h" />
     <ClInclude Include="Lib\InputProcesser.h" />

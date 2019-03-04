@@ -50,34 +50,44 @@ void IceEngine::SFML_Window()
 				switch (event.key.code) {
 				case sf::Keyboard::Left:
 					temp->sprite.move(-5, 0);
+					EventDispacher::get()->SendEvent(MoveLeft);
 					break;
 				case sf::Keyboard::Right:
 					temp->sprite.move(5, 0);
+					EventDispacher::get()->SendEvent(MoveRight);
 					break;
 				case sf::Keyboard::Up:
 					temp->sprite.move(0, -5);
+					EventDispacher::get()->SendEvent(MoveUp);
 					break;
 				case sf::Keyboard::Down:
 					temp->sprite.move(0, 5);
+					EventDispacher::get()->SendEvent(MoveDown);
 					break;
 				case sf::Keyboard::A:
 					temp->sprite.rotate(2);
+					EventDispacher::get()->SendEvent(RotateLeft);
 					break;
 				case sf::Keyboard::D:
 					temp->sprite.rotate(-2);
+					EventDispacher::get()->SendEvent(RotateRight);
 					break;
-				
+				case sf::Keyboard::G:
+					temp2->sprite.rotate(2);
+					break;
+				case sf::Keyboard::H:
+					temp2->sprite.rotate(-2);
+					break;
 				case sf::Keyboard::M:
 					//Audio.Play_Sound_From_Loaded_Files(2, 100, true);
 					break;
 				}
 				//sceneNode.children.at(0)->m_Transform->m_Rotation += 1;
-				
+
 				//temp->sprite.rotate(5);
-				
+
 			}
 		}
-
 		mainWindow.clear();
 	
 	//	sceneNode.children.at(0)->children.at(0)->m_Transform.m_Rotation += 1;
@@ -97,6 +107,8 @@ void IceEngine::SFML_Window()
 
 void IceEngine::InitEngine() {
 	LoadSTexture();
+	MoveEvents test;
+	RotateEvents test2;
 	//LoadSound();
 	Audio.Play_Sound_From_Loaded_Files(1, 100, false);
 	std::cout << "~~[ Initializing Game Window ]~~" << std::endl;

@@ -9,6 +9,7 @@
 #include "SFML/Audio.hpp"
 #include "AudioComponent.h"
 #include "PhysicsEngine.h"
+#include "KeyEventHandler.h"
 
 class IceEngine {
 private:
@@ -49,4 +50,41 @@ public:
 	sf::Time elapsed;
 	sf::Texture text2;
 
+};
+class MoveEvents : public KeyEventHandler {
+public:
+
+	void HandleEvents(const Event &e) {
+		switch (e.Type) {
+		case MoveUp:
+			cout << "up" << endl;
+			break;
+		case MoveDown:
+			cout << "down" << endl;
+			break;
+		case MoveLeft:
+			cout << "left" << endl;
+			break;
+		case MoveRight:
+			cout << "right" << endl;
+			break;
+		default:
+			break;
+		}
+	}
+};
+
+class RotateEvents : public KeyEventHandler {
+
+public:
+	void HandleEvents(const Event &e) {
+		switch (e.Type) {
+		case RotateRight:
+			cout << "RR" << endl;
+			break;
+		case RotateLeft:
+			cout << "RL" << endl;
+			break;
+		}
+	}
 };
