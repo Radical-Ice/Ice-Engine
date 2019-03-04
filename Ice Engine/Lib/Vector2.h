@@ -16,9 +16,11 @@ struct Vector2 {
 	}
 	Vector2& operator*(const float a)
 	{
-		x = x * a;
-		y = y * a;
-		return *this;
+		//x = x * a;
+		//y = y * a;
+		//return *this;
+		Vector2 temp = { x * a , y * a };
+		return temp;
 	}
 	Vector2& operator+(const Vector2& a)
 	{

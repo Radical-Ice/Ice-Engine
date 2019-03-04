@@ -45,14 +45,15 @@ bool PhysicsComponent::IsGrounded()
 		acceleration.x = 0;
 		acceleration.y = 0;
 	}
-
-	currentVelocity += acceleration * dT;
+	Vector2 accelTime= (acceleration * dT);
+	currentVelocity += accelTime;
 
 	Vector2 temp = { 0,0 };
-	temp.x = p_sprite->sprite.getPosition().x;
-	temp.y = p_sprite->sprite.getPosition().y;
+	sf::FloatRect rect = p_sprite->sprite.getGlobalBounds();
+	temp.x = rect.left;
+	temp.y = rect.top;
 	temp += currentVelocity;
-	if (mass!=0)
+	if (mass!=0&&temp.x<1000) 
 		p_sprite->sprite.setPosition( temp.x,temp.y);
 	//SetAABB();????
 

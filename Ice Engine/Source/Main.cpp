@@ -37,7 +37,6 @@ int main()
 	PhysicsComponent pc(&sc, &iceEngine.physEngine);
 	testObj.components.push_back(&pc);
 
-
 	GameObject Platform(&iceEngine.sceneNode);
 	SpriteComponent scPlatform(&iceEngine.mainWindow, "Assets/cat.png", Platform.m_Transform);
 

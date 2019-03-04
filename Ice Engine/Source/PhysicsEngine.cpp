@@ -62,11 +62,9 @@ void PhysicsEngine::CheckCollisions() {
 				gap ={ temp - temp2  };
 
 				
-				//Vector2 gap;
-
-				// Seperating Axis Theorem test
+		
 				if (gap.x < 0.0f && gap.y < 0.0f) {
-					//Debug.Log("Collided!!!");
+				//Collided
 
 					if (!(collisions.find(pair) == collisions.end())) {
 						collisions.erase(pair);
@@ -74,22 +72,20 @@ void PhysicsEngine::CheckCollisions() {
 
 					if (gap.x > gap.y) {
 						if (distance.x > 0.0f) {
-							// ... Update collision normal
 							colInfo.collisionNormal = { 1,0 };//added this line
 						}
 						else {
-							// ... Update collision normal
+
 							colInfo.collisionNormal = { -1,0 };//added this line
 						}
 						colInfo.penetration = gap.x;
 					}
 					else {
 						if (distance.y > 0.0f) {
-							// ... Update collision normal
+
 							colInfo.collisionNormal = { 0,1 };//added this line
 						}
 						else {
-							// ... Update collision normal
 							colInfo.collisionNormal = { 0,-1 };
 						}
 						colInfo.penetration = gap.y;
@@ -100,7 +96,7 @@ void PhysicsEngine::CheckCollisions() {
 				}
 				else if (collisions.find(pair) != collisions.end()) {
 					//Debug.Log("removed");
-				//	collisions.erase(pair);
+					collisions.erase(pair);
 				}
 
 			}
@@ -151,8 +147,9 @@ void PhysicsEngine::ResolveCollisions() {
 
 		//Debug.Log(pair.rigidBodyA.currentVelocity + "pair.rigidBodyA.currentVelocity");
 		if (impulse.x*impulse.x +impulse.y*impulse.y > 0.21) {
-			pair.rigidBodyA->AddForce(impulse * (1 / 0.2f)*-1);// I like this way better than straight division
-			pair.rigidBodyB->AddForce(impulse*(1 / 0.2f));
+			Vector2 impbytime= impulse * (1 / 0.1f);
+			pair.rigidBodyA->AddForce(impbytime*-1.0f);// I like this way better than straight division
+			pair.rigidBodyB->AddForce(impbytime);
 		}
 
 
@@ -178,19 +175,24 @@ void PhysicsEngine::PositionalCorrection(CollisionPair c) {
 		invMassB = 0;
 	else
 		invMassB = 1 / c.rigidBodyB->mass;
+	Vector2 step1= (collisions[c].collisionNormal*-1);
+	float step2 = (invMassA + invMassB);
+	float step3 = (collisions[c].penetration / step2);
+	float step4 = step3 * percent;
+	Vector2 correction = (step1*step4) ;
 
-	Vector2 correction = ((collisions[c].collisionNormal*-1)*(collisions[c].penetration / (invMassA + invMassB)) * percent) ;
-
-	Vector2 temp;
+	Vector2 temp = { 0,0 };
 	temp.x = c.rigidBodyA->p_sprite->sprite.getPosition().x;
 	temp.y = c.rigidBodyA->p_sprite->sprite.getPosition().y;
-	temp -= correction * invMassA  ;
+	Vector2 corrByinvMass = correction * invMassA;
+	temp -= corrByinvMass;
 	if(c.rigidBodyA->mass!=0)
 		c.rigidBodyA->p_sprite->sprite.setPosition(temp.x,temp.y);
 
 	temp.x = c.rigidBodyB->p_sprite->sprite.getPosition().x;
 	temp.y = c.rigidBodyB->p_sprite->sprite.getPosition().y;
-	temp +=  correction *invMassB  ;
+	corrByinvMass = correction * invMassB;
+	temp += corrByinvMass;
 	if (c.rigidBodyB->mass != 0)
 		c.rigidBodyB->p_sprite->sprite.setPosition(temp.x,temp.y);
 }

@@ -13,11 +13,11 @@ public:
 	bool gravityAffected = true;
 	bool grounded;
 	float mass = 1.0;
-	float bounciness = -0.9;
+	float bounciness = 1.0f;
 	PhysicsEngine* engine;
-	Vector2 currentVelocity;
-	Vector2 velocity;
-	Vector2 totalForces;
+	Vector2 currentVelocity = { 0,0 };
+	Vector2 velocity = { 0,0 };
+	Vector2 totalForces = { 0,0 };
 	SpriteComponent* p_sprite;
 
 	void Integrate(float dT);
