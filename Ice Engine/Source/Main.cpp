@@ -36,7 +36,7 @@ int main()
 
 	PhysicsComponent pc(&sc, &iceEngine.physEngine);
 	testObj.components.push_back(&pc);
-
+	//pc.gravityAffected = false;
 	GameObject Platform(&iceEngine.sceneNode);
 	SpriteComponent scPlatform(&iceEngine.mainWindow, "Assets/cat.png", Platform.m_Transform);
 
@@ -55,13 +55,13 @@ int main()
 
 	GameObject testObj2(&testObj);
 	SpriteComponent sc2(&iceEngine.mainWindow, "Assets/SplashScreen.jpg",testObj2.m_Transform, &sc);
-	testObj2.m_Transform->m_Position = { 50,100 };
+	testObj2.m_Transform->m_Position = { 50,50 };
 	testObj2.m_Transform->m_Rotation = { 0 };
 	testObj2.components.push_back(&sc2);
 
 	GameObject testObj3(&testObj2);
 	SpriteComponent sc3(&iceEngine.mainWindow, "Assets/SplashScreen.jpg", testObj3.m_Transform, &sc2);
-	testObj3.m_Transform->m_Position = { 50,100 };
+	testObj3.m_Transform->m_Position = { 50,50 };
 	testObj3.m_Transform->m_Rotation = { 0 };
 	testObj3.components.push_back(&sc3);
 

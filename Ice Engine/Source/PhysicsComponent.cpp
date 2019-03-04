@@ -53,7 +53,7 @@ bool PhysicsComponent::IsGrounded()
 	temp.x = rect.left;
 	temp.y = rect.top;
 	temp += currentVelocity;
-	if (mass!=0&&temp.x<1000) 
+	if (mass!=0&&temp.x<1000&& gravityAffected)
 		p_sprite->sprite.setPosition( temp.x,temp.y);
 	//SetAABB();????
 

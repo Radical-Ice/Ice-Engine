@@ -66,12 +66,12 @@ void IceEngine::SFML_Window()
 				case sf::Keyboard::D:
 					temp->sprite.rotate(-2);
 					break;
-				case sf::Keyboard::G:
+				/*case sf::Keyboard::G:
 					temp2->sprite.rotate(2);
 					break;
 				case sf::Keyboard::H:
 					temp2->sprite.rotate(-2);
-					break;
+					break;*/
 				case sf::Keyboard::M:
 					//Audio.Play_Sound_From_Loaded_Files(2, 100, true);
 					break;
