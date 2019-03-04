@@ -11,7 +11,7 @@ class PhysicsEngine {
 
 public:
 	
-	float groundedTol = 5.1f;
+
 	/*struct Vector2 {
 		float x, y;
 		Vector2& operator+(const Vector2& a)
@@ -43,7 +43,7 @@ public:
 
 	std::map<CollisionPair, CollisionInfo> collisions;
 	std::vector<PhysicsComponent*> rigidBodies;
-
+	float groundedTol = 1.1f;
 	void AddRigidBody(PhysicsComponent* rigidBody);
 	void IntegrateBodies(float dT);
 	void CheckCollisions();

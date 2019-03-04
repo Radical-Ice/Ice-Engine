@@ -66,12 +66,7 @@ void IceEngine::SFML_Window()
 				case sf::Keyboard::D:
 					temp->sprite.rotate(-2);
 					break;
-				/*case sf::Keyboard::G:
-					temp2->sprite.rotate(2);
-					break;
-				case sf::Keyboard::H:
-					temp2->sprite.rotate(-2);
-					break;*/
+				
 				case sf::Keyboard::M:
 					//Audio.Play_Sound_From_Loaded_Files(2, 100, true);
 					break;
@@ -123,4 +118,13 @@ void IceEngine::DoChecks(LPCSTR szWindowClass) {
 void IceEngine::Play_Sound(int i, float v, bool L)
 {
 	Audio.Play_Sound_From_Loaded_Files(i, v, L);
+}
+void IceEngine::LoadMusic(std::vector<std::string> Files, int Index, float Volume, bool IsLooping)
+{
+	Audio.LoadMusic(Files, Index, Volume, IsLooping);
+	std::cout << "~~[ Music Loaded ]~~" << std::endl;
+}
+void IceEngine::PlayMusic()
+{
+	Audio.PlayMusic();
 }

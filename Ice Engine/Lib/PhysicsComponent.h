@@ -9,11 +9,12 @@ class PhysicsComponent: public BaseComponent {
 public:
 
 	PhysicsComponent(SpriteComponent* sprite, PhysicsEngine* engine);
+
 	Vector2 gravity{ 0, 9.8f };
 	bool gravityAffected = true;
 	bool grounded;
 	float mass = 1.0;
-	float bounciness = 1.0f;
+	float bounciness = .8f;
 	PhysicsEngine* engine;
 	Vector2 currentVelocity = { 0,0 };
 	Vector2 velocity = { 0,0 };

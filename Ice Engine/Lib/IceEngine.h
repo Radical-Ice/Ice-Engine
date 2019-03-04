@@ -38,6 +38,8 @@ public:
 	void LoadSound(std::vector<std::string> Files);
 	void Play_Sound(int, float, bool);
 	void SFML_Window();
+	void LoadMusic(std::vector<std::string> Files, int Index, float Volume, bool IsLooping);
+	void IceEngine::PlayMusic();
 	void DoChecks(LPCSTR szWindowClass);
 	//int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);
 	sf::Texture texture;
