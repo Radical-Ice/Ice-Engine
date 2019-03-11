@@ -55,6 +55,9 @@
     <ClCompile Include="Source\KeyEventHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\tinyxml2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib\Checking.h">
@@ -120,6 +123,9 @@
     <ClInclude Include="Lib\KeyEventHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Lib\tinyxml2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -146,5 +152,10 @@
     <Image Include="Assets\SplashScreen.jpg">
       <Filter>Assets Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Assets\testXML.xml">
+      <Filter>Assets Files</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

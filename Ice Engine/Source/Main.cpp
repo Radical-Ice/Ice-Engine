@@ -3,6 +3,8 @@
 #include "IceEngine.h"
 #include "SpriteComponent.h"
 #include "PhysicsComponent.h"
+#include "tinyxml2.h"
+#include <stdio.h>
 #define DIV 1024
 // Global variables  
 // The main window class name.  
@@ -12,6 +14,52 @@ std::vector<std::string> AudioFiles;
 std::vector<std::string> MusicFile;
 //HINSTANCE hInst;
 //~~~~Main Window With Console Enabled~~~~~
+
+
+///For ints and strings
+bool example_4()
+{
+	static const char* xml =
+		"<information>"
+		"	<attributeApproach v='2' />"
+		"	<textApproach>"
+		"		<v>2</v>"
+		"	</textApproach>"
+		"</information>";
+
+	tinyxml2::XMLDocument doc;
+	doc.Parse(xml);
+
+	int v0 = 0;
+	int v1 = 0;
+
+	tinyxml2::XMLElement* attributeApproachElement = doc.FirstChildElement()->FirstChildElement("attributeApproach");
+	attributeApproachElement->QueryIntAttribute("v", &v0);
+
+	tinyxml2:: XMLElement* textApproachElement = doc.FirstChildElement()->FirstChildElement("textApproach");
+	textApproachElement->FirstChildElement("v")->QueryIntText(&v1);
+
+	printf("Both values are the same: %d and %d\n", v0, v1);
+
+	return !doc.Error() && (v0 == v1);
+}
+
+int example_3()
+{
+	tinyxml2::XMLDocument doc;
+	const char* name = "Assets/testXML.xml";
+	doc.LoadFile(name);
+	tinyxml2::XMLElement* titleElement = doc.FirstChildElement("PLAY")->FirstChildElement("TITLE");
+	const char* title = titleElement->GetText();
+	printf("Name of play (1): %s\n", title);
+
+	tinyxml2::XMLText* textNode = titleElement->FirstChild()->ToText();
+	title = textNode->Value();
+	printf("Name of play (2): %s\n", title);
+
+	return doc.ErrorID();
+}
+
 int main()
 {
 	AudioFiles = {"Assets/GunShot.wav","Assets/PewPew.wav"};
@@ -28,7 +76,8 @@ int main()
 	iceEngine.LoadMusic(MusicFile, 0, 100, false);
 	//iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
 
-	
+	example_3();
+	example_4();
 	GameObject testObj(&iceEngine.sceneNode);
 	std::cout << "~~[ Initializing SpriteComponents ]~~" << std::endl;
 	SpriteComponent sc(&iceEngine.mainWindow, "Assets/cat.png",testObj.m_Transform);

@@ -185,6 +185,7 @@
     <ClCompile Include="Source\ScriptComponent.cpp" />
     <ClCompile Include="Source\SplashScreen.cpp" />
     <ClCompile Include="Source\SpriteComponent.cpp" />
+    <ClCompile Include="Source\tinyxml2.cpp" />
     <ClCompile Include="Source\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +206,7 @@
     <ClInclude Include="Lib\SplashScreen.h" />
     <ClInclude Include="Lib\SceneGraph.h" />
     <ClInclude Include="Lib\SpriteComponent.h" />
+    <ClInclude Include="Lib\tinyxml2.h" />
     <ClInclude Include="Lib\TransformComponent.h" />
     <ClInclude Include="Lib\PhysicsComponent.h" />
     <ClInclude Include="Lib\PhysicsEngine.h" />
@@ -216,6 +218,9 @@
   <ItemGroup>
     <Image Include="Assets\SplashScreen.jpg" />
     <Image Include="Source\cat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Assets\testXML.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
