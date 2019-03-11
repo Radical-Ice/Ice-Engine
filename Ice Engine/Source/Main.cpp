@@ -3,8 +3,11 @@
 #include "IceEngine.h"
 #include "SpriteComponent.h"
 #include "PhysicsComponent.h"
+<<<<<<< HEAD
 #include "tinyxml2.h"
 #include <stdio.h>
+=======
+>>>>>>> Lua+SFML+DirectX
 #define DIV 1024
 // Global variables  
 // The main window class name.  
@@ -76,8 +79,12 @@ int main()
 	iceEngine.LoadMusic(MusicFile, 0, 100, false);
 	//iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
 
+<<<<<<< HEAD
 	example_3();
 	example_4();
+=======
+	
+>>>>>>> Lua+SFML+DirectX
 	GameObject testObj(&iceEngine.sceneNode);
 	std::cout << "~~[ Initializing SpriteComponents ]~~" << std::endl;
 	SpriteComponent sc(&iceEngine.mainWindow, "Assets/cat.png",testObj.m_Transform);
