@@ -1,5 +1,9 @@
 #include "IceEngine.h"
 #include "SpriteComponent.h"
+
+
+
+
 void IceEngine::InitGraphics() {
 	std::cout << "~~[ Initializing Graphics Engine ]~~\r~" << std::endl;
 	mainWindow.create(sf::VideoMode(1024, 768, 32), "Meow");

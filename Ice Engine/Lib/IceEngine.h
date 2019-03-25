@@ -10,6 +10,7 @@
 #include "AudioComponent.h"
 #include "PhysicsEngine.h"
 #include "KeyEventHandler.h"
+#include "SFML/Window.hpp"
 
 class IceEngine {
 private:
