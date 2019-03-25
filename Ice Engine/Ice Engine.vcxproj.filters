@@ -58,6 +58,10 @@
     <ClCompile Include="Source\tinyxml2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
+	
+>>>>>>> eb6ee25ada2510bc8ebb9feafc08e8daf781e884
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib\Checking.h">
@@ -123,10 +127,17 @@
     <ClInclude Include="Lib\KeyEventHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
 
     <ClInclude Include="Lib\tinyxml2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+=======
+    <ClInclude Include="Lib\tinyxml2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+	
+>>>>>>> eb6ee25ada2510bc8ebb9feafc08e8daf781e884
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
