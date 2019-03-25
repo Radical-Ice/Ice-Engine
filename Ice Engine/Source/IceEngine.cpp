@@ -100,7 +100,7 @@ void IceEngine::SFML_Window()
 		//if (state == SplashScreen)
 		//	splashScreen.Show(mainWindow);
 		ai.makeGrid(mainWindow);
-
+		mainWindow.setFramerateLimit(65);
 		mainWindow.display();
 	}
 }
