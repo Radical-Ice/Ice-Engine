@@ -23,7 +23,7 @@ bool example_4()
 {
 	static const char* xml =
 		"<information>"
-		"	<attributeApproach v='2' />"
+		"	<attributeApproach v= hello />"
 		"	<textApproach>"
 		"		<v>2</v>"
 		"	</textApproach>"
@@ -32,18 +32,23 @@ bool example_4()
 	tinyxml2::XMLDocument doc;
 	doc.Parse(xml);
 
-	int v0 = 0;
+	const char* v0 = "hillo";
 	int v1 = 0;
 
 	tinyxml2::XMLElement* attributeApproachElement = doc.FirstChildElement()->FirstChildElement("attributeApproach");
-	attributeApproachElement->QueryIntAttribute("v", &v0);
+	attributeApproachElement->QueryStringAttribute("v", &v0);
+	if (v0 == "hello") {
+		printf("Yes okay");
+	}
+
 
 	tinyxml2:: XMLElement* textApproachElement = doc.FirstChildElement()->FirstChildElement("textApproach");
 	textApproachElement->FirstChildElement("v")->QueryIntText(&v1);
 
-	printf("Both values are the same: %d and %d\n", v0, v1);
+	printf("Both values are the same: %d and %d\n", v0[0], v1);
 
-	return !doc.Error() && (v0 == v1);
+	//return !doc.Error() && (v0 == v1);
+	return true;
 }
 
 int example_3()
@@ -79,10 +84,13 @@ int main()
 	//iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
 
 
-	example_3();
+	//example_3();
 	example_4();
 
-	GameObject testObj(&iceEngine.sceneNode);
+	//GameObject testObj(&iceEngine.sceneNode);
+
+	GameObject testObj = new GameObject(&iceEngine.sceneNode);
+
 	std::cout << "~~[ Initializing SpriteComponents ]~~" << std::endl;
 	SpriteComponent sc(&iceEngine.mainWindow, "Assets/cat.png",testObj.m_Transform);
 	

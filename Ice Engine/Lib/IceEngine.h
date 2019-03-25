@@ -10,7 +10,7 @@
 #include "AudioComponent.h"
 #include "PhysicsEngine.h"
 #include "KeyEventHandler.h"
-
+#include "tinyxml2.h"
 class IceEngine {
 private:
 	SplashScreen splashScreen;
@@ -40,6 +40,7 @@ public:
 	void Play_Sound(int, float, bool);
 	void SFML_Window();
 	void LoadMusic(std::vector<std::string> Files, int Index, float Volume, bool IsLooping);
+	void LoadScene(const char* fileName);
 	void IceEngine::PlayMusic();
 	void DoChecks(LPCSTR szWindowClass);
 	//int RegisterWindow(HINSTANCE hInstance, LPCSTR szWindowClass,int nCmdShow,LPCSTR szTitle);

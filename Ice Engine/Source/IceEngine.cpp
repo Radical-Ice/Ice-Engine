@@ -104,7 +104,11 @@ void IceEngine::SFML_Window()
 		mainWindow.display();
 	}
 }
-
+void IceEngine::LoadScene(const char* fileName) {
+	tinyxml2::XMLDocument doc;
+	const char* name = "Assets/testXML.xml";
+	doc.LoadFile(name);
+}
 void IceEngine::InitEngine() {
 	LoadSTexture();
 	MoveEvents test;

@@ -55,12 +55,9 @@
     <ClCompile Include="Source\KeyEventHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="Source\tinyxml2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-=======
->>>>>>> Lua+SFML+DirectX
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib\Checking.h">
@@ -126,12 +123,10 @@
     <ClInclude Include="Lib\KeyEventHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< HEAD
+
     <ClInclude Include="Lib\tinyxml2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-=======
->>>>>>> Lua+SFML+DirectX
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
