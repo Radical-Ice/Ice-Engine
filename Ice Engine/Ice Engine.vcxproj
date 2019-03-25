@@ -156,7 +156,7 @@
       <ConformanceMode>false</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Lib\SFML-2.5.1\bin;$(SolutionDir)Lib;$(SolutionDir)Lib\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
