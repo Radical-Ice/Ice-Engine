@@ -10,12 +10,10 @@
 #include "AudioComponent.h"
 #include "PhysicsEngine.h"
 #include "KeyEventHandler.h"
-<<<<<<< HEAD
 #include "tinyxml2.h"
-=======
+
 #include "SFML/Window.hpp"
 
->>>>>>> eb6ee25ada2510bc8ebb9feafc08e8daf781e884
 class IceEngine {
 private:
 	SplashScreen splashScreen;
