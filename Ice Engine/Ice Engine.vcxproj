@@ -168,6 +168,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game1.cpp" />
     <ClCompile Include="Source\EventDispacher.cpp" />
     <ClCompile Include="Source\KeyEventHandler.cpp" />
     <ClCompile Include="Source\PhysicsComponent.cpp" />
@@ -189,6 +190,7 @@
     <ClCompile Include="Source\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Lib\Game1.h" />
     <ClInclude Include="Lib\AIComponent.h" />
     <ClInclude Include="Lib\AudioComponent.h" />
     <ClInclude Include="Lib\BaseComponent.h" />

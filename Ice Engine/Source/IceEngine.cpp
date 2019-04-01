@@ -14,6 +14,7 @@ void IceEngine::InitGraphics() {
 	}
 	std::cout << "~~[ Graphics Engine loaded ]~~" << std::endl;
 	mainWindow.display();
+	mainWindow.setFramerateLimit(30);
 }
 
 void IceEngine::LoadSound(std::vector<std::string> Files)

@@ -58,7 +58,9 @@
     <ClCompile Include="Source\tinyxml2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-
+    <ClCompile Include="Source\Game1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib\Checking.h">
@@ -127,7 +129,9 @@
     <ClInclude Include="Lib\tinyxml2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-	
+    <ClInclude Include="Lib\Game1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
