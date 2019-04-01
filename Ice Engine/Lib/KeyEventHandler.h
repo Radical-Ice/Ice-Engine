@@ -12,7 +12,8 @@ enum EventType
 	MoveLeft,
 	MoveRight,
 	RotateRight,
-	RotateLeft
+	RotateLeft,
+	Update
 };
 struct Event {
 	int Type;

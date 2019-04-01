@@ -23,82 +23,44 @@ void IceEngine::LoadSound(std::vector<std::string> Files)
 }
 
 
-
-void IceEngine::LoadSTexture()
-{
-	if (!texture.loadFromFile("Assets/cat.png")) {
-		MessageBox(NULL,
-			_T("Failed to load CAT texture"),
-			_T("-> Ice Engine.cpp"),
-			NULL);
-	}
-	
-	sprite.setTexture(texture);
-	sprite.setPosition(100, 25);
-	std::cout << "~~[ Textures Loaded ]~~" << std::endl;
-}
-
 void IceEngine::SFML_Window()
 {
 	std::cout << "~~[ Game Window Loaded ]~~" << std::endl;
 	while (mainWindow.isOpen())
 	{
 		elapsed = clock.restart();
+		EventDispacher::get()->SendEvent(Update);
 		while (mainWindow.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				mainWindow.close();
 			if (event.type == sf::Event::KeyPressed) {
-				SpriteComponent* temp = static_cast<SpriteComponent*>((sceneNode.children.at(0))->components.at(1));
-				SpriteComponent* temp2 = static_cast<SpriteComponent*>((sceneNode.children.at(0))->children.at(0)->components.at(1));
+
 				switch (event.key.code) {
 				case sf::Keyboard::Left:
-					temp->sprite.move(-5, 0);
 					EventDispacher::get()->SendEvent(MoveLeft);
 					break;
 				case sf::Keyboard::Right:
-					temp->sprite.move(5, 0);
 					EventDispacher::get()->SendEvent(MoveRight);
 					break;
 				case sf::Keyboard::Up:
-					temp->sprite.move(0, -5);
 					EventDispacher::get()->SendEvent(MoveUp);
 					break;
 				case sf::Keyboard::Down:
-					temp->sprite.move(0, 5);
 					EventDispacher::get()->SendEvent(MoveDown);
 					break;
 				case sf::Keyboard::A:
-					temp->sprite.rotate(2);
 					EventDispacher::get()->SendEvent(RotateLeft);
 					break;
 				case sf::Keyboard::D:
-					temp->sprite.rotate(-2);
 					EventDispacher::get()->SendEvent(RotateRight);
 					break;
-				case sf::Keyboard::G:
-					temp2->sprite.rotate(2);
-					break;
-				case sf::Keyboard::H:
-					temp2->sprite.rotate(-2);
-					break;
-				case sf::Keyboard::M:
-					//Audio.Play_Sound_From_Loaded_Files(2, 100, true);
-					break;
 				}
-				//sceneNode.children.at(0)->m_Transform->m_Rotation += 1;
-
-				//temp->sprite.rotate(5);
-
 			}
 		}
 		mainWindow.clear();
-	
-	//	sceneNode.children.at(0)->children.at(0)->m_Transform.m_Rotation += 1;
 		sceneNode.Update(mainWindow);
 		physEngine.Update();
-		
-		
 		//mainWindow.draw(sprite);
 
 		//if (state == SplashScreen)
@@ -114,10 +76,8 @@ void IceEngine::LoadScene(const char* fileName) {
 	doc.LoadFile(name);
 }
 void IceEngine::InitEngine() {
-	LoadSTexture();
-	MoveEvents test;
-	RotateEvents test2;
-	//LoadSound();
+	//LoadSTexture();
+
 	Audio.Play_Sound_From_Loaded_Files(1, 100, false);
 	std::cout << "~~[ Initializing Game Window ]~~" << std::endl;
 	SFML_Window();
