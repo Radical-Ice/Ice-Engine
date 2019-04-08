@@ -1,6 +1,6 @@
 #pragma once
 #include "PhysicsEngine.h"
-
+#include <iostream>
 void PhysicsEngine::AddRigidBody(PhysicsComponent* rigidBody) {
 
 	rigidBodies.push_back(rigidBody);
@@ -43,23 +43,29 @@ void PhysicsEngine::CheckCollisions() {
 				pair.rigidBodyA = bodyA; pair.rigidBodyB = bodyB;
 
 				Vector2 distance;
-				distance.x= bodyB->p_sprite->sprite.getPosition().x - bodyA->p_sprite->sprite.getPosition().x;
+				distance.x = bodyB->p_sprite->sprite.getPosition().x - bodyA->p_sprite->sprite.getPosition().x;
 				distance.y = bodyB->p_sprite->sprite.getPosition().y - bodyA->p_sprite->sprite.getPosition().y;
 
 				Vector2 halfSizeA;
 				//halfSizeA.x = (bodyA->p_sprite->sprite.getGlobalBounds().width) / 2;// does not account for origin properly
-				halfSizeA.x = (bodyA->p_sprite->sprite.getTexture()->getSize().x) / 4;
-				//halfSizeA.y = (bodyA->p_sprite->sprite.getGlobalBounds().height) / 2;
-				halfSizeA.y = (bodyA->p_sprite->sprite.getTexture()->getSize().y) / 4;
+				halfSizeA.x = (bodyA->p_sprite->sprite.getGlobalBounds().width );
+				
+				halfSizeA.y = (bodyA->p_sprite->sprite.getGlobalBounds().height);
+				//halfSizeA.y = (bodyA->p_sprite->sprite.getTexture()->getSize().y) / 4;
 				Vector2 halfSizeB;
-				//halfSizeB.x = (bodyB->p_sprite->sprite.getGlobalBounds().width) / 2;// does not account for origin properly
-				//halfSizeB.y = (bodyB->p_sprite->sprite.getGlobalBounds().height) / 2;
-				halfSizeB.x = (bodyB->p_sprite->sprite.getTexture()->getSize().x) / 2;
-				halfSizeB.y = (bodyB->p_sprite->sprite.getTexture()->getSize().y) / 2;
+				halfSizeB.x = (bodyB->p_sprite->sprite.getGlobalBounds().width) ;// does not account for origin properly
+				halfSizeB.y = (bodyB->p_sprite->sprite.getGlobalBounds().height) ;
+				//halfSizeB.x = (bodyB->p_sprite->sprite.getTexture()->getSize().x) / 2;
+				//halfSizeB.y = (bodyB->p_sprite->sprite.getTexture()->getSize().y) / 2;
 				Vector2 temp = { abs(distance.x), abs(distance.y)};
 				Vector2 gap = { 0,0 };
 				Vector2 temp2 = { halfSizeA.x,halfSizeA.y };//halfSizeA; // + halfSizeB;
-				gap ={ temp - temp2  };
+				Vector2 temp2B = { halfSizeB.x,halfSizeB.y };
+
+				if (temp2.x < temp2B.x)
+					gap = { temp - temp2B };
+				else
+					gap = { temp - temp2 };
 
 				
 		

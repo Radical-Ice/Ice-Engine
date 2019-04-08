@@ -22,6 +22,14 @@ void KeyEventHandler::SendEvent(int eventType, int arg1, int arg2) {
 		 break;
 	 case MoveRight:
 		 break;
+	 case LeftReleased:
+		 break;
+	 case RightReleased:
+		 break;
+	 case UpReleased:
+		 break;
+	 case DownReleased:
+		 break;
 	 case RotateRight:
 		 break;
 	 case RotateLeft:

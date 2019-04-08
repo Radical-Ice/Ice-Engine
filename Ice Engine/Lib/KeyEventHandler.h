@@ -11,6 +11,10 @@ enum EventType
 	MoveDown,
 	MoveLeft,
 	MoveRight,
+	LeftReleased,
+	RightReleased,
+	UpReleased,
+	DownReleased,
 	RotateRight,
 	RotateLeft,
 	Update

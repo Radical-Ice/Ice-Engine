@@ -17,9 +17,50 @@ void Game1::StartGame() {
 	iceEngine.LoadSound(AudioFiles);
 	iceEngine.LoadMusic(MusicFile, 0, 100, false);
 	//iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
+	
+	GameObject background = new GameObject(&iceEngine.sceneNode);
 
+	SpriteComponent backgroundSprite(&iceEngine.mainWindow, "Assets/background.png", background.m_Transform);
 
+	background.m_Transform->m_Position = { 0,0 };
+	background.m_Transform->m_Scale = { 2,2 };
+	background.m_Transform->m_Rotation = { 0 };
+	background.components.push_back(&backgroundSprite);
+	
+	GameObject background2 = new GameObject(&iceEngine.sceneNode);
 
+	SpriteComponent backgroundSprite2(&iceEngine.mainWindow, "Assets/background.png", background2.m_Transform);
+	background2.m_Transform->m_Position = { 961*2,0 };
+	background2.m_Transform->m_Scale = { 2,2 };
+	background2.m_Transform->m_Rotation = { 0 };
+	background2.components.push_back(&backgroundSprite2);
+
+	class backgroundEvents : public KeyEventHandler {
+	public:
+		SpriteComponent* objref;	
+		SpriteComponent* objref2;
+		IceEngine* iceRef;
+
+		backgroundEvents::backgroundEvents(SpriteComponent* obj, SpriteComponent* obj2, IceEngine* iceEngine) {
+			objref = obj;
+			objref2 = obj2;
+			iceRef = iceEngine;
+		}
+		void HandleEvents(const Event &e) {
+			switch (e.Type) {
+			case Update:
+				if (objref->sprite.getPosition().x < -961 * 2) {
+					objref->sprite.setPosition(961 * 2, 0);
+				}
+				objref->sprite.move(-4, 0);
+				if (objref2->sprite.getPosition().x < -961 * 2) {
+					objref2->sprite.setPosition(961 * 2,0);
+				}
+				objref2->sprite.move(-4, 0);
+				break;
+			}
+		}
+	}backgroundScript(&backgroundSprite, &backgroundSprite2, &iceEngine);;
 	//GameObject testObj(&iceEngine.sceneNode);
 
 	GameObject testObj = new GameObject(&iceEngine.sceneNode);
@@ -42,6 +83,8 @@ void Game1::StartGame() {
 		PhysicsComponent* pcref;
 		IceEngine* iceRef;
 		Vector2 force = { 0,-100 };
+		bool left = false;
+		bool right = false;
 		MainEvents::MainEvents(SpriteComponent* obj, PhysicsComponent* pc, IceEngine* iceEngine) {
 			objref = obj;
 			pcref = pc;
@@ -60,17 +103,32 @@ void Game1::StartGame() {
 				break;
 			case MoveLeft:
 				cout << "left" << endl;
-				objref->sprite.move(-5, 0);
+				left = true;
+				//objref->sprite.move(-5, 0);
 				break;
 			case MoveRight:
 				cout << "right" << endl;
-				objref->sprite.move(5, 0);
+				right = true;
+				//objref->sprite.move(5, 0);
+				break;
+			case LeftReleased:
+				left = false;
+				break;
+			case RightReleased:
+				right = false;
 				break;
 			case Update:
-				cout << "mains update" << endl;
-
+			//	cout << "mains update" << endl;
+				if (left) {
+					objref->sprite.move(-5, 0);
+				}
+				if (right) {
+					objref->sprite.move(5, 0);
+				}
+				
 				break;
 			default:
+				
 				break;
 			}
 		}
@@ -97,7 +155,8 @@ void Game1::StartGame() {
 	SpriteComponent scPlatform(&iceEngine.mainWindow, "Assets/cat.png", Platform.m_Transform);
 
 	Platform.m_Transform->m_Position = { 512,550 };
-	Platform.m_Transform->m_Scale = { .3f,.3f };
+	Platform.m_Transform->m_Scale = { 10.0f,.3f };
+	
 	Platform.m_Transform->m_Rotation = { 0 };
 	Platform.components.push_back(&scPlatform);
 
@@ -120,8 +179,21 @@ void Game1::StartGame() {
 	testObj3.m_Transform->m_Position = { 50,50 };
 	testObj3.m_Transform->m_Rotation = { 0 };
 	testObj3.components.push_back(&sc3);
+/*
+	GameObject Platform3(&iceEngine.sceneNode);
+	SpriteComponent scPlatform3(&iceEngine.mainWindow, "Assets/cat.png", Platform3.m_Transform);
 
+	Platform3.m_Transform->m_Position = { 400,550 };
+	Platform3.m_Transform->m_Scale = { .3f,.3f };
+	//scPlatform3.sprite.setScale(.3, .3);
+	Platform3.m_Transform->m_Rotation = { 0 };
+	Platform3.components.push_back(&scPlatform3);
 
+	PhysicsComponent pcPlatform3(&scPlatform3, &iceEngine.physEngine);
+	pcPlatform3.mass = 0.0f;
+	pcPlatform3.gravityAffected = false;
+	Platform3.components.push_back(&pcPlatform3);
+	*/
 	std::cout << "~~[ SpriteComponents Loading Complete! ]~~" << std::endl;
 	iceEngine.PlayMusic();
 	iceEngine.InitEngine();

@@ -57,6 +57,21 @@ void IceEngine::SFML_Window()
 					EventDispacher::get()->SendEvent(RotateRight);
 					break;
 				}
+			}if (event.type == sf::Event::KeyReleased) {
+				switch (event.key.code) {
+				case sf::Keyboard::Left:
+					EventDispacher::get()->SendEvent(LeftReleased);
+					break;
+				case sf::Keyboard::Right:
+					EventDispacher::get()->SendEvent(RightReleased);
+					break;
+				case sf::Keyboard::Up:
+					EventDispacher::get()->SendEvent(UpReleased);
+					break;
+				case sf::Keyboard::Down:
+					EventDispacher::get()->SendEvent(DownReleased);
+					break;
+				}
 			}
 		}
 		mainWindow.clear();
