@@ -35,15 +35,32 @@ void Game1::StartGame() {
 	background2.m_Transform->m_Rotation = { 0 };
 	background2.components.push_back(&backgroundSprite2);
 
+
+	GameObject Platform2(&iceEngine.sceneNode);
+	SpriteComponent scPlatform2(&iceEngine.mainWindow, "Assets/1.png", Platform2.m_Transform);
+
+	Platform2.m_Transform->m_Position = { 0,300 };
+	Platform2.m_Transform->m_Scale = { .3f,.3f };
+
+	Platform2.m_Transform->m_Rotation = { 0 };
+	Platform2.components.push_back(&scPlatform2);
+
+	PhysicsComponent pcPlatform2(&scPlatform2, &iceEngine.physEngine);
+	pcPlatform2.mass = 0.0f;
+	pcPlatform2.gravityAffected = false;
+	Platform2.components.push_back(&pcPlatform2);
+
 	class backgroundEvents : public KeyEventHandler {
 	public:
 		SpriteComponent* objref;	
 		SpriteComponent* objref2;
+		SpriteComponent* objref3;
 		IceEngine* iceRef;
 
-		backgroundEvents::backgroundEvents(SpriteComponent* obj, SpriteComponent* obj2, IceEngine* iceEngine) {
+		backgroundEvents::backgroundEvents(SpriteComponent* obj, SpriteComponent* obj2, SpriteComponent* obj3, IceEngine* iceEngine) {
 			objref = obj;
 			objref2 = obj2;
+			objref3 = obj3;
 			iceRef = iceEngine;
 		}
 		void HandleEvents(const Event &e) {
@@ -57,10 +74,11 @@ void Game1::StartGame() {
 					objref2->sprite.setPosition(961 * 2,0);
 				}
 				objref2->sprite.move(-4, 0);
+				objref3->sprite.move(1, 0);
 				break;
 			}
 		}
-	}backgroundScript(&backgroundSprite, &backgroundSprite2, &iceEngine);;
+	}backgroundScript(&backgroundSprite, &backgroundSprite2, &scPlatform2, &iceEngine);;
 	//GameObject testObj(&iceEngine.sceneNode);
 
 	
@@ -83,19 +101,7 @@ void Game1::StartGame() {
 	pc4.gravityAffected = false;
 	*/
 
-	GameObject Platform2(&iceEngine.sceneNode);
-	SpriteComponent scPlatform2(&iceEngine.mainWindow, "Assets/cat.png", Platform2.m_Transform);
-
-	Platform2.m_Transform->m_Position = { 0,300 };
-	Platform2.m_Transform->m_Scale = { 1.0f,.3f };
-
-	Platform2.m_Transform->m_Rotation = { 0 };
-	Platform2.components.push_back(&scPlatform2);
-
-	PhysicsComponent pcPlatform2(&scPlatform2, &iceEngine.physEngine);
-	pcPlatform2.mass = 0.0f;
-	pcPlatform2.gravityAffected = false;
-	Platform2.components.push_back(&pcPlatform2);
+	
 	
 	GameObject Platform(&iceEngine.sceneNode);
 	SpriteComponent scPlatform(&iceEngine.mainWindow, "Assets/cat.png", Platform.m_Transform);
