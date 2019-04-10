@@ -25,6 +25,7 @@ bool PhysicsEngine::IsGrounded(PhysicsComponent* rigidBody) {
 				&& temp3 > rectOther.left 
 				&& temp2 <= groundedTol) {
 				if (abs(rigidBody->currentVelocity.y) > groundedTol) {
+					
 					return true;
 
 				}
@@ -35,9 +36,14 @@ bool PhysicsEngine::IsGrounded(PhysicsComponent* rigidBody) {
 }
 
 void PhysicsEngine::CheckCollisions() {
+	
 	for(PhysicsComponent* bodyA : rigidBodies) {
-		for(PhysicsComponent* bodyB : rigidBodies) {// not sure what this says
+		for(PhysicsComponent* bodyB : rigidBodies) {
 			if (bodyA != bodyB) {
+				if (bodyA->mass == 0 && bodyB->mass == 0) {
+					continue;
+				}
+				
 				CollisionPair pair;
 				CollisionInfo colInfo;
 				pair.rigidBodyA = bodyA; pair.rigidBodyB = bodyB;
@@ -45,11 +51,10 @@ void PhysicsEngine::CheckCollisions() {
 				Vector2 distance;
 				distance.x = bodyB->p_sprite->sprite.getPosition().x - bodyA->p_sprite->sprite.getPosition().x;
 				distance.y = bodyB->p_sprite->sprite.getPosition().y - bodyA->p_sprite->sprite.getPosition().y;
-
+				
 				Vector2 halfSizeA;
 				//halfSizeA.x = (bodyA->p_sprite->sprite.getGlobalBounds().width) / 2;// does not account for origin properly
-				halfSizeA.x = (bodyA->p_sprite->sprite.getGlobalBounds().width );
-				
+				halfSizeA.x = (bodyA->p_sprite->sprite.getGlobalBounds().width );				
 				halfSizeA.y = (bodyA->p_sprite->sprite.getGlobalBounds().height);
 				//halfSizeA.y = (bodyA->p_sprite->sprite.getTexture()->getSize().y) / 4;
 				Vector2 halfSizeB;
@@ -61,24 +66,28 @@ void PhysicsEngine::CheckCollisions() {
 				Vector2 gap = { 0,0 };
 				Vector2 temp2 = { halfSizeA.x,halfSizeA.y };//halfSizeA; // + halfSizeB;
 				Vector2 temp2B = { halfSizeB.x,halfSizeB.y };
-
-				if (temp2.x < temp2B.x)
-					gap = { temp - temp2B };
-				else
-					gap = { temp - temp2 };
-
 				
-		
+				if (bodyB->p_sprite->sprite.getPosition().x < bodyA->p_sprite->sprite.getPosition().x) {
+					gap.x = { temp.x - temp2B.x };
+				}else
+					gap.x = { temp.x - temp2.x };
+				if (bodyB->p_sprite->sprite.getPosition().y < bodyA->p_sprite->sprite.getPosition().y) {
+					gap.y = { temp.y - temp2B.y };
+				}
+				else
+					gap.y = { temp.y - temp2.y };
 				if (gap.x < 0.0f && gap.y < 0.0f) {
 				//Collided
 
 					if (!(collisions.find(pair) == collisions.end())) {
 						collisions.erase(pair);
+					
 					}
 
 					if (gap.x > gap.y) {
 						if (distance.x > 0.0f) {
 							colInfo.collisionNormal = { 1,0 };//added this line
+
 						}
 						else {
 
@@ -90,37 +99,40 @@ void PhysicsEngine::CheckCollisions() {
 						if (distance.y > 0.0f) {
 
 							colInfo.collisionNormal = { 0,1 };//added this line
+							
 						}
 						else {
 							colInfo.collisionNormal = { 0,-1 };
 						}
 						colInfo.penetration = gap.y;
+						
 					}
 					collisions.insert(std::pair<CollisionPair, CollisionInfo>(pair, colInfo));
 					//collisions[pair] = colInfo;
-
+					
 				}
-				else if (collisions.find(pair) != collisions.end()) {
-					//Debug.Log("removed");
-					collisions.erase(pair);
-				}
+				
 
 			}
 		}
 	}
 }
 void PhysicsEngine::ResolveCollisions() {
-
+	
 	std::vector<CollisionPair> v;
 	for (std::map<CollisionPair, CollisionInfo>::iterator it = collisions.begin(); it != collisions.end(); ++it) {
 		v.push_back(it->first);
+		
 	}
 	for (CollisionPair pair : v) {
-
-
+		
+		float velAlongNormal = 0;
 		float minBounce = pair.rigidBodyA->bounciness;
 		//float velAlongNormal = Vector2.Dot(pair.rigidBodyB.currentVelocity - pair.rigidBodyA.currentVelocity, collisions[pair].collisionNormal);
-		float velAlongNormal = pair.rigidBodyB->currentVelocity.y - pair.rigidBodyA->currentVelocity.y;
+		if(pair.rigidBodyB->currentVelocity.y<0)
+			 velAlongNormal = pair.rigidBodyA->currentVelocity.y - pair.rigidBodyB->currentVelocity.y;
+		else
+			 velAlongNormal = pair.rigidBodyB->currentVelocity.y - pair.rigidBodyA->currentVelocity.y;
 		if (velAlongNormal > 0) continue;
 
 		float j = -(1 + minBounce) * velAlongNormal;
@@ -137,28 +149,29 @@ void PhysicsEngine::ResolveCollisions() {
 			invMassB = 1 / pair.rigidBodyB->mass;
 
 		j /= invMassA + invMassB;
-
 		Vector2 impulse =  collisions[pair].collisionNormal* j ;
+		
 		//Debug.Log("collisions[pair].collisionNormal" + collisions[pair].collisionNormal);
 		//Debug.Log("velAlongNormal" + velAlongNormal);
 		//Debug.Log("impulse" + impulse);
 		//Debug.Log("j" + j);
 		//pair.rigidBodyA.currentVelocity = -pair.rigidBodyA.currentVelocity*invMassA;
 		//pair.rigidBodyB.currentVelocity = -pair.rigidBodyB.currentVelocity*invMassB;
-
+		
 		//else
 
 		//pair.rigidBodyA.currentVelocity = new Vector2(-pair.rigidBodyA.currentVelocity.x,-pair.rigidBodyA.currentVelocity.y*j*invMassA)*invMassA;
 		//pair.rigidBodyB.currentVelocity = new Vector2(-pair.rigidBodyB.currentVelocity.x,-pair.rigidBodyB.currentVelocity.y*j*invMassB)*invMassB;
-
+		std::cout << collisions[pair].collisionNormal.y << std::endl;
 		//Debug.Log(pair.rigidBodyA.currentVelocity + "pair.rigidBodyA.currentVelocity");
 		if (impulse.x*impulse.x +impulse.y*impulse.y > 0.21) {
 			Vector2 impbytime= impulse * (1 / 0.1f);
 			pair.rigidBodyA->AddForce(impbytime*-1.0f);// I like this way better than straight division
-			pair.rigidBodyB->AddForce(impbytime);
+			pair.rigidBodyB->AddForce(impbytime*-1.0f);
+			
 		}
 
-
+		
 
 		//pair.rigidBodyB.AddForce(-pair.rigidBodyB.currentVelocity);
 		// ... update velocities
@@ -166,6 +179,11 @@ void PhysicsEngine::ResolveCollisions() {
 		if (abs(collisions[pair].penetration) > 0.001f) {
 			PositionalCorrection(pair);
 		}
+		
+			//Debug.Log("removed");
+			collisions.erase(pair);
+
+		
 	}
 }
 void PhysicsEngine::PositionalCorrection(CollisionPair c) {
@@ -207,6 +225,7 @@ void PhysicsEngine::PositionalCorrection(CollisionPair c) {
 
 void PhysicsEngine::Update()
 {
+	
 	CheckCollisions();
 	ResolveCollisions();
 	IntegrateBodies(0.1f);

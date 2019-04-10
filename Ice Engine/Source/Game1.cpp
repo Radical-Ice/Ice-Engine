@@ -63,9 +63,58 @@ void Game1::StartGame() {
 	}backgroundScript(&backgroundSprite, &backgroundSprite2, &iceEngine);;
 	//GameObject testObj(&iceEngine.sceneNode);
 
-	GameObject testObj = new GameObject(&iceEngine.sceneNode);
+	
 
-	std::cout << "~~[ Initializing SpriteComponents ]~~" << std::endl;
+	//std::cout << "~~[ Initializing SpriteComponents ]~~" << std::endl;
+	
+	//MainEvents test;
+
+	/*
+	GameObject aestObj4(&iceEngine.sceneNode);
+	SpriteComponent asc4(&iceEngine.mainWindow, "Assets/cat.png", aestObj4.m_Transform);
+
+	aestObj4.m_Transform->m_Position = { 100,50 };
+	aestObj4.m_Transform->m_Scale = { .3f,.3f };
+	aestObj4.m_Transform->m_Rotation = { 0 };
+	aestObj4.components.push_back(&asc4);
+
+	PhysicsComponent pc4(&asc4, &iceEngine.physEngine);
+	aestObj4.components.push_back(&pc4);
+	pc4.gravityAffected = false;
+	*/
+
+	GameObject Platform2(&iceEngine.sceneNode);
+	SpriteComponent scPlatform2(&iceEngine.mainWindow, "Assets/cat.png", Platform2.m_Transform);
+
+	Platform2.m_Transform->m_Position = { 0,300 };
+	Platform2.m_Transform->m_Scale = { 1.0f,.3f };
+
+	Platform2.m_Transform->m_Rotation = { 0 };
+	Platform2.components.push_back(&scPlatform2);
+
+	PhysicsComponent pcPlatform2(&scPlatform2, &iceEngine.physEngine);
+	pcPlatform2.mass = 0.0f;
+	pcPlatform2.gravityAffected = false;
+	Platform2.components.push_back(&pcPlatform2);
+	
+	GameObject Platform(&iceEngine.sceneNode);
+	SpriteComponent scPlatform(&iceEngine.mainWindow, "Assets/cat.png", Platform.m_Transform);
+
+	Platform.m_Transform->m_Position = { 312,550 };
+	Platform.m_Transform->m_Scale = { 1.0f,.3f };
+	
+	Platform.m_Transform->m_Rotation = { 0 };
+	Platform.components.push_back(&scPlatform);
+
+	PhysicsComponent pcPlatform(&scPlatform, &iceEngine.physEngine);
+	pcPlatform.mass = 0.0f;
+	pcPlatform.gravityAffected = false;
+	Platform.components.push_back(&pcPlatform);
+
+	
+	
+
+	GameObject testObj = new GameObject(&iceEngine.sceneNode);
 	SpriteComponent sc(&iceEngine.mainWindow, "Assets/cat.png", testObj.m_Transform);
 
 	testObj.m_Transform->m_Position = { 512,50 };
@@ -118,56 +167,23 @@ void Game1::StartGame() {
 				right = false;
 				break;
 			case Update:
-			//	cout << "mains update" << endl;
+				//	cout << "mains update" << endl;
 				if (left) {
 					objref->sprite.move(-5, 0);
 				}
 				if (right) {
 					objref->sprite.move(5, 0);
 				}
-				
+
 				break;
 			default:
-				
+
 				break;
 			}
 		}
 	}test(&sc, &pc, &iceEngine);
-	//MainEvents test;
 
-	/*
-	GameObject aestObj4(&iceEngine.sceneNode);
-	SpriteComponent asc4(&iceEngine.mainWindow, "Assets/cat.png", aestObj4.m_Transform);
-
-	aestObj4.m_Transform->m_Position = { 100,50 };
-	aestObj4.m_Transform->m_Scale = { .3f,.3f };
-	aestObj4.m_Transform->m_Rotation = { 0 };
-	aestObj4.components.push_back(&asc4);
-
-	PhysicsComponent pc4(&asc4, &iceEngine.physEngine);
-	aestObj4.components.push_back(&pc4);
-	pc4.gravityAffected = false;
-	*/
-
-
-
-	GameObject Platform(&iceEngine.sceneNode);
-	SpriteComponent scPlatform(&iceEngine.mainWindow, "Assets/cat.png", Platform.m_Transform);
-
-	Platform.m_Transform->m_Position = { 512,550 };
-	Platform.m_Transform->m_Scale = { 10.0f,.3f };
-	
-	Platform.m_Transform->m_Rotation = { 0 };
-	Platform.components.push_back(&scPlatform);
-
-	PhysicsComponent pcPlatform(&scPlatform, &iceEngine.physEngine);
-	pcPlatform.mass = 0.0f;
-	pcPlatform.gravityAffected = false;
-	Platform.components.push_back(&pcPlatform);
-
-
-
-
+/*
 	GameObject testObj2(&testObj);
 	SpriteComponent sc2(&iceEngine.mainWindow, "Assets/SplashScreen.jpg", testObj2.m_Transform, &sc);
 	testObj2.m_Transform->m_Position = { 50,50 };
@@ -179,6 +195,7 @@ void Game1::StartGame() {
 	testObj3.m_Transform->m_Position = { 50,50 };
 	testObj3.m_Transform->m_Rotation = { 0 };
 	testObj3.components.push_back(&sc3);
+	*/
 /*
 	GameObject Platform3(&iceEngine.sceneNode);
 	SpriteComponent scPlatform3(&iceEngine.mainWindow, "Assets/cat.png", Platform3.m_Transform);

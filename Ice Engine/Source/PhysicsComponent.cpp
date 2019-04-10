@@ -2,13 +2,15 @@
 #include "PhysicsComponent.h"
 #include "SpriteComponent.h"
 
-
+#include <iostream>
 
 PhysicsComponent::PhysicsComponent(SpriteComponent* sprite, PhysicsEngine* engine)
 {
 	p_sprite = sprite;
 	this->engine = engine;
 	engine->AddRigidBody(this);
+
+
 }
 
 
@@ -27,7 +29,11 @@ bool PhysicsComponent::IsGrounded()
 
  void PhysicsComponent::Integrate(float dT) {
 	 Vector2 acceleration = { 0,0 };
-
+	 if (mass == 0) {
+		 acceleration.x = 0;
+		 acceleration.y = 0;
+		 return;
+	 }
 	// this part of the code checks the object is supposed to use gravity and starts its acceleration 
 	// equal to gravity if thats the case however if the object is moving too slowly it sets the 
 	// value of the current y velocity to 0 so an object doesn't try to fall through solid things
@@ -41,10 +47,7 @@ bool PhysicsComponent::IsGrounded()
 
 
 	acceleration += totalForces / mass;
-	if (mass == 0) {
-		acceleration.x = 0;
-		acceleration.y = 0;
-	}
+	
 	Vector2 accelTime= (acceleration * dT);
 	currentVelocity += accelTime;
 
