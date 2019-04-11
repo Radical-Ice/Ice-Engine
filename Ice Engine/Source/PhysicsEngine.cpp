@@ -126,6 +126,7 @@ void PhysicsEngine::ResolveCollisions() {
 	}
 	for (CollisionPair pair : v) {
 		
+		EventDispacher::get()->SendEvent(Collided,pair.rigidBodyA->tag,pair.rigidBodyB->tag);
 		float velAlongNormal = 0;
 		float minBounce = pair.rigidBodyA->bounciness;
 		//float velAlongNormal = Vector2.Dot(pair.rigidBodyB.currentVelocity - pair.rigidBodyA.currentVelocity, collisions[pair].collisionNormal);

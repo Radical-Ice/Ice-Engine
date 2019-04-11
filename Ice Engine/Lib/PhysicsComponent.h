@@ -9,7 +9,7 @@ class PhysicsComponent: public BaseComponent {
 public:
 
 	PhysicsComponent(SpriteComponent* sprite, PhysicsEngine* engine);
-
+	int tag=0;
 	Vector2 gravity{ 0, 9.8f };
 	bool gravityAffected = true;
 	bool grounded;

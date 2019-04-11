@@ -6,6 +6,7 @@
 #include "PhysicsComponent.h"
 #include "SpriteComponent.h"
 #include "Vector2.h"
+#include "KeyEventHandler.h"
 class PhysicsComponent;
 class PhysicsEngine {
 

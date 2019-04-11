@@ -17,6 +17,7 @@ enum EventType
 	DownReleased,
 	RotateRight,
 	RotateLeft,
+	Collided,
 	Update
 };
 struct Event {

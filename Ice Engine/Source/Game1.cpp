@@ -34,8 +34,12 @@ void Game1::StartGame() {
 	background2.m_Transform->m_Scale = { 2,2 };
 	background2.m_Transform->m_Rotation = { 0 };
 	background2.components.push_back(&backgroundSprite2);
-
-
+	//sf::Font font;
+	//std::string score = "Score";
+	//sf::Text text;
+	
+	//text.setString(score);
+	//text.setPosition(100, 100);
 	GameObject Platform2(&iceEngine.sceneNode);
 	SpriteComponent scPlatform2(&iceEngine.mainWindow, "Assets/1.png", Platform2.m_Transform);
 
@@ -46,6 +50,7 @@ void Game1::StartGame() {
 	Platform2.components.push_back(&scPlatform2);
 
 	PhysicsComponent pcPlatform2(&scPlatform2, &iceEngine.physEngine);
+	pcPlatform2.tag = 2;
 	pcPlatform2.mass = 0.0f;
 	pcPlatform2.gravityAffected = false;
 	Platform2.components.push_back(&pcPlatform2);
@@ -129,7 +134,9 @@ void Game1::StartGame() {
 	testObj.components.push_back(&sc);
 
 	PhysicsComponent pc(&sc, &iceEngine.physEngine);
+	pc.tag = 1;//player
 	testObj.components.push_back(&pc);
+	
 	pc.mass = 1;
 	//pc.gravityAffected = false;
 	class MainEvents : public KeyEventHandler {
@@ -172,6 +179,10 @@ void Game1::StartGame() {
 			case RightReleased:
 				right = false;
 				break;
+			case Collided:
+				if (e.obj1 == 1 && e.obj2 == 2) {
+					std::cout << "hit a dog";
+				}
 			case Update:
 				//	cout << "mains update" << endl;
 				if (left) {

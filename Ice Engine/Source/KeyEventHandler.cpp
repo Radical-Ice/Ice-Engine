@@ -34,6 +34,8 @@ void KeyEventHandler::SendEvent(int eventType, int arg1, int arg2) {
 		 break;
 	 case RotateLeft:
 		 break;
+	 case Collided:
+		 break;
 	 case Update:
 		 break;
 	 default:
