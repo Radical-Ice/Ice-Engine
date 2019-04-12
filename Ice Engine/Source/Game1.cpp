@@ -2,7 +2,7 @@
 #include "Game1.h"
 #include <string>
 const static TCHAR szWindowClass[] = _T("IceEngine");
-void Game1::StartGame() {
+void Game1::StartGame(IceEngine &_IceEngine) {
 	
 
 	AudioFiles = { "Assets/GunShot.wav","Assets/PewPew.wav" };
@@ -10,27 +10,27 @@ void Game1::StartGame() {
 	AllocConsole();
 	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
 
-	IceEngine iceEngine;
+	//IceEngine iceEngine;
 
-	iceEngine.InitGraphics();
+	//iceEngine.InitGraphics();
 
-	iceEngine.DoChecks(szWindowClass);
-	iceEngine.LoadSound(AudioFiles);
-	iceEngine.LoadMusic(MusicFile, 0, 100, false);
+	//_IceEngine.DoChecks(szWindowClass);
+	_IceEngine.LoadSound(AudioFiles);
+	_IceEngine.LoadMusic(MusicFile, 0, 100, false);
 	//iceEngine.RegisterWindow(hInstance, szWindowClass, nCmdShow, szTitle);
 	
-	GameObject background = new GameObject(&iceEngine.sceneNode);
+	GameObject background = new GameObject(&_IceEngine.sceneNode);
 
-	SpriteComponent backgroundSprite(&iceEngine.mainWindow, "Assets/background.png", background.m_Transform);
+	SpriteComponent backgroundSprite(&_IceEngine.mainWindow, "Assets/background.png", background.m_Transform);
 
 	background.m_Transform->m_Position = { 0,0 };
 	background.m_Transform->m_Scale = { 2,2 };
 	background.m_Transform->m_Rotation = { 0 };
 	background.components.push_back(&backgroundSprite);
 	
-	GameObject background2 = new GameObject(&iceEngine.sceneNode);
+	GameObject background2 = new GameObject(&_IceEngine.sceneNode);
 
-	SpriteComponent backgroundSprite2(&iceEngine.mainWindow, "Assets/background.png", background2.m_Transform);
+	SpriteComponent backgroundSprite2(&_IceEngine.mainWindow, "Assets/background.png", background2.m_Transform);
 	background2.m_Transform->m_Position = { 961*2,0 };
 	background2.m_Transform->m_Scale = { 2,2 };
 	background2.m_Transform->m_Rotation = { 0 };
@@ -44,8 +44,8 @@ void Game1::StartGame() {
 
 
 	//for (int i = 0; i < 10; i++) {
-		GameObject dog(&iceEngine.sceneNode);
-		SpriteComponent scDog(&iceEngine.mainWindow, "Assets/1.png", dog.m_Transform);
+		GameObject dog(&_IceEngine.sceneNode);
+		SpriteComponent scDog(&_IceEngine.mainWindow, "Assets/1.png", dog.m_Transform);
 
 		dog.m_Transform->m_Position = { 1024,0 };
 		dog.m_Transform->m_Scale = { .3f,.3f };
@@ -53,7 +53,7 @@ void Game1::StartGame() {
 		dog.m_Transform->m_Rotation = { 0 };
 		dog.components.push_back(&scDog);
 
-		PhysicsComponent pcDog(&scDog, &iceEngine.physEngine);
+		PhysicsComponent pcDog(&scDog, &_IceEngine.physEngine);
 		pcDog.tag = 2;
 		pcDog.mass = 0.0f;
 		pcDog.gravityAffected = false;
@@ -62,8 +62,8 @@ void Game1::StartGame() {
 	//}
 
 
-	GameObject Platform2(&iceEngine.sceneNode);
-	SpriteComponent scPlatform2(&iceEngine.mainWindow, "Assets/1.png", Platform2.m_Transform);
+	GameObject Platform2(&_IceEngine.sceneNode);
+	SpriteComponent scPlatform2(&_IceEngine.mainWindow, "Assets/1.png", Platform2.m_Transform);
 
 	Platform2.m_Transform->m_Position = { 1024,500 };
 	Platform2.m_Transform->m_Scale = { .3f,.3f };
@@ -71,7 +71,7 @@ void Game1::StartGame() {
 	Platform2.m_Transform->m_Rotation = { 0 };
 	Platform2.components.push_back(&scPlatform2);
 
-	PhysicsComponent pcPlatform2(&scPlatform2, &iceEngine.physEngine);
+	PhysicsComponent pcPlatform2(&scPlatform2, &_IceEngine.physEngine);
 	pcPlatform2.tag = 2;
 	pcPlatform2.mass = 0.0f;
 	pcPlatform2.gravityAffected = false;
@@ -85,11 +85,11 @@ void Game1::StartGame() {
 	std::string scoreTxt = "Score  ";
 	scoreTxt.append(std::to_string(score));
 	sf::Text text(scoreTxt, font);
-	text.setPosition(iceEngine.mainWindow.getView().getSize().x / 2, 50);
-	iceEngine.texts.push_back(&text);
+	text.setPosition(_IceEngine.mainWindow.getView().getSize().x / 2, 50);
+	_IceEngine.texts.push_back(&text);
 
-	GameObject Platform(&iceEngine.sceneNode);
-	SpriteComponent scPlatform(&iceEngine.mainWindow, "Assets/cat.png", Platform.m_Transform);
+	GameObject Platform(&_IceEngine.sceneNode);
+	SpriteComponent scPlatform(&_IceEngine.mainWindow, "Assets/cat.png", Platform.m_Transform);
 
 	Platform.m_Transform->m_Position = { 312,550 };
 	Platform.m_Transform->m_Scale = { 1.0f,.3f };
@@ -97,14 +97,16 @@ void Game1::StartGame() {
 	Platform.m_Transform->m_Rotation = { 0 };
 	Platform.components.push_back(&scPlatform);
 
-	PhysicsComponent pcPlatform(&scPlatform, &iceEngine.physEngine);
+	PhysicsComponent pcPlatform(&scPlatform, &_IceEngine.physEngine);
 	pcPlatform.mass = 0.0f;
 	pcPlatform.gravityAffected = false;
 	Platform.components.push_back(&pcPlatform);
 	static sf::Text GameOver("You Died", font);
 	GameOver.setFillColor(sf::Color::Black);
 	GameOver.setCharacterSize(100);
-	GameOver.setPosition(iceEngine.mainWindow.getView().getSize().x / 2-200, iceEngine.mainWindow.getView().getSize().y / 2-100);
+	GameOver.setPosition(_IceEngine.mainWindow.getView().getSize().x / 2-200, _IceEngine.mainWindow.getView().getSize().y / 2-100);
+	
+	
 	class backgroundEvents : public KeyEventHandler {
 	public:
 		sf::Text* text;
@@ -174,7 +176,7 @@ void Game1::StartGame() {
 				}
 			}
 		}
-	}backgroundScript(&backgroundSprite, &backgroundSprite2, &scPlatform2, &scDog, &iceEngine,&score,&text,&gameOver);
+	}backgroundScript(&backgroundSprite, &backgroundSprite2, &scPlatform2, &scDog, &_IceEngine,&score,&text,&gameOver);
 	//GameObject testObj(&iceEngine.sceneNode);
 
 	
@@ -204,15 +206,15 @@ void Game1::StartGame() {
 	
 	
 
-	GameObject testObj = new GameObject(&iceEngine.sceneNode);
-	SpriteComponent sc(&iceEngine.mainWindow, "Assets/cat.png", testObj.m_Transform);
+	GameObject testObj = new GameObject(&_IceEngine.sceneNode);
+	SpriteComponent sc(&_IceEngine.mainWindow, "Assets/cat.png", testObj.m_Transform);
 
 	testObj.m_Transform->m_Position = { 512,50 };
 	testObj.m_Transform->m_Scale = { .3f,.3f };
 	testObj.m_Transform->m_Rotation = { 0 };
 	testObj.components.push_back(&sc);
 
-	PhysicsComponent pc(&sc, &iceEngine.physEngine);
+	PhysicsComponent pc(&sc, &_IceEngine.physEngine);
 	pc.tag = 1;//player
 	testObj.components.push_back(&pc);
 	
@@ -291,7 +293,7 @@ void Game1::StartGame() {
 				break;
 			}
 		}
-	}test(&sc, &pc, &iceEngine,&gameOver);
+	}test(&sc, &pc, &_IceEngine,&gameOver);
 	
 	
 /*
@@ -323,7 +325,7 @@ void Game1::StartGame() {
 	Platform3.components.push_back(&pcPlatform3);
 	*/
 	std::cout << "~~[ SpriteComponents Loading Complete! ]~~" << std::endl;
-	iceEngine.PlayMusic();
-	iceEngine.InitEngine();
+	_IceEngine.PlayMusic();
+	_IceEngine.InitEngine();
 
 }

@@ -171,6 +171,7 @@
     <ClCompile Include="Source\Game1.cpp" />
     <ClCompile Include="Source\EventDispacher.cpp" />
     <ClCompile Include="Source\KeyEventHandler.cpp" />
+    <ClCompile Include="Source\MainMenu.cpp" />
     <ClCompile Include="Source\PhysicsComponent.cpp" />
     <ClCompile Include="Source\AIComponent.cpp" />
     <ClCompile Include="Source\AudioComponent.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="Lib\Checking.h" />
     <ClInclude Include="Lib\Game Window.h" />
     <ClInclude Include="Lib\KeyEventHandler.h" />
+    <ClInclude Include="Lib\MainMenu.h" />
     <ClInclude Include="Lib\ScriptComponent.h" />
     <ClInclude Include="Lib\IceEngine.h" />
     <ClInclude Include="Lib\InputProcesser.h" />

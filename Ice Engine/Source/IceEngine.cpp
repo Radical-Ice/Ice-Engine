@@ -93,7 +93,7 @@ void IceEngine::SFML_Window()
 		}
 		//if (state == SplashScreen)
 		//	splashScreen.Show(mainWindow);
-		ai.makeGrid(mainWindow);
+		//ai.makeGrid(mainWindow);
 
 		mainWindow.display();
 	}

@@ -1,7 +1,7 @@
 
 //Authors: James Bews, Jatin Kumar, Dennis Nguyen
 
-#include "Game1.h"
+#include "MainMenu.h"
 #include "tinyxml2.h"
 
 
@@ -106,8 +106,8 @@ int example_3()
 
 int main()
 {
-	Game1 game;
-	game.StartGame();
+	MainMenu _MainMenu;
+	_MainMenu.Inist();
 	return 0;
 }
 
