@@ -219,6 +219,17 @@ void Game1::StartGame(IceEngine &_IceEngine) {
 	testObj.components.push_back(&pc);
 	
 	pc.mass = 1;
+	static sf::Texture texture5;
+	static sf::Texture texture6;
+	
+	if (!texture5.loadFromFile("Assets/cat.png"))
+	{
+		system("pause");
+	}
+	if (!texture6.loadFromFile("Assets/cat2.png"))
+	{
+		system("pause");
+	}
 	//pc.gravityAffected = false;
 	class MainEvents : public KeyEventHandler {
 	public:
@@ -230,11 +241,15 @@ void Game1::StartGame(IceEngine &_IceEngine) {
 		bool left = false;
 		bool right = false;
 		bool* gameOver;
+		bool swap=false;
+		int counter=0;
+		
 		MainEvents::MainEvents(SpriteComponent* obj, PhysicsComponent* pc, IceEngine* iceEngine, bool* gOver) {
 			objref = obj;
 			pcref = pc;
 			iceRef = iceEngine;
 			gameOver = gOver;
+			
 		}
 		void HandleEvents(const Event &e) {
 			switch (e.Type) {
@@ -269,6 +284,19 @@ void Game1::StartGame(IceEngine &_IceEngine) {
 					std::cout << "hit a dog";
 				}
 			case Update:
+				counter++;
+				if (counter > 15) {
+					counter = 0;
+					if (swap) {
+						objref->texture = texture5;
+					}
+					else
+						objref->texture = texture6;
+					swap = !swap;
+				}
+				
+
+				
 				//	cout << "mains update" << endl;
 				if (left) {
 					pcref->AddForce(forceX*-1);
