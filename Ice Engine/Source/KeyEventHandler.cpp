@@ -38,6 +38,9 @@ void KeyEventHandler::SendEvent(int eventType, int arg1, int arg2) {
 		 break;
 	 case Update:
 		 break;
+	 case MouseLeft:
+		 break;
+
 	 default:
 		 break;
 	 }

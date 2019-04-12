@@ -18,7 +18,8 @@ enum EventType
 	RotateRight,
 	RotateLeft,
 	Collided,
-	Update
+	Update,
+	MouseLeft
 };
 struct Event {
 	int Type;

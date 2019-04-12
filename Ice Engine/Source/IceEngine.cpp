@@ -35,9 +35,17 @@ void IceEngine::SFML_Window()
 		{
 			if (event.type == sf::Event::Closed)
 				mainWindow.close();
-			if (event.type == sf::Event::KeyPressed) {
-
+			if (event.type == sf::Event::MouseButtonPressed) {
 				switch (event.key.code) {
+				case sf::Mouse::Left:
+					EventDispacher::get()->SendEvent(MouseLeft, sf::Mouse::getPosition(mainWindow).x, sf::Mouse::getPosition(mainWindow).y);
+					break;
+				}
+			}
+			if (event.type == sf::Event::KeyPressed) {
+			
+				switch (event.key.code) {
+				
 				case sf::Keyboard::Left:
 					EventDispacher::get()->SendEvent(MoveLeft);
 					break;
