@@ -43,12 +43,14 @@ bool PhysicsComponent::IsGrounded()
 	}
 	else {
 		if (abs(currentVelocity.y) < 0.05f) currentVelocity.y = 0;
+		
 	}
-
+	
 
 	acceleration += totalForces / mass;
 	
 	Vector2 accelTime= (acceleration * dT);
+	((currentVelocity.x > 0) ? currentVelocity.x -= 0.05 : currentVelocity.x += 0.05);
 	currentVelocity += accelTime;
 
 	Vector2 temp = { 0,0 };

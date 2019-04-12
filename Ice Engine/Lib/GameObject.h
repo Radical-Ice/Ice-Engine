@@ -6,7 +6,7 @@ class SceneGraph;
 class GameObject
 {
 public:
-	
+	bool active = true;
 	GameObject(SceneGraph* sceneNode);
 	GameObject(GameObject* parent);
 	TransformComponent*  m_Transform;

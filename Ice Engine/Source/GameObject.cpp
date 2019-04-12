@@ -22,6 +22,9 @@ void GameObject::AddChild(GameObject* gameObject) {
 	children.push_back(gameObject);
 }
 void GameObject::Update(sf::RenderWindow & renderWindow) {
+	if (!active) {
+		return;
+	}
 	for (auto item : components) {
 		if (item != NULL) {
 

@@ -50,6 +50,7 @@ public:
 	sf::RenderWindow mainWindow;
 	sf::Event event;
 	sf::Time elapsed;
-
+	
+	vector<sf::Text*> texts;
 
 };

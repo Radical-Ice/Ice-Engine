@@ -163,11 +163,11 @@ void PhysicsEngine::ResolveCollisions() {
 
 		//pair.rigidBodyA.currentVelocity = new Vector2(-pair.rigidBodyA.currentVelocity.x,-pair.rigidBodyA.currentVelocity.y*j*invMassA)*invMassA;
 		//pair.rigidBodyB.currentVelocity = new Vector2(-pair.rigidBodyB.currentVelocity.x,-pair.rigidBodyB.currentVelocity.y*j*invMassB)*invMassB;
-		std::cout << collisions[pair].collisionNormal.y << std::endl;
+		
 		//Debug.Log(pair.rigidBodyA.currentVelocity + "pair.rigidBodyA.currentVelocity");
 		if (impulse.x*impulse.x +impulse.y*impulse.y > 0.21) {
-			Vector2 impbytime= impulse * (1 / 0.1f);
-			pair.rigidBodyA->AddForce(impbytime*-1.0f);// I like this way better than straight division
+			Vector2 impbytime= impulse * (1 / 0.1f);// I like this way better than straight division
+			pair.rigidBodyA->AddForce(impbytime*-1.0f);
 			pair.rigidBodyB->AddForce(impbytime*-1.0f);
 			
 		}

@@ -2,7 +2,7 @@
 #include "SpriteComponent.h"
 
 
-
+#include "SFML-2.5.1/include/SFML/Graphics/Text.hpp"
 
 void IceEngine::InitGraphics() {
 	std::cout << "~~[ Initializing Graphics Engine ]~~\r~" << std::endl;
@@ -75,10 +75,22 @@ void IceEngine::SFML_Window()
 			}
 		}
 		mainWindow.clear();
+		
+		
+		
+		//atext.setFont();
+		//text.setString("HelloWorld");
+		//text.setCharacterSize(20);
+		//text.setStyle(sf::Text::Bold);
+		
+		//text.setPosition(50, 50);
 		sceneNode.Update(mainWindow);
 		physEngine.Update();
 		//mainWindow.draw(sprite);
+		for each(sf::Text* t in texts) {
 
+			mainWindow.draw(*t);
+		}
 		//if (state == SplashScreen)
 		//	splashScreen.Show(mainWindow);
 		ai.makeGrid(mainWindow);

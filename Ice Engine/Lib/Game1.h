@@ -14,5 +14,6 @@ public:
 	std::vector<std::string> AudioFiles;
 	std::vector<std::string> MusicFile;
 	void StartGame();
-
+	int score = 0;
+	bool gameOver = false;
 };
