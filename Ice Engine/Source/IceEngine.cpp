@@ -114,7 +114,7 @@ void IceEngine::LoadScene(const char* fileName) {
 void IceEngine::InitEngine() {
 	//LoadSTexture();
 
-	Audio.Play_Sound_From_Loaded_Files(1, 100, false);
+	//Audio.Play_Sound_From_Loaded_Files(1, 100, false);
 	std::cout << "~~[ Initializing Game Window ]~~" << std::endl;
 	SFML_Window();
 }

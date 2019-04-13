@@ -4,12 +4,11 @@
 const static TCHAR szWindowClass[] = _T("IceEngine");
 void Game1::StartGame(IceEngine &_IceEngine) {
 	
-
+	
 	AudioFiles = { "Assets/GunShot.wav","Assets/PewPew.wav" };
 	MusicFile = { "Assets/EngineBG.ogg" };
 	AllocConsole();
 	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
-
 	//IceEngine iceEngine;
 
 	//iceEngine.InitGraphics();
@@ -355,5 +354,6 @@ void Game1::StartGame(IceEngine &_IceEngine) {
 	std::cout << "~~[ SpriteComponents Loading Complete! ]~~" << std::endl;
 	_IceEngine.PlayMusic();
 	_IceEngine.InitEngine();
+	return;
 
 }
