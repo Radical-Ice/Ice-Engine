@@ -46,8 +46,8 @@ void Game1::StartGame(IceEngine &_IceEngine) {
 		GameObject dog(&_IceEngine.sceneNode);
 		SpriteComponent scDog(&_IceEngine.mainWindow, "Assets/1.png", dog.m_Transform);
 
-		dog.m_Transform->m_Position = { 1024,0 };
-		dog.m_Transform->m_Scale = { .3f,.3f };
+		dog.m_Transform->m_Position = { 1024,-300 };
+		dog.m_Transform->m_Scale = { .5f,1 };
 
 		dog.m_Transform->m_Rotation = { 0 };
 		dog.components.push_back(&scDog);
@@ -64,8 +64,8 @@ void Game1::StartGame(IceEngine &_IceEngine) {
 	GameObject Platform2(&_IceEngine.sceneNode);
 	SpriteComponent scPlatform2(&_IceEngine.mainWindow, "Assets/1.png", Platform2.m_Transform);
 
-	Platform2.m_Transform->m_Position = { 1024,500 };
-	Platform2.m_Transform->m_Scale = { .3f,.3f };
+	Platform2.m_Transform->m_Position = { 1024,600 };
+	Platform2.m_Transform->m_Scale = { .5f,1 };
 
 	Platform2.m_Transform->m_Rotation = { 0 };
 	Platform2.components.push_back(&scPlatform2);
@@ -88,7 +88,7 @@ void Game1::StartGame(IceEngine &_IceEngine) {
 	_IceEngine.texts.push_back(&text);
 
 	GameObject Platform(&_IceEngine.sceneNode);
-	SpriteComponent scPlatform(&_IceEngine.mainWindow, "Assets/cat.png", Platform.m_Transform);
+	static SpriteComponent scPlatform(&_IceEngine.mainWindow, "Assets/cat.png", Platform.m_Transform);
 
 	Platform.m_Transform->m_Position = { 312,550 };
 	Platform.m_Transform->m_Scale = { 1.0f,.3f };
@@ -118,6 +118,7 @@ void Game1::StartGame(IceEngine &_IceEngine) {
 		bool* gameOver;
 		int vanishCounter=1;
 		bool drawOnce = false;
+		float XSpeed=-5;
 		backgroundEvents::backgroundEvents(SpriteComponent* obj, SpriteComponent* obj2, SpriteComponent* obj3, SpriteComponent* obj4, IceEngine* iceEngine,int* scr,sf::Text* txt,bool* gOver) {
 			objref = obj;
 			objref2 = obj2;
@@ -149,28 +150,33 @@ void Game1::StartGame(IceEngine &_IceEngine) {
 				if (objref->sprite.getPosition().x < -961 * 2) {
 					objref->sprite.setPosition(961 * 2, 0);
 				}
-				objref->sprite.move(-4, 0);
+				
 				if (objref2->sprite.getPosition().x < -961 * 2) {
 					objref2->sprite.setPosition(961 * 2, 0);
 				}
+				objref->sprite.move(-4, 0);
 				objref2->sprite.move(-4, 0);
-				objref3->sprite.move(-8, 0);
-				objref4->sprite.move(-8, 0);
+				objref3->sprite.move(XSpeed, 0);
+				objref4->sprite.move(XSpeed, 0);
 				if (objref3->sprite.getPosition().x + objref3->sprite.getGlobalBounds().width < 0) {
-					int temp = rand() % iceRef->mainWindow.getSize().y/2;
-					std::cout << temp;
-					objref3->sprite.setPosition(iceRef->mainWindow.getSize().x, temp);
-					objref4->sprite.setPosition(iceRef->mainWindow.getSize().x, temp+iceRef->mainWindow.getSize().y/2);
+					int temp = rand() % max((int)objref3->sprite.getGlobalBounds().height,1);
+					std::cout << temp<<"temp";
+					objref3->sprite.setPosition(iceRef->mainWindow.getSize().x, iceRef->mainWindow.getSize().y - temp);
+					objref4->sprite.setPosition(iceRef->mainWindow.getSize().x, -temp);
 					*score = *score + 1;
 					std::cout << *score;
 					std::string scoreTxt = "Score  ";
 					scoreTxt.append(std::to_string(*score));
 					text->setString(scoreTxt);
+					XSpeed -= 2;
 				}
 				break;
 			case Collided:
 				if (e.obj1 == 1 && e.obj2 == 0) {
 					vanishCounter++;
+					if (vanishCounter == 3) {
+						scPlatform.sprite.setPosition(-5000,5000);
+					}
 					break;
 				}
 			}
@@ -236,7 +242,7 @@ void Game1::StartGame(IceEngine &_IceEngine) {
 		PhysicsComponent* pcref;
 		IceEngine* iceRef;
 		Vector2 force = { 0,-100 };
-		Vector2 forceX = { 10,0 };
+		Vector2 forceX = { 3,0 };
 		bool left = false;
 		bool right = false;
 		bool* gameOver;

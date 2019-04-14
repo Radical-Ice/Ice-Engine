@@ -12,22 +12,6 @@ class PhysicsEngine {
 
 public:
 	
-
-	/*struct Vector2 {
-		float x, y;
-		Vector2& operator+(const Vector2& a)
-		{
-			x = x + a.x;
-			y = y + a.y;
-			return *this;
-		}
-		Vector2& operator-(const Vector2& a)
-		{
-			x = x - a.x;
-			y = y - a.y;
-			return *this;
-		}
-	};*/
 	struct CollisionPair {
 		PhysicsComponent* rigidBodyA;
 		PhysicsComponent* rigidBodyB;

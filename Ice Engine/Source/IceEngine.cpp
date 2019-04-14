@@ -1,6 +1,6 @@
 #include "IceEngine.h"
 #include "SpriteComponent.h"
-
+#include <string>
 
 #include "SFML-2.5.1/include/SFML/Graphics/Text.hpp"
 
@@ -96,8 +96,8 @@ void IceEngine::SFML_Window()
 		physEngine.Update();
 		//mainWindow.draw(sprite);
 		for each(sf::Text* t in texts) {
-
-			mainWindow.draw(*t);
+			if(mainWindow.isOpen())
+				mainWindow.draw(*t);
 		}
 		//if (state == SplashScreen)
 		//	splashScreen.Show(mainWindow);

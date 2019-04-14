@@ -34,9 +34,7 @@ bool PhysicsComponent::IsGrounded()
 		 acceleration.y = 0;
 		 return;
 	 }
-	// this part of the code checks the object is supposed to use gravity and starts its acceleration 
-	// equal to gravity if thats the case however if the object is moving too slowly it sets the 
-	// value of the current y velocity to 0 so an object doesn't try to fall through solid things
+	
 
 	if (gravityAffected&& !IsGrounded()) {
 		acceleration = gravity;
@@ -50,7 +48,7 @@ bool PhysicsComponent::IsGrounded()
 	acceleration += totalForces / mass;
 	
 	Vector2 accelTime= (acceleration * dT);
-	((currentVelocity.x > 0) ? currentVelocity.x -= 0.05 : currentVelocity.x += 0.05);
+	//((currentVelocity.x > 0) ? currentVelocity.x -= 0.05 : currentVelocity.x += 0.05);
 	currentVelocity += accelTime;
 
 	Vector2 temp = { 0,0 };
@@ -58,16 +56,16 @@ bool PhysicsComponent::IsGrounded()
 	temp.x = rect.left;
 	temp.y = rect.top;
 	temp += currentVelocity;
-	if (mass!=0&&temp.x<1000&& gravityAffected)
+	if (mass!=0&&temp.x<1000)
 		p_sprite->sprite.setPosition( temp.x,temp.y);
 	//SetAABB();????
-
+	
 	totalForces = { 0,0 };
 }
 
  void PhysicsComponent::AddForce(Vector2 force)
  {
-	 if (mass!=0)
+	 if (this!=NULL&&mass!=0)
 		 totalForces += force;
  }
 PhysicsComponent::~PhysicsComponent()

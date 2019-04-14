@@ -87,11 +87,15 @@ void PhysicsEngine::CheckCollisions() {
 					if (gap.x > gap.y) {
 						if (distance.x > 0.0f) {
 							colInfo.collisionNormal = { 1,0 };//added this line
-
+							pair.rigidBodyA->velocity = { 0,0 };
+							pair.rigidBodyB->velocity = { 0,0 };
 						}
 						else {
 
 							colInfo.collisionNormal = { -1,0 };//added this line
+							pair.rigidBodyA->velocity = { 0,0 };
+							pair.rigidBodyB->velocity = { 0,0 };
+
 						}
 						colInfo.penetration = gap.x;
 					}
@@ -103,9 +107,12 @@ void PhysicsEngine::CheckCollisions() {
 						}
 						else {
 							colInfo.collisionNormal = { 0,-1 };
+							
+							std::cout << "Bottom";
 						}
 						colInfo.penetration = gap.y;
-						
+						pair.rigidBodyA->velocity = { 0,0 };
+						pair.rigidBodyB->velocity = { 0,0 };
 					}
 					collisions.insert(std::pair<CollisionPair, CollisionInfo>(pair, colInfo));
 					//collisions[pair] = colInfo;
