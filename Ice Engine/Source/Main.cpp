@@ -106,8 +106,8 @@ int example_3()
 
 int main()
 {
-	MainMenu _MainMenu;
-	_MainMenu.Inist();
+	Game1 game1;
+	game1.StartGame();
 	return 0;
 }
 

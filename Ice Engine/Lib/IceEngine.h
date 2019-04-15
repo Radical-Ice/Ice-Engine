@@ -34,7 +34,8 @@ private:
 	sf::Clock clock;	
 public:
 	PhysicsEngine physEngine;
-	SceneGraph sceneNode;
+	vector<SceneGraph> sceneNode;
+	int currScene=0;
 	MSG msg;
 	void InitEngine();
 	void InitGraphics();

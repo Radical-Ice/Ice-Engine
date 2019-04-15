@@ -92,7 +92,7 @@ void IceEngine::SFML_Window()
 		//text.setStyle(sf::Text::Bold);
 		
 		//text.setPosition(50, 50);
-		sceneNode.Update(mainWindow);
+		sceneNode.at(currScene).Update(mainWindow);
 		physEngine.Update();
 		//mainWindow.draw(sprite);
 		for each(sf::Text* t in texts) {

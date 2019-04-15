@@ -13,7 +13,7 @@ public:
 	// The string that appears in the application's title bar.  
 	std::vector<std::string> AudioFiles;
 	std::vector<std::string> MusicFile;
-	void StartGame(IceEngine &_IceEngine);
+	void StartGame();
 	int score = 0;
 	bool gameOver = false;
 };
